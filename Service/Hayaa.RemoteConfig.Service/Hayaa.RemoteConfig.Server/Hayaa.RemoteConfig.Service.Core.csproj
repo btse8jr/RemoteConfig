@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Hayaa.Common" Version="1.0.0.3" />
+    <PackageReference Include="Hayaa.DataAccess" Version="1.0.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Seed\Netcore\Hayaa.ConfigSeed.Netcore\Hayaa.ConfigSeed.Netcore.csproj" />
+    <ProjectReference Include="..\Hayaa.RemoteConfig.Service\Hayaa.RemoteConfig.Service.csproj" />
+  </ItemGroup>
+
+</Project>

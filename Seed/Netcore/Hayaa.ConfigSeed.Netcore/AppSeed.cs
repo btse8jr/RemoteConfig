@@ -1,4 +1,5 @@
-﻿using Hayaa.ConfigSeed.Standard.Component;
+﻿using Hayaa.BaseModel;
+using Hayaa.ConfigSeed.Standard.Component;
 using System;
 
 namespace Hayaa.ConfigSeed.Standard
@@ -40,6 +41,25 @@ namespace Hayaa.ConfigSeed.Standard
                 return ex.Message;
             }
             return result;
+        }
+        /// <summary>
+        /// 按照组件ID获取组件配置内容
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="componentID"></param>
+        /// <returns></returns>
+        public static FunctionResult<T> GetConfig<T>(int componentID) where T : BaseData, new()
+        {
+            var r = new FunctionResult<T>();
+            var config = ProgramDistributedConfig.Instance.GetComponentConfig(componentID);
+            if (config != null)
+            {
+                if (!string.IsNullOrEmpty(config.Content))
+                {
+                    r.Data =Newtonsoft.Json.JsonConvert.DeserializeObject<T>(config.Content);
+                }
+            }
+            return r;
         }
     }
 }

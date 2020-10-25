@@ -1,6 +1,5 @@
 ﻿using Hayaa.ConfigSeed.Standard.Model;
 using Hayaa.ConfigSeed.Standard.Util;
-using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -118,11 +117,11 @@ namespace Hayaa.ConfigSeed.Standard.Component
                 {
                     File.Delete(seedConfig.LocalConfigDirectoryPath + "/" + seedConfig.AppConfigFileName);
                     //固化指定目录下制定的文件
-                    File.AppendAllText(seedConfig.LocalConfigDirectoryPath + "/" + seedConfig.AppConfigFileName, JsonConvert.SerializeObject(remoteConfig));
+                    File.AppendAllText(seedConfig.LocalConfigDirectoryPath + "/" + seedConfig.AppConfigFileName, Newtonsoft.Json.JsonConvert.SerializeObject(remoteConfig));
                 }
                 if ((seedConfig.Version > 0) && (localconfig == null))//本地没有配置文件并且不是永远更新
                 {
-                    File.AppendAllText(seedConfig.LocalConfigDirectoryPath + "/" + seedConfig.AppConfigFileName, JsonConvert.SerializeObject(remoteConfig));
+                    File.AppendAllText(seedConfig.LocalConfigDirectoryPath + "/" + seedConfig.AppConfigFileName, Newtonsoft.Json.JsonConvert.SerializeObject(remoteConfig));
                 }
             }
 
