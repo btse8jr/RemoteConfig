@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+    <Version>1.0.0.0</Version>
+    <Authors>hayaaAI</Authors>
+    <Company>hayaa</Company>
+    <Product>hayaaAI</Product>
+    <Description>远程配置系统客户端引用插件</Description>
+    <Copyright>©2018 HayaaAI</Copyright>
+    <PackageLicenseUrl>http://l.xieqj.net/license/hayaaai.txt</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/hayaaAI/RemoteConfig</PackageProjectUrl>
+    <PackageIconUrl>http://r.xieqj.net/r/ico/hayaaia.ico</PackageIconUrl>
+    <PackageTags>ConfigSeed</PackageTags>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+  </PropertyGroup>
+
+</Project>

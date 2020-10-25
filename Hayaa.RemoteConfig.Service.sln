@@ -1,0 +1,53 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27428.2005
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Seed", "Seed", "{B46D638C-3EBF-4968-9551-2B376A381A12}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Service", "Service", "{C50B1923-7140-4EE4-A9EE-7CD4E6B15C73}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hayaa.ConfigSeed.Netcore", "Seed\Netcore\Hayaa.ConfigSeed.Netcore\Hayaa.ConfigSeed.Netcore.csproj", "{D4E6BF57-5FFD-4FDF-99FC-01F884E59DE7}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hayaa.ConfigSeed.Standard", "Seed\Standard\Hayaa.ConfigSeed.Standard.csproj", "{A6C5E693-969A-41FB-84E2-D6D40AFA8E95}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hayaa.RemoteConfig.IService", "Service\Hayaa.RemoteConfig.Service\Hayaa.RemoteConfig.Service\Hayaa.RemoteConfig.IService.csproj", "{1C215A8D-5157-44D9-A7B6-998BD3FE1A5E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hayaa.RemoteConfig.Server", "Service\Hayaa.RemoteConfig.Service\Hayaa.RemoteConfig.Server\Hayaa.RemoteConfig.Server.csproj", "{5A4875AE-7031-4904-A4E5-E04F5AD554B2}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D4E6BF57-5FFD-4FDF-99FC-01F884E59DE7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D4E6BF57-5FFD-4FDF-99FC-01F884E59DE7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D4E6BF57-5FFD-4FDF-99FC-01F884E59DE7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D4E6BF57-5FFD-4FDF-99FC-01F884E59DE7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A6C5E693-969A-41FB-84E2-D6D40AFA8E95}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A6C5E693-969A-41FB-84E2-D6D40AFA8E95}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A6C5E693-969A-41FB-84E2-D6D40AFA8E95}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A6C5E693-969A-41FB-84E2-D6D40AFA8E95}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1C215A8D-5157-44D9-A7B6-998BD3FE1A5E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1C215A8D-5157-44D9-A7B6-998BD3FE1A5E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1C215A8D-5157-44D9-A7B6-998BD3FE1A5E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1C215A8D-5157-44D9-A7B6-998BD3FE1A5E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5A4875AE-7031-4904-A4E5-E04F5AD554B2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5A4875AE-7031-4904-A4E5-E04F5AD554B2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5A4875AE-7031-4904-A4E5-E04F5AD554B2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5A4875AE-7031-4904-A4E5-E04F5AD554B2}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{D4E6BF57-5FFD-4FDF-99FC-01F884E59DE7} = {B46D638C-3EBF-4968-9551-2B376A381A12}
+		{A6C5E693-969A-41FB-84E2-D6D40AFA8E95} = {B46D638C-3EBF-4968-9551-2B376A381A12}
+		{1C215A8D-5157-44D9-A7B6-998BD3FE1A5E} = {C50B1923-7140-4EE4-A9EE-7CD4E6B15C73}
+		{5A4875AE-7031-4904-A4E5-E04F5AD554B2} = {C50B1923-7140-4EE4-A9EE-7CD4E6B15C73}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B2F9BE6F-A369-4193-B307-65A4B1F843F6}
+	EndGlobalSection
+EndGlobal
