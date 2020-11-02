@@ -10,21 +10,12 @@ namespace Hayaa.RemoteService
     /// </summary>
     [Serializable]
     public class ComponentConfig : BaseData
-    {
-        /// <summary>
-        /// ID
-        /// </summary>		
-
-        public int ID
-        {
-            get;
-            set;
-        }
+    {      
         /// <summary>
         /// 组件配置ID
         /// </summary>	
 
-        public int ComponentConfigID
+        public int ComponentConfigId
         {
             get;
             set;

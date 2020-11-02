@@ -13,7 +13,7 @@ namespace Hayaa.RemoteService.Core
             var appConfig = AppConfigDal.Get(solutionID, version);
             if (appConfig != null)
             {
-                List<ComponentConfig> list = ComponentConfigDal.GetList(appConfig.ID, appConfig.Version);
+                List<ComponentConfig> list = ComponentConfigDal.GetList(appConfig.AppConfigId, appConfig.Version);
                 appConfig.Components = list;
                 r.Data = appConfig;
             }

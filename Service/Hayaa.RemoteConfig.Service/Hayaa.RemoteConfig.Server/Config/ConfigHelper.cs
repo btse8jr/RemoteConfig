@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Hayaa.RemoteService.Core.Config
 {
-    internal class ConfigHelper: ConfigTool<RemoteServiceConfig>
+    public class ConfigHelper: ConfigTool<RemoteServiceConfig>
     {
         private static ConfigHelper _instance = new ConfigHelper();
         private ConfigHelper() : base(DefineTable.RemoteServiceComponetID)
@@ -13,6 +13,6 @@ namespace Hayaa.RemoteService.Core.Config
 
         }
 
-        internal static ConfigHelper Instance { get => _instance; }
+        public static ConfigHelper Instance { get => _instance; }
     }
 }

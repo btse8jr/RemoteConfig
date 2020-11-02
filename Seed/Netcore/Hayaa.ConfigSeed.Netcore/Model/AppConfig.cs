@@ -13,7 +13,7 @@ namespace Hayaa.ConfigSeed.Standard.Model
         /// <summary>
         /// 配置数据ID
         /// </summary>	
-        public int ID
+        public int AppConfigId
         {
             get;
             set;

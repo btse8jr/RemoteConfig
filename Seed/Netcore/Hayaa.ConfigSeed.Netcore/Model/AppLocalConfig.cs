@@ -36,7 +36,7 @@ namespace Hayaa.ConfigSeed.Standard.Model
         /// 程序配置方案ID
         /// 一个APP可以有多个配置方案        
         /// </summary>
-        public Guid AppConfigID
+        public Guid AppConfigSolutionID
         {
             get;
             set;
@@ -62,6 +62,10 @@ namespace Hayaa.ConfigSeed.Standard.Model
         /// <summary>
         /// 程序配置文件名
         /// </summary>
-        public string AppConfigFileName { get; internal set; }
+        public string AppConfigFileName
+        {
+            get;
+            set;
+        }
     }
 }

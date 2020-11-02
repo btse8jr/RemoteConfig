@@ -39,7 +39,7 @@ namespace Hayaa.ConfigSeed.Standard.Component
             }
             catch (Exception ex)
             {
-                _seedConfig = new AppLocalConfig() { Version = 0, AppConfigID = Guid.Empty, IsRemote = false };//错误配置下给予最小化配置               
+                _seedConfig = new AppLocalConfig() { Version = 0, AppConfigSolutionID = Guid.Empty, IsRemote = false };//错误配置下给予最小化配置               
             }
         }
 
@@ -109,7 +109,7 @@ namespace Hayaa.ConfigSeed.Standard.Component
             }
 
             //远程拉取配置文件
-            var remoteConfig = GetRemote(seedConfig.SeedServerUrl, seedConfig.AppConfigID, seedConfig.SecurityToken);
+            var remoteConfig = GetRemote(seedConfig.SeedServerUrl, seedConfig.AppConfigSolutionID, seedConfig.SecurityToken);
             //判断配置文件的新鲜程度
             if (remoteConfig != null)//无法获取远程配置时不更新本地
             {
@@ -171,7 +171,7 @@ namespace Hayaa.ConfigSeed.Standard.Component
             try
             {
                 string baseDirectory = AppDomain.CurrentDomain.BaseDirectory;//获取根目录路径
-                r = Newtonsoft.Json.JsonConvert.DeserializeObject<AppLocalConfig>(File.ReadAllText(baseDirectory + "/appconfig.config"));//读取根目录下的配置文件
+                r = Newtonsoft.Json.JsonConvert.DeserializeObject<AppLocalConfig>(File.ReadAllText(baseDirectory + "/appconfig.json"));//读取根目录下的配置文件
                 if (r.IsVirtualPath)//web系统相对部署根目录获取绝对路径
                 {
                     r.LocalConfigDirectoryPath = baseDirectory + r.LocalConfigDirectoryPath.Replace("~/", "");

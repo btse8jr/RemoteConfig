@@ -10,7 +10,7 @@ namespace Hayaa.RemoteService
         /// <summary>
         /// 组件身份ID，可固化数据
         /// </summary>
-        public int ComponentID { set; get; }
+        public int ComponentId { set; get; }
         /// <summary>
         /// 展示名
         /// </summary>

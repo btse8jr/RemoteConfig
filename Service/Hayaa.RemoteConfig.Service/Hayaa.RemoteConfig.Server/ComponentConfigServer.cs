@@ -16,7 +16,7 @@ namespace Hayaa.RemoteService.Core
             if (id > 0)
             {
                 r.Data = info;
-                r.Data.ComponentConfigID = id;
+                r.Data.ComponentConfigId = id;
             }
             return r;
         }
