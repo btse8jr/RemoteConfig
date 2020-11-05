@@ -15,14 +15,14 @@ namespace Hayaa.RemoteService.Core
             if (id > 0)
             {
                 r.Data = info;
-                r.Data.AppID = id;
+                r.Data.AppId = id;
             }
             return r;
         }
         public FunctionOpenResult<bool> UpdateByID(App info)
         {
             var r = new FunctionOpenResult<bool>();
-            r.Data = AppDal.update(info) > 0;
+            r.Data = AppDal.Update(info) > 0;
             return r;
         }
         public FunctionOpenResult<bool> DeleteByID(List<int> idList)
@@ -32,9 +32,9 @@ namespace Hayaa.RemoteService.Core
             return r;
         }
 
-        public GridPager<App> GetPager(GridPagerPamater<AppGridSearch> searchParam)
+        public GridPager<App> GetPager(GridPagerPamater<AppSearchPamater> searchParam)
         {
-            var r =  AppDal.GetGridPager(searchParam.PageSize, searchParam.Current, searchParam.SearchPamater.Title);
+            var r =  AppDal.GetGridPager(searchParam);
             return r;
         }
 

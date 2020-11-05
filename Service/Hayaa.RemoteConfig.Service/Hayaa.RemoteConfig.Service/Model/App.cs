@@ -10,7 +10,7 @@ namespace Hayaa.RemoteService
         /// <summary>
         /// 程序身份ID
         /// </summary>
-        public int AppID { set; get; }
+        public int AppId { set; get; }
         /// <summary>
         /// 展示名
         /// </summary>

@@ -9,7 +9,7 @@ namespace Hayaa.RemoteService.Core.Config
     /// 服务配置类
     /// </summary>
     [Serializable]
-   public class RemoteServiceConfig:BaseData, ConfigContent
+    internal class RemoteServiceConfig:BaseData, ConfigContent
     {
        
         public AppSettings AppSettings { set; get; }

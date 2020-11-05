@@ -1,4 +1,4 @@
-using Hayaa.BaseModel;
+﻿using Hayaa.BaseModel;
 using Hayaa.DataAccess;
 using Hayaa.RemoteService.Core.Config;
 using System;

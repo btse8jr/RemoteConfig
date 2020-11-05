@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
 using Hayaa.DataAccess;
@@ -8,7 +8,7 @@ namespace Hayaa.RemoteService.DataAccess
 {
     public class ComponentDal : CommonDal
     {
-        private static String con = ConfigHelper.Instance.GetConnection("Component");
+        private static String con = ConfigHelper.Instance.GetConnection(DefineTable.RemoteDatabaseName);
         internal static int Add(Component info)
         {
             string sql = "insert into Component(ComponentID,Name,Title,CreateTime) values(@ComponentID,@Name,@Title,@CreateTime)";

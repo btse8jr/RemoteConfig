@@ -14,8 +14,7 @@ namespace Hayaa.RemoteService.Core
             int id = ComponentDal.Add(info);
             if (id > 0)
             {
-                r.Data = info;
-                r.Data.ComponentId = id;
+                r.Data = info;               
             }
             return r;
         }
