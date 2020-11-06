@@ -1,11 +1,12 @@
-﻿using System;
+﻿using Hayaa.BaseModel;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace Hayaa.ConfigSeed.Standard.Model
 {
     [Serializable]
-    public class ComponentConfig
+    public class ComponentConfig:BaseData
     {
         /// <summary>
         /// ID

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Hayaa.RemoteService.Core.Config
+namespace Hayaa.RemoteConfig.Service.Config
 {
     class DefineTable
     {
@@ -10,6 +10,6 @@ namespace Hayaa.RemoteService.Core.Config
         /// RemoteServic组件的ID
         /// </summary>
         public readonly static int RemoteServiceComponetID = 10001;
-        public readonly static String RemoteDatabaseName = "RemoteConfig";
+        public readonly static String DatabaseName = "RemoteConfig";
     }
 }

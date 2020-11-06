@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using Hayaa.BaseModel;
-using Hayaa.RemoteService.DataAccess;
+using Hayaa.RemoteConfig.Service.Dao;
+
 
 namespace Hayaa.RemoteService.Core
 {

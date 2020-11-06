@@ -1,4 +1,5 @@
 ﻿using Hayaa.BaseModel.Service;
+using Hayaa.RemoteConfig.Service;
 using System;
 
 namespace Hayaa.RemoteService

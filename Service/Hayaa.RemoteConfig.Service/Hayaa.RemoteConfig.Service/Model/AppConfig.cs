@@ -36,7 +36,7 @@ namespace Hayaa.RemoteService
             set;
         }
         /// <summary>
-        /// 方案配置
+        /// App级别配置内容
         /// </summary>	
         public string ConfigContent
         {

@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Hayaa.RemoteService.Core.Config
+namespace Hayaa.RemoteConfig.Service.Config
 {
     /// <summary>
     /// 服务配置类

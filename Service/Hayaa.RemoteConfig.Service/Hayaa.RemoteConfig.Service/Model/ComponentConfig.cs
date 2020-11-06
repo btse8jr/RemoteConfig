@@ -24,7 +24,7 @@ namespace Hayaa.RemoteService
         /// 组件ID
         /// </summary>		
 
-        public int ComponentID
+        public int ComponentId
         {
             get;
             set;
@@ -53,7 +53,7 @@ namespace Hayaa.RemoteService
 
         public string ComponentConfigTitle { get; set; }
         /// <summary>
-        /// 是否默认配置方案
+        /// 是否App的组件默认配置
         /// </summary>
         public bool IsDefault { set; get; }
     }

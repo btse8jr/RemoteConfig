@@ -1,50 +1,53 @@
-﻿using Hayaa.BaseModel;
-using Hayaa.DataAccess;
-using Hayaa.RemoteService.Core.Config;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Hayaa.DataAccess;
+using Hayaa.BaseModel;
+using Hayaa.RemoteConfig.Service.Config;
+using Hayaa.RemoteService;
 
-
-namespace Hayaa.RemoteService.DataAccess
+/// <summary>
+///代码效率工具生成，此文件不要修改
+/// </summary>
+namespace Hayaa.RemoteConfig.Service.Dao
 {
-    class AppConfigDal: CommonDal
-    {      
-	    private static string  g_con= ConfigHelper.Instance.GetConnection(DefineTable.RemoteDatabaseName);
+    internal partial class AppConfigDal : CommonDal
+    {
+        private static String con = ConfigHelper.Instance.GetConnection(DefineTable.DatabaseName);
         internal static int Add(AppConfig info)
         {
-            string sql = "insert AppConfig (AppConfigID,AppID,SolutionID,SolutionName,Version,ConfigContent) values(@AppConfigID,@AppID,@SolutionID,@SolutionName,@Version,@ConfigContent)";
-            return Update<AppConfig>(g_con,sql, info) ;
+            string sql = "insert into AppConfig(SolutionID,SolutionName,ConfigContent,Version) values(@SolutionID,@SolutionName,@ConfigContent,@Version)";
+            return Insert<AppConfig>(con, sql, info);
         }
-		  internal static int update(AppConfig info)
+
+       
+
+        internal static int Update(AppConfig info)
         {
-            string sql = "update AppConfig set AppConfigID=@AppConfigID,AppID=@AppID,SolutionID=@SolutionID,SolutionName=@SolutionName,Version=@Version,ConfigContent=@ConfigContent where AppConfigID=@AppConfigID";
-            return Update<AppConfig>(g_con,sql, info) ;
+            string sql = "update AppConfig set SolutionID=@SolutionID,SolutionName=@SolutionName,ConfigContent=@ConfigContent,Version=@Version where AppConfigId=@AppConfigId";
+            return Insert<AppConfig>(con, sql, info);
         }
-		 internal static bool Delete(List<int> IDs)
+        internal static bool Delete(List<int> IDs)
         {
-            string sql = "delete from AppConfig where AppConfigID in(@ids)";
-            return Excute(AppConfigDal.g_con,sql, new { ids = IDs.ToArray() })>0;
+            string sql = "delete from  AppConfig where AppConfigId in @ids";
+            return Excute(con, sql, new { ids = IDs.ToArray() }) > 0;
         }
-		  internal static AppConfig Get(Guid solutionID,int version)
+        internal static AppConfig Get(int Id)
         {
-            string sql = "select * from AppConfig  where SolutionID=@SolutionID and Version=@Version";
-            return Get<AppConfig>(AppConfigDal.g_con,sql, new{ SolutionID = solutionID, Version= version }) ;
+            string sql = "select * from AppConfig  where AppConfigId=@AppConfigId";
+            return Get<AppConfig>(con, sql, new { AppConfigId = Id });
         }
-        internal static AppConfig Get(int infoID)
+        internal static List<AppConfig> GetList(AppConfigSearchPamater pamater)
         {
-            string sql = "select * from AppConfig  where AppConfigID=@AppConfigID";
-            return Get<AppConfig>(AppConfigDal.g_con, sql, new { AppConfigID = infoID });
+            string sql = "select * from AppConfig " + pamater.CreateWhereSql();
+            return GetList<AppConfig>(con, sql, pamater);
         }
-        internal static List<AppConfig> GetList()
+        internal static GridPager<AppConfig> GetGridPager(GridPagerPamater<AppConfigSearchPamater> pamater)
         {
-            string sql = "select * from AppConfig";
-            return GetList<AppConfig>(g_con,sql, null) ;
-        }
-		internal static GridPager<AppConfig> GetGridPager(int pageSize,int pageIndex,string searcheKey)
-        {
-            string sql = "select SQL_CALC_FOUND_ROWS * from AppConfig where Title like '%'+@searchKey+'%' limit (@pageIndex-1)*@pageSize,@pageIndex*@pageSize;select FOUND_ROWS();";
-            return GetGridPager<AppConfig>(AppConfigDal.g_con,sql,pageSize,pageIndex,new{pageSize=pageSize,pageIndex=pageIndex,searchKey=searcheKey}) ;
+            string sql = "select SQL_CALC_FOUND_ROWS * from AppConfig " + pamater.SearchPamater.CreateWhereSql() + " limit @Start,*@PageSize;select FOUND_ROWS();";
+            pamater.SearchPamater.Start = (pamater.Current - 1) * pamater.PageSize;
+            pamater.SearchPamater.PageSize = pamater.PageSize;
+            return GetGridPager<AppConfig>(con, sql, pamater.PageSize, pamater.Current, pamater.SearchPamater);
         }
     }
 }

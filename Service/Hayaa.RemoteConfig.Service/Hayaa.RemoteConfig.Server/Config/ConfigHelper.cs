@@ -1,9 +1,7 @@
 ﻿using Hayaa.ConfigSeed.Standard;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace Hayaa.RemoteService.Core.Config
+
+namespace Hayaa.RemoteConfig.Service.Config
 {
     internal class ConfigHelper: ConfigTool<RemoteServiceConfig>
     {

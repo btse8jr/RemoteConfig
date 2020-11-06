@@ -1,52 +1,50 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
 using Hayaa.DataAccess;
-using Hayaa.RemoteService.Core.Config;
 using Hayaa.BaseModel;
+using Hayaa.RemoteConfig.Service.Config;
+using Hayaa.RemoteService;
 
-namespace Hayaa.RemoteService.DataAccess
+/// <summary>
+///代码效率工具生成，此文件不要修改
+/// </summary>
+namespace Hayaa.RemoteConfig.Service.Dao
 {
-    class ComponentConfigDal: CommonDal
-    {      
-	    private static string  g_con= ConfigHelper.Instance.GetConnection(DefineTable.RemoteDatabaseName);
+    internal partial class ComponentConfigDal : CommonDal
+    {
+        private static String con = ConfigHelper.Instance.GetConnection(DefineTable.DatabaseName);
         internal static int Add(ComponentConfig info)
         {
-            string sql = "insert ComponentConfig (ComponentConfigID,ComponentConfigTitle,Name,ComponentID,Content,Version,IsDefault) values(@ComponentConfigID,@ComponentConfigTitle,@Name,@ComponentID,@Content,@Version,@IsDefault)";
-            return Update<ComponentConfig>(g_con,sql, info) ;
+            string sql = "insert into ComponentConfig(ComponentConfig,ComponentId,Content,Version,ComponentConfigTitle,IsDefault) values(@ComponentConfig,@ComponentId,@Content,@Version,@ComponentConfigTitle,@IsDefault)";
+            return Insert<ComponentConfig>(con, sql, info);
         }
-
-      
-
-        internal static int update(ComponentConfig info)
+        internal static int Update(ComponentConfig info)
         {
-            string sql = "update ComponentConfig set ComponentConfigID=@ComponentConfigID,ComponentConfigTitle=@ComponentConfigTitle,Name=@Name,ComponentID=@ComponentID,Content=@Content,Version=@Version,IsDefault=@IsDefault where ID=@ID";
-            return Update<ComponentConfig>(g_con,sql, info) ;
+            string sql = "update ComponentConfig set ComponentConfig=@ComponentConfig,ComponentId=@ComponentId,Content=@Content,Version=@Version,ComponentConfigTitle=@ComponentConfigTitle,IsDefault=@IsDefault where ComponentConfigId=@ComponentConfigId";
+            return Insert<ComponentConfig>(con, sql, info);
         }
-		 internal static bool Delete(List<int> IDs)
+        internal static bool Delete(List<int> IDs)
         {
-            string sql = "delete from ComponentConfig where ID in(@ids)";
-            return Excute(g_con,sql, new { ids = IDs.ToArray() })>0;
+            string sql = "delete from  ComponentConfig where ComponentConfigId in @ids ";
+            return Excute(con, sql, new { ids = IDs.ToArray() }) > 0;
         }
-		  internal static ComponentConfig Get(int infoID)
+        internal static ComponentConfig Get(int Id)
         {
-            string sql = "select * from ComponentConfig  where ID=@ID";
-            return Get<ComponentConfig>(g_con,sql, new{ ComponentConfigID=infoID}) ;
+            string sql = "select * from ComponentConfig  where ComponentConfigId=@ComponentConfigId";
+            return Get<ComponentConfig>(con, sql, new { ComponentConfigId = Id });
         }
-		internal static List<ComponentConfig> GetList()
+        internal static List<ComponentConfig> GetList(ComponentConfigSearchPamater pamater)
         {
-            string sql = "select * from ComponentConfig";
-            return GetList<ComponentConfig>(g_con,sql, null) ;
+            string sql = "select * from ComponentConfig " + pamater.CreateWhereSql();
+            return GetList<ComponentConfig>(con, sql, pamater);
         }
-        internal static List<ComponentConfig> GetList(int appConfigID, int version)
+        internal static GridPager<ComponentConfig> GetGridPager(GridPagerPamater<ComponentConfigSearchPamater> pamater)
         {
-            string sql = "select a.* from ComponentConfig a inner join Rel_AppConfig_ComponentConfig b on a.ComponentConfigID=b.ComponentConfigID and a.Version=b.ComponentConfigVersion and b.AppConfigID=@AppConfigID and b.AppConfigVersion=@AppConfigVersion and b.IsActive=1";
-            return GetList<ComponentConfig>(g_con, sql, new { AppConfigID = appConfigID, AppConfigVersion=version });
-        }
-        internal static GridPager<ComponentConfig> GetGridPager(int pageSize,int pageIndex,string searcheKey)
-        {
-            string sql = "select SQL_CALC_FOUND_ROWS * from ComponentConfig where Title like '%'+@searchKey+'%' limit (@pageIndex-1)*@pageSize,@pageIndex*@pageSize;select FOUND_ROWS();";
-            return GetGridPager<ComponentConfig>(g_con,sql,pageSize,pageIndex,new{pageSize=pageSize,pageIndex=pageIndex,searchKey=searcheKey}) ;
+            string sql = "select SQL_CALC_FOUND_ROWS * from ComponentConfig " + pamater.SearchPamater.CreateWhereSql() + " limit @Start,*@PageSize;select FOUND_ROWS();";
+            pamater.SearchPamater.Start = (pamater.Current - 1) * pamater.PageSize;
+            pamater.SearchPamater.PageSize = pamater.PageSize;
+            return GetGridPager<ComponentConfig>(con, sql, pamater.PageSize, pamater.Current, pamater.SearchPamater);
         }
     }
 }

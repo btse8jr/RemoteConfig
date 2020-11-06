@@ -3,25 +3,29 @@ using System.Collections.Generic;
 using System.Text;
 using Hayaa.DataAccess;
 using Hayaa.BaseModel;
-using Hayaa.RemoteService.Core.Config;
-namespace Hayaa.RemoteService.DataAccess
+using Hayaa.RemoteConfig.Service.Config;
+using Hayaa.RemoteService;
+/// <summary>
+///代码效率工具生成，此文件不要修改
+/// </summary>
+namespace Hayaa.RemoteConfig.Service.Dao
 {
-    public class ComponentDal : CommonDal
+    internal partial class ComponentDal : CommonDal
     {
-        private static String con = ConfigHelper.Instance.GetConnection(DefineTable.RemoteDatabaseName);
+        private static String con = ConfigHelper.Instance.GetConnection(DefineTable.DatabaseName);
         internal static int Add(Component info)
         {
-            string sql = "insert into Component(ComponentID,Name,Title,CreateTime) values(@ComponentID,@Name,@Title,@CreateTime)";
+            string sql = "insert into Component(ComponentID,Name,Title) values(@ComponentID,@Name,@Title)";
             return Insert<Component>(con, sql, info);
         }
         internal static int Update(Component info)
         {
-            string sql = "update Component set ComponentID=@ComponentID,Name=@Name,Title=@Title,ModifyTime=@ModifyTime where ComponentId=@ComponentId";
+            string sql = "update Component set ComponentID=@ComponentID,Name=@Name,Title=@Title where ComponentId=@ComponentId";
             return Insert<Component>(con, sql, info);
         }
         internal static bool Delete(List<int> IDs)
         {
-            string sql = "delete from  Component where ComponentId in(@ids)";
+            string sql = "delete from  Component where ComponentId in @ids ";
             return Excute(con, sql, new { ids = IDs.ToArray() }) > 0;
         }
         internal static Component Get(int Id)
@@ -36,7 +40,9 @@ namespace Hayaa.RemoteService.DataAccess
         }
         internal static GridPager<Component> GetGridPager(GridPagerPamater<ComponentSearchPamater> pamater)
         {
-            string sql = "select SQL_CALC_FOUND_ROWS * from Component " + pamater.SearchPamater.CreateWhereSql() + " limit (@pageIndex-1)*@pageSize,@pageIndex*@pageSize;select FOUND_ROWS();";
+            string sql = "select SQL_CALC_FOUND_ROWS * from Component " + pamater.SearchPamater.CreateWhereSql() + " limit @Start,*@PageSize;select FOUND_ROWS();";
+            pamater.SearchPamater.Start = (pamater.Current - 1) * pamater.PageSize;
+            pamater.SearchPamater.PageSize = pamater.PageSize;
             return GetGridPager<Component>(con, sql, pamater.PageSize, pamater.Current, pamater.SearchPamater);
         }
     }
