@@ -61,5 +61,18 @@ namespace Hayaa.ConfigSeed.Standard
             }
             return r;
         }
+        public static FunctionOpenResult<T> GetAppRootConfig<T>() 
+        {
+            var r = new FunctionOpenResult<T>();
+            var config = ProgramDistributedConfig.Instance.GetAppConfig();
+            if (config != null)
+            {
+                if (!string.IsNullOrEmpty(config.ConfigContent))
+                {
+                    r.Data = Newtonsoft.Json.JsonConvert.DeserializeObject<T>(config.ConfigContent);
+                }
+            }
+            return r;
+        }
     }
 }

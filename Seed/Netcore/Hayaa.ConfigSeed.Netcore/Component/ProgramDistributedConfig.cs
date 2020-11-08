@@ -184,7 +184,7 @@ namespace Hayaa.ConfigSeed.Standard.Component
            
             return r;
         }
-        public AppConfig GetLocalConfig()
+        public AppConfig GetAppConfig()
         {
             return ReadLocal(_seedConfig);
         }

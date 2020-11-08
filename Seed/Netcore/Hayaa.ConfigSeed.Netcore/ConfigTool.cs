@@ -11,9 +11,10 @@ namespace Hayaa.ConfigSeed.Standard
     /// 配置管理继承基础类
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public class ConfigTool<T> where T : BaseData, ConfigContent, new()
+    public class ConfigTool<T, APPROOT> where T : BaseData, ConfigContent, new()
     {
         private T g_config;
+        private APPROOT g_appRootConfig;
         public ConfigTool(int componentID)
         {
             FunctionResult<T> Config = AppSeed.GetConfig<T>(componentID);
@@ -21,11 +22,20 @@ namespace Hayaa.ConfigSeed.Standard
             {
                 g_config = Config.Data;
             }
+            FunctionOpenResult<APPROOT> appRootConfig = AppSeed.GetAppRootConfig<APPROOT>();
+            if (Config.ActionResult & Config.HavingData)
+            {
+                g_appRootConfig = appRootConfig.Data;
+            }
         }
 
         public T GetComponentConfig()
         {
             return g_config;
+        }
+        public APPROOT GetAppRootConfig()
+        {
+            return g_appRootConfig;
         }
         private string _ConfigExceptionMsg = "";
         public string IsConfigExceptionMsg
