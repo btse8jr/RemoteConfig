@@ -126,6 +126,30 @@ namespace Hayaa.ConfigSeed.Standard.Component
             }
 
         }
+        private void ReReadRemote(AppLocalConfig seedConfig)
+        {
+
+
+            AppConfig localconfig = null;           
+
+            //远程拉取配置文件
+            var remoteConfig = GetRemote(seedConfig.SeedServerUrl, seedConfig.AppConfigSolutionID, seedConfig.SecurityToken);
+            //判断配置文件的新鲜程度
+            if (remoteConfig != null)//无法获取远程配置时不更新本地
+            {
+                if (seedConfig.Version == 0)//永远最新
+                {
+                    File.Delete(seedConfig.LocalConfigDirectoryPath + "/" + seedConfig.AppConfigFileName);
+                    //固化指定目录下制定的文件
+                    File.AppendAllText(seedConfig.LocalConfigDirectoryPath + "/" + seedConfig.AppConfigFileName, Newtonsoft.Json.JsonConvert.SerializeObject(remoteConfig));
+                }
+                if ((seedConfig.Version > 0) && (localconfig == null))//本地没有配置文件并且不是永远更新
+                {
+                    File.AppendAllText(seedConfig.LocalConfigDirectoryPath + "/" + seedConfig.AppConfigFileName, Newtonsoft.Json.JsonConvert.SerializeObject(remoteConfig));
+                }
+            }
+
+        }
         /// <summary>
         /// 获取远程配置内容
         /// </summary>
@@ -201,12 +225,22 @@ namespace Hayaa.ConfigSeed.Standard.Component
         /// 在程序第一次运行时运行此方法获取配置
         /// </summary>
         /// <returns></returns>
-        public InitResult RunInAppStartInit()
+        public InitResult InitAppConfig()
         {
             var r = new InitResult() { Result = true };
             if (_seedConfig.IsRemote)//判断是否读取远程配置模式
             {
                 ReadRemote(_seedConfig);//读取远程配置
+            }
+            ReadLocal(_seedConfig, r);//读取本地配置 
+            return r;
+        }
+        public InitResult ReAppConfig()
+        {
+            var r = new InitResult() { Result = true };
+            if (_seedConfig.IsRemote)//判断是否读取远程配置模式
+            {
+                ReReadRemote(_seedConfig);//读取远程配置
             }
             ReadLocal(_seedConfig, r);//读取本地配置 
             return r;

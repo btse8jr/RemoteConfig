@@ -26,13 +26,29 @@ namespace Hayaa.ConfigSeed.Standard
         /// 初始化，并获取配置
         /// </summary>
         /// <returns></returns>
-        public string InitProgram()
+        public string InitConfig()
         {
             string result = "";
             try
             {
                 //支持分布式配置系统则获取配置
-                ProgramDistributedConfig.Instance.RunInAppStartInit();
+                ProgramDistributedConfig.Instance.InitAppConfig();
+                var seedConfig = ProgramDistributedConfig.Instance.GetSeedConfig();
+
+            }
+            catch (Exception ex)
+            {
+                return ex.Message;
+            }
+            return result;
+        }
+        public String Resetonfig()
+        {
+            string result = "";
+            try
+            {
+                //支持分布式配置系统则获取配置
+                ProgramDistributedConfig.Instance.ReAppConfig();
                 var seedConfig = ProgramDistributedConfig.Instance.GetSeedConfig();
 
             }
