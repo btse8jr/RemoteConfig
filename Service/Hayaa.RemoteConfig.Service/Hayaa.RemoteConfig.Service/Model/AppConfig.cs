@@ -20,6 +20,10 @@ namespace Hayaa.RemoteService
             set;
         }
         /// <summary>
+        /// AppId
+        /// </summary>
+        public int AppId { set; get; }
+        /// <summary>
         /// 解决方案ID
         /// </summary>	
         public Guid SolutionID

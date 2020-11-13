@@ -1,5 +1,6 @@
 ﻿using Hayaa.BaseModel;
 using Hayaa.ConfigSeed.Standard.Component;
+using Hayaa.ConfigSeed.Standard.Model;
 using System;
 
 namespace Hayaa.ConfigSeed.Standard
@@ -57,6 +58,18 @@ namespace Hayaa.ConfigSeed.Standard
                 return ex.Message;
             }
             return result;
+        }
+        public static FunctionOpenResult<int> GetAppId() 
+        {
+            var r = new FunctionOpenResult<int>();
+            AppLocalConfig config = ProgramDistributedConfig.Instance.GetSeedConfig();
+            if (config != null)
+            {
+               
+                    r.Data = config.AppID;
+               
+            }
+            return r;
         }
         /// <summary>
         /// 按照组件ID获取组件配置内容

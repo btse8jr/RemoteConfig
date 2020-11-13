@@ -3,7 +3,7 @@
 
 namespace Hayaa.RemoteConfig.Service.Config
 {
-    internal class ConfigHelper: ConfigTool<RemoteServiceConfig>
+    internal class ConfigHelper: ConfigTool<RemoteServiceConfig, RemoteServiceRootConfig>
     {
         private static ConfigHelper _instance = new ConfigHelper();
         private ConfigHelper() : base(DefineTable.RemoteServiceComponetID)
