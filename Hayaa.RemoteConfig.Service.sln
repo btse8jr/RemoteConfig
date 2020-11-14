@@ -23,6 +23,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Controller", "Controller", 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Site", "Site", "{714B9262-0108-405A-B1E7-339FCDDFE53A}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Sql", "Sql", "{7907AA4E-D083-4A83-8435-59F81681A815}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "iteration1", "iteration1", "{CCD29EE2-911C-4709-9654-8A5BE8C522E7}"
+	ProjectSection(SolutionItems) = preProject
+		Sql\Mariadb\iteration1\RemoteConfig.sql = Sql\Mariadb\iteration1\RemoteConfig.sql
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -56,6 +63,7 @@ Global
 		{45F83CFE-BA5F-449E-BD41-CFE00ED08DA9} = {0603E397-5141-4CDA-858B-D17B75C135A4}
 		{A2FFF296-B4EC-445B-B03A-51D6626854FB} = {C503BC1C-1C1F-4CF8-84C7-F7A1D63CE405}
 		{714B9262-0108-405A-B1E7-339FCDDFE53A} = {C503BC1C-1C1F-4CF8-84C7-F7A1D63CE405}
+		{CCD29EE2-911C-4709-9654-8A5BE8C522E7} = {7907AA4E-D083-4A83-8435-59F81681A815}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B2F9BE6F-A369-4193-B307-65A4B1F843F6}
