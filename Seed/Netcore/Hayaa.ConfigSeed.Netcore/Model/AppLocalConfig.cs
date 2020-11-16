@@ -8,7 +8,7 @@ namespace Hayaa.ConfigSeed.Standard.Model
     /// 种子服务配置
     /// </summary>
     [Serializable]
-    internal class AppLocalConfig
+    public class AppLocalConfig
     {
         /// <summary>
         /// 种子服务地址

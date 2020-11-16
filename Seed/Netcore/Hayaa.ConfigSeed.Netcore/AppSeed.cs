@@ -71,14 +71,14 @@ namespace Hayaa.ConfigSeed.Standard
         /// 获取AppId
         /// </summary>
         /// <returns></returns>
-        public static FunctionOpenResult<int> GetAppId() 
+        public static FunctionOpenResult<AppLocalConfig> GetAppLocalConfig() 
         {
-            var r = new FunctionOpenResult<int>();
+            var r = new FunctionOpenResult<AppLocalConfig>();
             AppLocalConfig config = ProgramDistributedConfig.Instance.GetSeedConfig();
             if (config != null)
             {
                
-                    r.Data = config.AppID;
+                    r.Data = config;
                
             }
             return r;
