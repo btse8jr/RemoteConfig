@@ -21,7 +21,7 @@ namespace Hayaa.RemoteConfig.Service.Dao
         internal static int Update(App info)
         {
             string sql = "update App set Title=@Title,Name=@Name where AppId=@AppId";
-            return Insert<App>(con, sql, info);
+            return Update<App>(con, sql, info);
         }
         internal static bool Delete(List<int> IDs)
         {

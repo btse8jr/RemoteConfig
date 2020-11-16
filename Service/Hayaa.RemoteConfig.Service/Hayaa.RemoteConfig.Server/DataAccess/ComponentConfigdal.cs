@@ -22,7 +22,7 @@ namespace Hayaa.RemoteConfig.Service.Dao
         internal static int Update(ComponentConfig info)
         {
             string sql = "update ComponentConfig set ComponentConfig=@ComponentConfig,ComponentId=@ComponentId,Content=@Content,Version=@Version,ComponentConfigTitle=@ComponentConfigTitle,IsDefault=@IsDefault where ComponentConfigId=@ComponentConfigId";
-            return Insert<ComponentConfig>(con, sql, info);
+            return Update<ComponentConfig>(con, sql, info);
         }
         internal static bool Delete(List<int> IDs)
         {
