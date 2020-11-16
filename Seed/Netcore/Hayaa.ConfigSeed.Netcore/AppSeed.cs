@@ -59,6 +59,18 @@ namespace Hayaa.ConfigSeed.Standard
             }
             return result;
         }
+        /// <summary>
+        /// 设置App实例运行Id
+        /// </summary>
+        /// <param name="appInstanceId"></param>
+        public static void SetAppInstanceId(int appInstanceId)
+        {
+            ProgramDistributedConfig.Instance.SetAppInstanceId(appInstanceId);
+        }
+        /// <summary>
+        /// 获取AppId
+        /// </summary>
+        /// <returns></returns>
         public static FunctionOpenResult<int> GetAppId() 
         {
             var r = new FunctionOpenResult<int>();

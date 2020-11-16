@@ -195,7 +195,7 @@ namespace Hayaa.ConfigSeed.Standard.Component
             try
             {
                 string baseDirectory = AppDomain.CurrentDomain.BaseDirectory;//获取根目录路径
-                r = Newtonsoft.Json.JsonConvert.DeserializeObject<AppLocalConfig>(File.ReadAllText(baseDirectory + "/appconfig.json"));//读取根目录下的配置文件
+                r = Newtonsoft.Json.JsonConvert.DeserializeObject<AppLocalConfig>(File.ReadAllText(baseDirectory + "/appconfig.json",Encoding.UTF8));//读取根目录下的配置文件
                 if (r.IsVirtualPath)//web系统相对部署根目录获取绝对路径
                 {
                     r.LocalConfigDirectoryPath = baseDirectory + r.LocalConfigDirectoryPath.Replace("~/", "");
@@ -207,6 +207,20 @@ namespace Hayaa.ConfigSeed.Standard.Component
             }
            
             return r;
+        }
+        public void SetAppInstanceId(int appInstanceId)
+        {
+            try
+            {
+                _seedConfig.AppInstanceID = appInstanceId;
+                string baseDirectory = AppDomain.CurrentDomain.BaseDirectory;//获取根目录路径
+              String strConfig=  Newtonsoft.Json.JsonConvert.SerializeObject(_seedConfig);
+                File.WriteAllText((baseDirectory + "/appconfig.json"), strConfig, Encoding.UTF8);
+            }
+            catch (Exception ex)
+            {
+               
+            }
         }
         public AppConfig GetAppConfig()
         {

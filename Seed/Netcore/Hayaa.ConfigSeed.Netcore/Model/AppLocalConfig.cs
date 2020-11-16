@@ -33,6 +33,10 @@ namespace Hayaa.ConfigSeed.Standard.Model
         /// </summary>
         public int AppID { set; get; }
         /// <summary>
+        /// 程序运行实例Id
+        /// </summary>
+        public int AppInstanceID { set; get; }
+        /// <summary>
         /// 程序配置方案ID
         /// 一个APP可以有多个配置方案        
         /// </summary>

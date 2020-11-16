@@ -5,6 +5,7 @@
   "IsVirtualPath": "true",
   "SecurityToken": "",
   "AppID": "1",
+  "AppInstanceID": 0,
   "AppConfigID": "600e4dcf-f426-4624-ab4f-4f55e81bbaf5",
   "AppConfigFileName": "app.json",
   "Version": null,
