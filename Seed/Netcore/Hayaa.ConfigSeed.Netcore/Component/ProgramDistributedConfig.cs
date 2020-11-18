@@ -1,4 +1,5 @@
-﻿using Hayaa.ConfigSeed.Standard.Model;
+﻿using Hayaa.BaseModel.Model;
+using Hayaa.ConfigSeed.Standard.Model;
 using Hayaa.ConfigSeed.Standard.Util;
 using System;
 using System.Collections.Generic;
@@ -109,7 +110,7 @@ namespace Hayaa.ConfigSeed.Standard.Component
             }
 
             //远程拉取配置文件
-            var remoteConfig = GetRemote(seedConfig.SeedServerUrl, seedConfig.AppConfigSolutionID, seedConfig.SecurityToken);
+            var remoteConfig = GetRemote(seedConfig.SeedServerUrl, seedConfig.AppConfigSolutionID, seedConfig.SecurityToken, seedConfig.Version.HasValue ? seedConfig.Version.Value : 0);
             //判断配置文件的新鲜程度
             if (remoteConfig != null)//无法获取远程配置时不更新本地
             {
@@ -133,7 +134,7 @@ namespace Hayaa.ConfigSeed.Standard.Component
             AppConfig localconfig = null;           
 
             //远程拉取配置文件
-            var remoteConfig = GetRemote(seedConfig.SeedServerUrl, seedConfig.AppConfigSolutionID, seedConfig.SecurityToken);
+            var remoteConfig = GetRemote(seedConfig.SeedServerUrl, seedConfig.AppConfigSolutionID, seedConfig.SecurityToken, seedConfig.Version.HasValue? seedConfig.Version.Value:0);
             //判断配置文件的新鲜程度
             if (remoteConfig != null)//无法获取远程配置时不更新本地
             {
@@ -157,21 +158,26 @@ namespace Hayaa.ConfigSeed.Standard.Component
         /// <param name="solutionID">app配置方案ID</param>
         /// <param name="token">app的安全令牌</param>
         /// <returns></returns>
-        private AppConfig GetRemote(string url, Guid solutionID,string token)
+        private AppConfig GetRemote(string url, Guid solutionID,string token,int version)
         {
             string key = DateTime.Now.ToString("HHmmssyyyyMMdd");
             var dic = new Dictionary<string, string>();
             dic.Add("key", key);
             dic.Add("sid", solutionID.ToString());
+            dic.Add("v", version.ToString());
             dic.Add("t", token);
             string str = "";
             AppConfig result = null;
             try
             {               
                 str = _httpRequestHelper.Transaction(url, dic);
-                str = HttpUtility.UrlDecode(str);
+                //str = HttpUtility.UrlDecode(str);
                 //str = str;//解密TODO，等待安全算法实现后替换
-                result = Newtonsoft.Json.JsonConvert.DeserializeObject<AppConfig>(str);
+              var response = Newtonsoft.Json.JsonConvert.DeserializeObject<TransactionResult<AppConfig>>(str);
+                if (response.Code == 0)
+                {
+                    result = response.Data;
+                }
             }
             catch (Exception ex)
             {

@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Hayaa.ServicePlatform.Client" Version="1.0.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Service\Hayaa.RemoteConfig.Service\Hayaa.RemoteConfig.Server\Hayaa.RemoteConfig.Service.Core.csproj" />
+    <ProjectReference Include="..\Service\Hayaa.RemoteConfig.Service\Hayaa.RemoteConfig.Service\Hayaa.RemoteConfig.Service.csproj" />
+  </ItemGroup>
+
+</Project>
