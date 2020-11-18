@@ -110,7 +110,7 @@ namespace Hayaa.ConfigSeed.Standard.Component
             }
 
             //远程拉取配置文件
-            var remoteConfig = GetRemote(seedConfig.SeedServerUrl, seedConfig.AppConfigSolutionID, seedConfig.SecurityToken, seedConfig.Version.HasValue ? seedConfig.Version.Value : 0);
+            var remoteConfig = GetRemote(seedConfig.SeedServerUrl, seedConfig.AppConfigSolutionID, seedConfig.SecurityToken, seedConfig.Version.HasValue ? seedConfig.Version.Value : 0, seedConfig.AppInstanceID);
             //判断配置文件的新鲜程度
             if (remoteConfig != null)//无法获取远程配置时不更新本地
             {
@@ -134,7 +134,7 @@ namespace Hayaa.ConfigSeed.Standard.Component
             AppConfig localconfig = null;           
 
             //远程拉取配置文件
-            var remoteConfig = GetRemote(seedConfig.SeedServerUrl, seedConfig.AppConfigSolutionID, seedConfig.SecurityToken, seedConfig.Version.HasValue? seedConfig.Version.Value:0);
+            var remoteConfig = GetRemote(seedConfig.SeedServerUrl, seedConfig.AppConfigSolutionID, seedConfig.SecurityToken, seedConfig.Version.HasValue? seedConfig.Version.Value:0, seedConfig.AppInstanceID);
             //判断配置文件的新鲜程度
             if (remoteConfig != null)//无法获取远程配置时不更新本地
             {
@@ -158,14 +158,13 @@ namespace Hayaa.ConfigSeed.Standard.Component
         /// <param name="solutionID">app配置方案ID</param>
         /// <param name="token">app的安全令牌</param>
         /// <returns></returns>
-        private AppConfig GetRemote(string url, Guid solutionID,string token,int version)
+        private AppConfig GetRemote(string url, Guid solutionID,string token,int version,int appIntanceId)
         {
-            string key = DateTime.Now.ToString("HHmmssyyyyMMdd");
-            var dic = new Dictionary<string, string>();
-            dic.Add("key", key);
+            var dic = new Dictionary<string, string>();           
             dic.Add("sid", solutionID.ToString());
             dic.Add("v", version.ToString());
-            dic.Add("t", token);
+            dic.Add("apt", token);
+            dic.Add("aid", appIntanceId.ToString());
             string str = "";
             AppConfig result = null;
             try
