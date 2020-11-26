@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using Hayaa.BaseModel;
 using Hayaa.RemoteConfig.Service.Dao;
+using Hayaa.RemoteService;
 
-
-namespace Hayaa.RemoteService.Core
+namespace Hayaa.RemoteConfig.Service
 {
     public class RemoteConfigServer : RemoteConfigService
     {

@@ -36,6 +36,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hayaa.RemoteConfigControlle
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{5837A7EB-FF44-491B-B9A3-CC34828A9846}"
 EndProject
+Project("{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}") = "HayaaRemoteConfigManangerSite", "HayaaRemoteConfigManangerSite\HayaaRemoteConfigManangerSite.njsproj", "{5613E36E-90BF-4F5C-8F38-451EB456F2C8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -70,6 +72,10 @@ Global
 		{5837A7EB-FF44-491B-B9A3-CC34828A9846}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5837A7EB-FF44-491B-B9A3-CC34828A9846}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5837A7EB-FF44-491B-B9A3-CC34828A9846}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5613E36E-90BF-4F5C-8F38-451EB456F2C8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5613E36E-90BF-4F5C-8F38-451EB456F2C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5613E36E-90BF-4F5C-8F38-451EB456F2C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5613E36E-90BF-4F5C-8F38-451EB456F2C8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -84,6 +90,7 @@ Global
 		{CCD29EE2-911C-4709-9654-8A5BE8C522E7} = {7907AA4E-D083-4A83-8435-59F81681A815}
 		{903E316E-240C-4EFA-B8F3-0BF2399CBDB7} = {714B9262-0108-405A-B1E7-339FCDDFE53A}
 		{1FBC3CE0-F58D-4FCC-9922-6D821BE68C33} = {A2FFF296-B4EC-445B-B03A-51D6626854FB}
+		{5613E36E-90BF-4F5C-8F38-451EB456F2C8} = {714B9262-0108-405A-B1E7-339FCDDFE53A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B2F9BE6F-A369-4193-B307-65A4B1F843F6}

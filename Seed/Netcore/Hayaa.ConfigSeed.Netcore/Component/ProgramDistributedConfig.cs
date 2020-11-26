@@ -40,7 +40,7 @@ namespace Hayaa.ConfigSeed.Standard.Component
             }
             catch (Exception ex)
             {
-                _seedConfig = new AppLocalConfig() { Version = 0, AppConfigSolutionID = Guid.Empty, IsRemote = false };//错误配置下给予最小化配置               
+                throw new Exception("无法读取App的Seed配置:"+ex.Message);//错误配置下扔出               
             }
         }
 
@@ -90,9 +90,9 @@ namespace Hayaa.ConfigSeed.Standard.Component
             }
             catch (Exception ex)//预期异常：格式错误，错误内容
             {
-
+                throw new Exception("ReadLocal反序列化异常:"+ex.Message);
             }
-            return null;
+           
         }
         /// <summary>
         /// 远程获取程序配置
@@ -180,8 +180,7 @@ namespace Hayaa.ConfigSeed.Standard.Component
             }
             catch (Exception ex)
             {
-                result = null;
-                return result;
+                result = null;               
             }
             return result;
         }
