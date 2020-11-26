@@ -25,5 +25,21 @@ namespace Hayaa.RemoteService.Core
             }
             return r;
         }
+
+        public FunctionResult<AppConfig> SendJsAppConfig(Guid solutionID, int version)
+        {
+            var r = new FunctionResult<AppConfig>();
+            var appConfig = AppConfigDal.Get(solutionID, version);
+            if (appConfig != null)
+            {              
+                r.Data = appConfig;
+            }
+            else
+            {
+                r.ErrorMsg = "无获取app的配置数据";
+                r.Data = null;
+            }
+            return r;
+        }
     }
 }

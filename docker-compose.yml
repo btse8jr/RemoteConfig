@@ -1,0 +1,8 @@
+version: '3'
+
+services:
+  hayaa.remoteconfigsite:
+    image: hayaaremoteconfigsite
+    build:
+      context: .
+      dockerfile: Hayaa.RemoteConfigSite/Dockerfile
