@@ -71,5 +71,9 @@ namespace Hayaa.ConfigSeed.Standard.Model
             get;
             set;
         }
+        /// <summary>
+        /// 远程配置服务无法进行App认证和实例获取需要设置为true，其他服务设置为false
+        /// </summary>
+        public Boolean IsRemoteConfigRoot { set; get; }
     }
 }
