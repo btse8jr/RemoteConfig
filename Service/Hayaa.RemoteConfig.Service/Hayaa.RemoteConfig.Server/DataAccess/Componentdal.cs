@@ -40,7 +40,7 @@ namespace Hayaa.RemoteConfig.Service.Dao
         }
         internal static GridPager<Component> GetGridPager(GridPagerPamater<ComponentSearchPamater> pamater)
         {
-            string sql = "select SQL_CALC_FOUND_ROWS * from Component " + pamater.SearchPamater.CreateWhereSql() + " limit @Start,*@PageSize;select FOUND_ROWS();";
+            string sql = "select SQL_CALC_FOUND_ROWS * from Component " + pamater.SearchPamater.CreateWhereSql() + " limit @Start,@PageSize;select FOUND_ROWS();";
             pamater.SearchPamater.Start = (pamater.Current - 1) * pamater.PageSize;
             pamater.SearchPamater.PageSize = pamater.PageSize;
             return GetGridPager<Component>(con, sql, pamater.PageSize, pamater.Current, pamater.SearchPamater);

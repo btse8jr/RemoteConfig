@@ -16,6 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Hayaa.ServicePlatform.Client" Version="1.0.0.7" />
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.6" />
   </ItemGroup>
 
@@ -24,7 +25,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="appconfig.json" />
+    <None Include="appconfig.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="config\app.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -32,6 +35,12 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Hayaa.RemoteConfigController\Hayaa.RemoteConfigController.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="hosting.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
 </Project>

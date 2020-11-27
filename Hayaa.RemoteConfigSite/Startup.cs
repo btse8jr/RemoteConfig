@@ -8,6 +8,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Hayaa.ServicePlatform.Client;
 
 namespace Hayaa.RemoteConfigSite
 {
@@ -16,6 +17,7 @@ namespace Hayaa.RemoteConfigSite
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
+           AppRoot.StartApp();
         }
 
         public IConfiguration Configuration { get; }
@@ -24,6 +26,17 @@ namespace Hayaa.RemoteConfigSite
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+            //配置跨域处理
+            services.AddCors(options =>
+            {
+                options.AddPolicy("any", builder =>
+                {
+                    builder.AllowAnyOrigin() //允许任何来源的主机访问
+                    .AllowAnyMethod()
+                    .AllowAnyHeader()
+                    .AllowCredentials();//指定处理cookie
+                });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -33,7 +46,7 @@ namespace Hayaa.RemoteConfigSite
             {
                 app.UseDeveloperExceptionPage();
             }
-            app.UseCors(builder => builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader().AllowCredentials());
+            app.UseCors("any");
             app.UseMvc();
         }
     }

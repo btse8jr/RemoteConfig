@@ -261,3 +261,4 @@ __pycache__/
 *.pyc
 /XUnitTestProject
 /Hayaa.RemoteConfigSite/config/app.json
+/HayaaRemoteConfigManangerSite/package-lock.json
