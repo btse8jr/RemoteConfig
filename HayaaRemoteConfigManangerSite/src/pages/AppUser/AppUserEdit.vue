@@ -1,10 +1,10 @@
 <template>
     <div style="width: 400px;margin-left: 15%">
         <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">
-            <el-form-item label="名称" prop="Name">
+            <el-form-item label="名称" prop="name">
                 <el-input v-model="ruleForm.name"></el-input>
             </el-form-item>
-            <el-form-item label="可见名称" prop="Title">
+            <el-form-item label="可见名称" prop="title">
                 <el-input v-model="ruleForm.title"></el-input>
             </el-form-item>
             <el-form-item>
@@ -21,21 +21,21 @@
     import urls from '../../urlstatic'
 
     export default {
-        name: "AppEdit",
+        name: "AppUserEdit",
         data() {
             return {
                 ruleForm: {
-                    appId: 0,
+                    appUserId: 0,
                     title: '',
                     name: ''
                 },
                 rules: {
-                    Name: [
-                        {required: true, message: '请输入App名称', trigger: 'blur'},
+                    name: [
+                        {required: true, message: '请输入执行用户名称', trigger: 'blur'},
                         {min: 1, max: 50, message: '长度在 1 到 50 个字符', trigger: 'blur'}
                     ],
-                    Title: [
-                        {required: false, message: '请输入App可见名称', trigger: 'blur'},
+                    title: [
+                        {required: false, message: '请输入执行用户可见名称', trigger: 'blur'},
                         {min: 1, max: 50, message: '长度在 1 到 50 个字符', trigger: 'blur'}
                     ]
 
@@ -50,11 +50,11 @@
         },
         methods: {
             back() {
-                this.$router.push("/home/applist");
+                this.$router.push("/home/appuserlist");
             },
             get(id) {
                 var that = this;
-                httphelper.authedpostform(urls.appGetUrl, {"id": id},
+                httphelper.authedpostform(urls.appUserGetUrl, {"id": id},
                     function (data) {
                         that.ruleForm = data;
                     });
@@ -63,14 +63,15 @@
                 var that = this;
                 this.$refs[formName].validate((valid) => {
                     if (valid) {
-                        if (that.ruleForm.AppId == 0) {
-                            httphelper.authedpostform(urls.appAddUrl, that.ruleForm,
+                        if (that.ruleForm.appUserId == 0) {
+                            httphelper.authedpostform(urls.appUserAddUrl, that.ruleForm,
                                 function (data) {
                                     that.ruleForm = data;
                                     that.$notify.success("操作成功");
+                                    that.$router.push("/home/appuserlist");
                                 });
                         } else {
-                            httphelper.authedpostform(urls.appEditUrl, that.ruleForm,
+                            httphelper.authedpostform(urls.appUserEditUrl, that.ruleForm,
                                 function (data) {
                                     if (data)
                                         that.$notify.success("操作成功");

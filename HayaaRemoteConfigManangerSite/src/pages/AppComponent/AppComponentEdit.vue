@@ -1,23 +1,30 @@
 <template>
-    <div style="width: 400px;margin-left: 15%">
+    <div style="width: 800px;margin-left: 15%">
         <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">
-            <el-form-item label="类名称" prop="ComponentServiceName">
-                <el-input v-model="ruleForm.componentServiceName"></el-input>
+            <el-form-item label="组件Id" prop="componentId">
+                <el-input v-model="ruleForm.componentId" style="width:100px"></el-input>
             </el-form-item>
-            <el-form-item label="类全名" prop="ComponentServiceCompeleteName">
-                <el-input v-model="ruleForm.componentServiceCompeleteName" placeholder="类名, 程序集名, Version=1.0.0, Culture=neutral, PublicKeyToken=null"></el-input>
+            <el-form-item label="类名称" prop="componentServiceName">
+                <el-input v-model="ruleForm.componentServiceName" style="width:320px"></el-input>
             </el-form-item>
-            <el-form-item label="程序集名称" prop="ComponentAssemblyName">
-                <el-input v-model="ruleForm.componentAssemblyName"></el-input>
+            <el-form-item label="类全名" prop="componentServiceCompeleteName">
+                <el-input type="textarea" :rows="2" v-model="ruleForm.componentServiceCompeleteName"
+                          placeholder="类名,程序集名,Version=1.0.0,Culture=neutral,PublicKeyToken=null"></el-input>
             </el-form-item>
-            <el-form-item label="程序集文件名" prop="ComponentAssemblyFileName">
-                <el-input v-model="ruleForm.componentAssemblyFileName"></el-input>
+            <el-form-item label="接口列表" prop="componentInterface">
+                <el-input v-model="ruleForm.componentInterface" placeholder="形式:接口1,接口2"></el-input>
             </el-form-item>
-            <el-form-item label="程序集路径" prop="ComponentAssemblyFileStorePath">
+            <el-form-item label="程序集名称" prop="componentAssemblyName">
+                <el-input v-model="ruleForm.componentAssemblyName" style="width:320px"></el-input>
+            </el-form-item>
+            <el-form-item label="程序集文件名" prop="componentAssemblyFileName">
+                <el-input v-model="ruleForm.componentAssemblyFileName" style="width:320px"></el-input>
+            </el-form-item>
+            <el-form-item label="程序集路径" prop="componentAssemblyFileStorePath">
                 <el-input v-model="ruleForm.componentAssemblyFileStorePath"></el-input>
             </el-form-item>
-            <el-form-item label="程序集版本" prop="AssemblyVersion">
-                <el-input v-model="ruleForm.assemblyVersion"  placeholder="1.0.0.0"></el-input>
+            <el-form-item label="程序集版本" prop="assemblyVersion">
+                <el-input v-model="ruleForm.assemblyVersion" placeholder="1.0.0.0" style="width:100px"></el-input>
             </el-form-item>
             <el-form-item>
                 <el-button type="primary" @click="submitForm('ruleForm')">提交</el-button>
@@ -38,35 +45,43 @@
             return {
                 ruleForm: {
                     appComponentId: 0,
+                    componentId: 0,
                     componentServiceName: '',
                     componentServiceCompeleteName: '',
                     componentAssemblyFileName: '',
                     componentAssemblyFileStorePath: '',
                     componentAssemblyName: '',
-                    assemblyVersion: ''
+                    assemblyVersion: '1.0.0.0',
+                    componentInterface: ""
                 },
                 rules: {
-                    ComponentServiceCompeleteName: [
+                    componentInterface: [
+                        {required: true, message: '请输入接口列表', trigger: 'blur'}
+                    ],
+                    componentId: [
+                        {required: true, message: '请输入合法组件Id', trigger: 'blur'}
+                    ],
+                    componentServiceCompeleteName: [
                         {required: true, message: '请输入类全名', trigger: 'blur'},
                         {min: 15, max: 500, message: '长度在 15 到 500 个字符', trigger: 'blur'}
                     ],
-                    ComponentServiceName: [
+                    componentServiceName: [
                         {required: true, message: '请输入类名称', trigger: 'blur'},
                         {min: 1, max: 200, message: '长度在 1 到 200 个字符', trigger: 'blur'}
                     ],
-                    ComponentAssemblyName: [
+                    componentAssemblyName: [
                         {required: true, message: '请输入程序集名', trigger: 'blur'},
                         {min: 1, max: 300, message: '长度在 1 到 300 个字符', trigger: 'blur'}
                     ],
-                    ComponentAssemblyFileName: [
+                    componentAssemblyFileName: [
                         {required: false, message: '请输入程序集文件名', trigger: 'blur'},
                         {min: 1, max: 300, message: '长度在 1 到 300 个字符', trigger: 'blur'}
                     ],
-                    ComponentAssemblyFileStorePath: [
+                    componentAssemblyFileStorePath: [
                         {required: false, message: '请输入程序集存储路径', trigger: 'blur'},
                         {min: 1, max: 1000, message: '长度在 1 到 1000 个字符', trigger: 'blur'}
                     ],
-                    AssemblyVersion: [
+                    assemblyVersion: [
                         {required: false, message: '请输入程序集版本', trigger: 'blur'},
                         {min: 1, max: 100, message: '长度在 1 到 100 个字符', trigger: 'blur'}
                     ],
@@ -75,7 +90,8 @@
         },
         created: function () {
             var id = this.$route.params.id;
-            if (id&(id>0)) {
+
+            if (id>0) {
                 this.get(id);
             }
         },
@@ -94,11 +110,12 @@
                 var that = this;
                 this.$refs[formName].validate((valid) => {
                     if (valid) {
-                        if (that.ruleForm.AppId == 0) {
+                        if (that.ruleForm.appComponentId == 0) {
                             httphelper.authedpostform(urls.appComponentAddUrl, that.ruleForm,
                                 function (data) {
                                     that.ruleForm = data;
                                     that.$notify.success("操作成功");
+                                    that.$router.push("/home/appcomponentlist");
                                 });
                         } else {
                             httphelper.authedpostform(urls.appComponentEditUrl, that.ruleForm,

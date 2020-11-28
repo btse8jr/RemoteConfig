@@ -11,6 +11,13 @@ import ComponentList from './pages/Component/ComponentList'
 import ComponentEdit from './pages/Component/ComponentEdit'
 import AppComponentList from './pages/AppComponent/AppComponentList'
 import AppComponentEdit from './pages/AppComponent/AppComponentEdit'
+import AppUserList from './pages/AppUser/AppUserList'
+import AppUserEdit from './pages/AppUser/AppUserEdit'
+import AppConfigEdit from './pages/AppConfig/AppConfigEdit'
+import AppConfigList from './pages/AppConfig/AppConfigList'
+import ComponentConfigList from './pages/ComponentConfig/ComponentConfigList'
+import ComponentConfigEdit from './pages/ComponentConfig/ComponentConfigEdit'
+
 const router = new VueRouter({
     mode: 'history',
     routes: [{path: '/login', component: Login},
@@ -24,10 +31,16 @@ const router = new VueRouter({
                 {path: "list", component: List},
                 {path: "applist", component: AppList},
                 {path: "appedit/:id?", component: AppEdit},
-                {path: "componentlist", component: ComponentList},
+                {path: "componentlist", component: ComponentList,children:[]},
                 {path: "componentedit/:id?", component: ComponentEdit},
                 {path: "appcomponentlist", component: AppComponentList},
-                {path: "appcomponentedit/:id?", component: AppComponentEdit}
+                {path: "appcomponentedit/:id?", component: AppComponentEdit},
+                {path: "appuserlist", component: AppUserList},
+                {path: "appuseredit/:id?", component: AppUserEdit},
+                {path: "componentconfiglist/:id", component: ComponentConfigList},
+                {path: "componentconfigedit/:cid/:id?", component: ComponentConfigEdit},
+                {path: "appconfiglist", component: AppConfigList},
+                {path: "appconfigedit/:id?", component: AppConfigEdit}
             ]
         }
     ]

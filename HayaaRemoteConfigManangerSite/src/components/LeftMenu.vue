@@ -9,9 +9,15 @@
                             <span>远程配置</span>
                         </template>
                         <el-menu-item-group>
-                             <el-menu-item index="1-1"><router-link to="/home/applist">程序管理</router-link></el-menu-item>
-                            <el-menu-item index="1-2"><router-link to="/home/componentlist">组件管理</router-link></el-menu-item>
-                            <el-menu-item index="1-3"><router-link to="/home/appcomponentlist">组件功能管理</router-link></el-menu-item>
+                            <template slot="title">基础设置</template>
+                             <el-menu-item index="1-1"><router-link to="/home/applist" class="menuitem">程序管理</router-link></el-menu-item>
+                            <el-menu-item index="1-2"><router-link to="/home/componentlist" class="menuitem">组件管理</router-link></el-menu-item>
+                            <el-menu-item index="1-3"><router-link to="/home/appcomponentlist" class="menuitem">组件功能管理</router-link></el-menu-item>
+                            <el-menu-item index="1-4"><router-link to="/home/appuserlist" class="menuitem">执行用户管理</router-link></el-menu-item>
+                        </el-menu-item-group>
+                        <el-menu-item-group>
+                            <template slot="title">配置管理</template>
+                            <el-menu-item index="1-5"><router-link to="/home/appconfiglist" class="menuitem">程序配置管理</router-link></el-menu-item>
                         </el-menu-item-group>
                     </el-submenu>
 
@@ -28,5 +34,13 @@
 </script>
 
 <style scoped>
-
+.menuitem{
+    size: 10px;
+    color: black;
+    text-decoration: none;
+}
+.menuitem:active{
+    size: 10px;
+    text-decoration: none;
+}
 </style>

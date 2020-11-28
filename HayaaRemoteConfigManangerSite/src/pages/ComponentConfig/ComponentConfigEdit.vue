@@ -21,40 +21,43 @@
     import urls from '../../urlstatic'
 
     export default {
-        name: "AppEdit",
+        name: "ComponentConfigEdit",
         data() {
             return {
                 ruleForm: {
-                    appId: 0,
-                    title: '',
-                    name: ''
+                    componentConfigId: 0,
+                    ComponentId:0,
+                    content:"",
+                    version:0,
+                    componentConfigTitle: '',
+                    IsDefault: false
                 },
                 rules: {
-                    Name: [
-                        {required: true, message: '请输入App名称', trigger: 'blur'},
-                        {min: 1, max: 50, message: '长度在 1 到 50 个字符', trigger: 'blur'}
+                    content: [
+                        {required: true, message: '请输入配置内容', trigger: 'blur'}
                     ],
-                    Title: [
-                        {required: false, message: '请输入App可见名称', trigger: 'blur'},
-                        {min: 1, max: 50, message: '长度在 1 到 50 个字符', trigger: 'blur'}
+                    componentConfigTitle: [
+                        {required: true, message: '请输入可见名称', trigger: 'blur'},
+                        {min: 1, max: 100, message: '长度在 1 到 100 个字符', trigger: 'blur'}
                     ]
 
                 }
             };
         },
         created: function () {
-            var id = this.$route.params.id;
-            if (id>0) {
-                this.get(id);
+            this.ruleForm.componentId = this.$route.params.cid;
+            this.ruleForm.componentConfigId = this.$route.params.id;
+            if (this.ruleForm.componentConfigId>0) {
+                this.get(this.this.ruleForm.componentConfigId);
             }
         },
         methods: {
             back() {
-                this.$router.push("/home/applist");
+                this.$router.push("/home/componentconfiglist/"+this.ruleForm.componentId);
             },
             get(id) {
                 var that = this;
-                httphelper.authedpostform(urls.appGetUrl, {"id": id},
+                httphelper.authedpostform(urls.componentConfigGetUrl, {"id": id},
                     function (data) {
                         that.ruleForm = data;
                     });
@@ -63,14 +66,14 @@
                 var that = this;
                 this.$refs[formName].validate((valid) => {
                     if (valid) {
-                        if (that.ruleForm.AppId == 0) {
-                            httphelper.authedpostform(urls.appAddUrl, that.ruleForm,
+                        if (that.ruleForm.componentConfigId == 0) {
+                            httphelper.authedpostform(urls.componentConfigAddUrl, that.ruleForm,
                                 function (data) {
                                     that.ruleForm = data;
-                                    that.$notify.success("操作成功");
+                                    that.back();
                                 });
                         } else {
-                            httphelper.authedpostform(urls.appEditUrl, that.ruleForm,
+                            httphelper.authedpostform(urls.componentConfigEditUrl, that.ruleForm,
                                 function (data) {
                                     if (data)
                                         that.$notify.success("操作成功");

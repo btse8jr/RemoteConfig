@@ -20,14 +20,14 @@
             </el-table-column>
             <el-table-column
                     label="创建时间"
-                    width="120">
+                    width="160">
                 <template slot-scope="scope">
                     <span>{{ scope.row.createTime }}</span>
                 </template>
             </el-table-column>
             <el-table-column
                     label="更新时间"
-                    width="120">
+                    width="160">
                 <template slot-scope="scope">
                     <span>{{ scope.row.updateTime }}</span>
                 </template>
@@ -35,6 +35,7 @@
             <el-table-column label="操作">
                 <template slot-scope="scope">
                     <el-button size="mini" @click="edit(scope.row.componentId)">编辑</el-button>
+                    <el-button size="mini" @click="editConfig(scope.row.componentId)">编辑配置</el-button>
                     <el-button size="mini" type="danger" @click="del(scope.row.componentId)">删除</el-button>
                 </template>
             </el-table-column>
@@ -83,6 +84,9 @@
             },
             edit(id) {
                 this.$router.push("/home/componentedit/" + id);
+            },
+            editConfig(id) {
+                this.$router.push("/home/componentconfiglist/" + id);
             },
             del(id) {
                 var that = this;

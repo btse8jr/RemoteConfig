@@ -44,7 +44,7 @@
         },
         created: function () {
             var id = this.$route.params.id;
-            if (id&(id>0)) {
+            if (id>0){
                 this.get(id);
             }
         },

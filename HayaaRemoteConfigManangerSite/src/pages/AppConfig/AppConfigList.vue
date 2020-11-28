@@ -8,28 +8,19 @@
                     label="ID"
                     width="80">
                 <template slot-scope="scope">
-                    <span>{{ scope.row.appComponentId }}</span>
+                    <span>{{ scope.row.appConfigId }}</span>
                 </template>
             </el-table-column>
             <el-table-column
-                    label="组件ID"
-                    width="80">
-                <template slot-scope="scope">
-                    <span>{{ scope.row.componentId }}</span>
-                </template>
-            </el-table-column>
-            <el-table-column
-                    label="服务类名称"
-                    width="300px">
+                    label="名称"
+                    width="120">
                 <template slot-scope="scope">
                     <el-popover trigger="hover" placement="top">
-                        <p>类全名: {{ scope.row.componentServiceCompeleteName }}</p>
-                        <p>程序集名: {{ scope.row.componentAssemblyName }}</p>
-                        <p>程序集文件名: {{ scope.row.componentAssemblyFileName }}</p>
-                        <p>程序集存储路径: {{ scope.row.componentAssemblyFileStorePath }}</p>
-                        <p>程序集版本: {{ scope.row.assemblyVersion }}</p>
+                        <p>解决方案ID: {{ scope.row.solutionID }}</p>
+                        <p>程序配置版本: {{ scope.row.version }}</p>
+                        <p>解决方案根配置: {{ scope.row.configContent }}</p>
                         <div slot="reference" class="name-wrapper">
-                            <el-tag size="medium">{{ scope.row.componentServiceName }}</el-tag>
+                            <el-tag size="medium">{{ scope.row.solutionName }}</el-tag>
                         </div>
                     </el-popover>
                 </template>
@@ -50,17 +41,16 @@
             </el-table-column>
             <el-table-column label="操作">
                 <template slot-scope="scope">
-                    <el-button size="mini" @click="edit(scope.row.appComponentId)">编辑</el-button>
-                    <el-button size="mini" type="danger" @click="del(scope.row.appComponentId)">删除</el-button>
+                    <el-button size="mini" @click="edit(scope.row.appConfigId)">编辑</el-button>
+                    <el-button size="mini" type="danger" @click="del(scope.row.appConfigId)">删除</el-button>
                 </template>
             </el-table-column>
         </el-table>
-        <div style="float: right" v-show="pagerData.total>0">
+        <div style="float: right" v-show="pagerData.totalPage>0">
             <el-pagination
                     @current-change="getPager"
                     layout="prev, pager, next"
-                    :page-size="pagerData.size"
-                    :total="pagerData.total">
+                    :total="pagerData.totalPage">
             </el-pagination>
         </div>
     </div>
@@ -71,15 +61,14 @@
     import urls from '../../urlstatic'
 
     export default {
-        name: "AppComponentList",
+        name: "AppConfigList",
         created: function () {
             this.getPager(1);
         },
         data: function () {
             return {
                 pagerData: {
-                    total: 0,
-                    size:5
+                    totalPage: 0
                 },
                 tableData: []
             }
@@ -87,21 +76,24 @@
         methods: {
             getPager(page) {
                 var that = this;
-                httphelper.authedpostform(urls.appComponentPagerUrl, {"page": page, "size": 5},
+                httphelper.authedpostform(urls.appConfigPagerUrl, {"page": page, "size": 10},
                     function (data) {
                         that.tableData = data.data;
-                        that.pagerData.total =data.total;
+                        that.pagerData.totalPage = data.total / data.pageSize;
+                        if (that.pagerData.totalPage < 1) {
+                            that.pagerData.totalPage = 1;
+                        }
                     })
             },
             add() {
-                this.$router.push("/home/appcomponentedit");
+                this.$router.push("/home/appconfigedit");
             },
             edit(id) {
-                this.$router.push("/home/appcomponentedit/" + id);
+                this.$router.push("/home/appconfigedit/" + id);
             },
             del(id) {
                 var that = this;
-                httphelper.authedpostform(urls.appComponentDeleteUrl, {"id": id},
+                httphelper.authedpostform(urls.appConfigDeleteUrl, {"id": id},
                     function (data) {
                         if(data)
                             that.$notify.success("操作成功");
