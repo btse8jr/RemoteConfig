@@ -38,6 +38,7 @@ const urls={
     appComponentFactoryCreateUrl:baseUrl.serviceframe+"api/appcomponent/CreateFactoryConfig",
     appComponentPagerUrl:baseUrl.serviceframe+"api/appcomponent/GetAppComponentPager",
     appComponentGetUrl:baseUrl.serviceframe+"api/appcomponent/GetAppComponent",
+    appComponentGetListUrl:baseUrl.serviceframe+"api/appcomponent/GetAppComponentList",
     appComponentAddUrl:baseUrl.serviceframe+"api/appcomponent/AddAppComponent",
     appComponentEditUrl:baseUrl.serviceframe+"api/appcomponent/EditAppComponent",
     appComponentDeleteUrl:baseUrl.serviceframe+"api/appcomponent/DeleteAppComponent",

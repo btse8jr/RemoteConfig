@@ -96,17 +96,17 @@
             },
             loadAppComponentData() {
                 var that = this;
-                that.appComponentData=[];
+                that.appComponentData = [];
                 for (var c in that.tableData) {
-                    if (c.componentId == 10002) that.componentConfigId_10002 = componentConfigId;
-                    httphelper.authedpostform(urls.appComponentPagerUrl, {
-                            "page": 1,
-                            "size": 1000,
-                            "componentId": c.componentId
+                    if (that.tableData[c].componentId == 10002) that.componentConfigId_10002 = that.tableData[c].componentConfigId;
+                    httphelper.authedpostform(urls.appComponentGetListUrl, {
+                            "appId": that.appId,
+                            "componentId": that.tableData[c].componentId
                         },
                         function (data) {
-                            that.appComponentData.push(data.data);
-                            ``
+                            for (var i in data) {
+                                that.appComponentData.push(data[i])
+                            }
                         });
                 }
             },
@@ -184,6 +184,13 @@
                     },
                     function (data) {
                         call();
+                    });
+                httphelper.authedpostform(urls.appConfigDeleteComponentConfigUrl, {
+                        "appConfigId": that.appConfigId,
+                        "componentConfigId": that.componentConfigId_10002
+                    },
+                    function (data) {
+
                     });
             },
         }
