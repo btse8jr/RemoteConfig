@@ -2,7 +2,7 @@
     <div style="width: 500px;margin-left: 15%">
         <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="120px" class="demo-ruleForm">
             <el-form-item label="程序ID" prop="appId">
-                <el-input v-model="ruleForm.appId" style="width: 100px"></el-input>
+                <el-input v-model="ruleForm.appId" style="width: 100px" disabled></el-input>
             </el-form-item>
             <el-form-item label="解决方案ID" prop="solutionID">
                 <el-input v-model="ruleForm.solutionID"></el-input>
@@ -13,9 +13,9 @@
             <el-form-item label="解决方案根配置">
                 <el-input type="textarea" :rows="6" v-model="ruleForm.configContent"></el-input>
             </el-form-item>
-            <el-form-item label="程序配置版本" prop="version">
-                <el-input v-model="ruleForm.version" style="width: 100px"></el-input>
-            </el-form-item>
+            <!--<el-form-item label="程序配置版本" prop="version">-->
+                <!--<el-input v-model="ruleForm.version" style="width: 100px"></el-input>-->
+            <!--</el-form-item>-->
             <el-form-item>
                 <el-button type="primary" @click="submitForm('ruleForm')">提交</el-button>
                 <el-button @click="resetForm('ruleForm')">重置</el-button>
@@ -39,7 +39,7 @@
                     solutionID:"",
                     solutionName:"",
                     configContent:"",
-                    version:0
+                    version:1
                 },
                 rules: {
                     appId: [
@@ -53,21 +53,23 @@
                         {required: true, message: '请输入解决方案名称', trigger: 'blur'},
                         {min: 1, max: 100, message: '长度在 1 到 100 个字符', trigger: 'blur'}
                     ],
-                    version: [
-                        {required: true, message: '请输入程序配置版本', trigger: 'blur'}
-                    ]
+                    // version: [
+                    //     {required: true, message: '请输入程序配置版本', trigger: 'blur'}
+                    // ]
                 }
             };
         },
         created: function () {
-            var id = this.$route.params.id;
-            if (id>0){
-                this.get(id);
+            this.ruleForm.appId = this.$route.params.aid;
+            if(this.$route.params.id)
+                this.ruleForm.appConfigId = this.$route.params.id;
+            if (this.ruleForm.appConfigId>0){
+                this.get(this.ruleForm.appConfigId);
             }
         },
         methods: {
             back() {
-                this.$router.push("/home/appconfiglist");
+                this.$router.push("/home/appconfiglist/"+this.ruleForm.appId);
             },
             get(id) {
                 var that = this;

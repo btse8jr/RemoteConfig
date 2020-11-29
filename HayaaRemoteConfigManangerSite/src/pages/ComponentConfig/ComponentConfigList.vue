@@ -1,24 +1,24 @@
 <template>
     <div style="margin-left: 25px">
         <div style="float: right">
-            <el-button type="primary" @click="add">添加</el-button>
+            <el-button type="primary" @click="add" v-show="(componentId!=10002)">添加</el-button>
         </div>
         <el-table :data="tableData">
             <el-table-column
                     label="ID"
                     width="80">
                 <template slot-scope="scope">
-                    <span>{{ scope.row.componentId }}</span>
+                    <span>{{ scope.row.componentConfigId }}</span>
                 </template>
             </el-table-column>
             <el-table-column
                     label="名称"
-                    width="120">
+                    width="240">
                 <template slot-scope="scope">
                     <el-popover trigger="hover" placement="top">
-                        <p>解决方案ID: {{ scope.row.componentId }}</p>
+                        <p>组件ID: {{ scope.row.componentId }}</p>
                         <p>配置版本: {{ scope.row.version }}</p>
-                        <p>配置: {{ scope.row.content }}</p>
+                        <div style="width: 300px;overflow: auto">配置: {{ scope.row.content }}</div>
                         <p>是否组件默认配置: <span v-if="scope.row.isDefault">是</span><span v-else>否</span></p>
                         <div slot="reference" class="name-wrapper">
                             <el-tag size="medium">{{ scope.row.componentConfigTitle }}</el-tag>
@@ -98,8 +98,10 @@
                 var that = this;
                 httphelper.authedpostform(urls.componentConfigDeleteUrl, {"id": id},
                     function (data) {
-                        if(data)
+                        if(data) {
                             that.$notify.success("操作成功");
+                            that.getPager(1);
+                        }
                     });
             }
         }

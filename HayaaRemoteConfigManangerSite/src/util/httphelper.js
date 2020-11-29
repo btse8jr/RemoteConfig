@@ -12,10 +12,13 @@ const httphelper = {
                     if (rep.data.code == 0) {
                         call(rep.data.data)
                     } else {
-                        if(rep.data.code==403){
-                            Vue.$router.push("/login")
-                        }else {
-                            Notification.warning(rep.data.message)
+                        if(errcall) errcall(rep.data);
+                        else {
+                            if (rep.data.code == 403) {
+                                Vue.$router.push("/login")
+                            } else {
+                                Notification.warning(rep.data.message)
+                            }
                         }
                     }
                 } else {
@@ -38,10 +41,13 @@ const httphelper = {
                     if (rep.data.code == 0) {
                         call(rep.data.data)
                     } else {
-                        if(rep.data.code==403){
-                            Vue.$router.push("/login")
-                        }else {
-                            Notification.warning(rep.data.message)
+                        if(errcall) errcall(rep.data);
+                        else {
+                            if (rep.data.code == 403) {
+                                Vue.$router.push("/login")
+                            } else {
+                                Notification.warning(rep.data.message)
+                            }
                         }
                     }
                 } else {

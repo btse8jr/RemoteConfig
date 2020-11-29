@@ -1,9 +1,6 @@
 <template>
     <div style="width: 800px;margin-left: 15%">
         <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">
-            <el-form-item label="组件Id" prop="componentId">
-                <el-input v-model="ruleForm.componentId" style="width:100px"></el-input>
-            </el-form-item>
             <el-form-item label="类名称" prop="componentServiceName">
                 <el-input v-model="ruleForm.componentServiceName" style="width:320px"></el-input>
             </el-form-item>
@@ -89,15 +86,16 @@
             };
         },
         created: function () {
-            var id = this.$route.params.id;
-
-            if (id>0) {
-                this.get(id);
+             this.ruleForm.componentId = this.$route.params.cid;
+            if(this.$route.params.id)
+                this.ruleForm.appComponentId = this.$route.params.id;
+            if (this.ruleForm.appComponentId) {
+                this.get(this.ruleForm.appComponentId);
             }
         },
         methods: {
             back() {
-                this.$router.push("/home/appcomponentlist");
+                this.$router.push("/home/appcomponentlist/"+this.ruleForm.componentId);
             },
             get(id) {
                 var that = this;
@@ -115,7 +113,7 @@
                                 function (data) {
                                     that.ruleForm = data;
                                     that.$notify.success("操作成功");
-                                    that.$router.push("/home/appcomponentlist");
+                                    that.$router.push("/home/appcomponentlist/"+that.componentId);
                                 });
                         } else {
                             httphelper.authedpostform(urls.appComponentEditUrl, that.ruleForm,

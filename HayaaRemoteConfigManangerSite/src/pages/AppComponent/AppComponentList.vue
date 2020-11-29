@@ -73,10 +73,12 @@
     export default {
         name: "AppComponentList",
         created: function () {
+            this.componentId=this.$route.params.id;
             this.getPager(1);
         },
         data: function () {
             return {
+                componentId:0,
                 pagerData: {
                     total: 0,
                     size:5
@@ -87,17 +89,17 @@
         methods: {
             getPager(page) {
                 var that = this;
-                httphelper.authedpostform(urls.appComponentPagerUrl, {"page": page, "size": 5},
+                httphelper.authedpostform(urls.appComponentPagerUrl, {"page": page, "size": 5,"componentId":that.componentId},
                     function (data) {
                         that.tableData = data.data;
                         that.pagerData.total =data.total;
                     })
             },
             add() {
-                this.$router.push("/home/appcomponentedit");
+                this.$router.push("/home/appcomponentedit/"+this.componentId);
             },
             edit(id) {
-                this.$router.push("/home/appcomponentedit/" + id);
+                this.$router.push("/home/appcomponentedit/" +this.componentId+"/"+ id);
             },
             del(id) {
                 var that = this;

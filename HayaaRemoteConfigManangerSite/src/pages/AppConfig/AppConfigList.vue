@@ -13,7 +13,7 @@
             </el-table-column>
             <el-table-column
                     label="名称"
-                    width="120">
+                    width="180">
                 <template slot-scope="scope">
                     <el-popover trigger="hover" placement="top">
                         <p>解决方案ID: {{ scope.row.solutionID }}</p>
@@ -42,6 +42,7 @@
             <el-table-column label="操作">
                 <template slot-scope="scope">
                     <el-button size="mini" @click="edit(scope.row.appConfigId)">编辑</el-button>
+                    <el-button size="mini" @click="editConfig(scope.row.appConfigId)">管理组件配置</el-button>
                     <el-button size="mini" type="danger" @click="del(scope.row.appConfigId)">删除</el-button>
                 </template>
             </el-table-column>
@@ -63,10 +64,12 @@
     export default {
         name: "AppConfigList",
         created: function () {
+            this.appId=this.$route.params.id;
             this.getPager(1);
         },
         data: function () {
             return {
+                appId:0,
                 pagerData: {
                     totalPage: 0
                 },
@@ -76,7 +79,7 @@
         methods: {
             getPager(page) {
                 var that = this;
-                httphelper.authedpostform(urls.appConfigPagerUrl, {"page": page, "size": 10},
+                httphelper.authedpostform(urls.appConfigPagerUrl, {"page": page, "size": 10,"appId":that.appId},
                     function (data) {
                         that.tableData = data.data;
                         that.pagerData.totalPage = data.total / data.pageSize;
@@ -85,11 +88,20 @@
                         }
                     })
             },
+            back(){
+
+            },
             add() {
-                this.$router.push("/home/appconfigedit");
+                this.$router.push("/home/appconfigedit/"+this.appId);
             },
             edit(id) {
-                this.$router.push("/home/appconfigedit/" + id);
+                this.$router.push("/home/appconfigedit/" +this.appId+"/"+ id);
+            },
+            editConfig(id){
+                this.$router.push("/home/appcomponentconfiglist/" +this.appId+"/"+ id);
+            },
+            CreateFactoryConfig(){
+
             },
             del(id) {
                 var that = this;

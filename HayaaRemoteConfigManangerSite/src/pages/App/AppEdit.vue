@@ -1,10 +1,10 @@
 <template>
     <div style="width: 400px;margin-left: 15%">
         <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">
-            <el-form-item label="名称" prop="Name">
+            <el-form-item label="名称" prop="name">
                 <el-input v-model="ruleForm.name"></el-input>
             </el-form-item>
-            <el-form-item label="可见名称" prop="Title">
+            <el-form-item label="可见名称" prop="title">
                 <el-input v-model="ruleForm.title"></el-input>
             </el-form-item>
             <el-form-item>
@@ -30,11 +30,11 @@
                     name: ''
                 },
                 rules: {
-                    Name: [
+                    name: [
                         {required: true, message: '请输入App名称', trigger: 'blur'},
                         {min: 1, max: 50, message: '长度在 1 到 50 个字符', trigger: 'blur'}
                     ],
-                    Title: [
+                    title: [
                         {required: false, message: '请输入App可见名称', trigger: 'blur'},
                         {min: 1, max: 50, message: '长度在 1 到 50 个字符', trigger: 'blur'}
                     ]

@@ -13,7 +13,7 @@
             </el-table-column>
             <el-table-column
                     label="名称"
-                    width="120">
+                    width="180">
                 <template slot-scope="scope">
                     <span>{{ scope.row.title }}</span>
                 </template>
@@ -33,10 +33,12 @@
                 </template>
             </el-table-column>
             <el-table-column label="操作">
-                <template slot-scope="scope">
-                    <el-button size="mini" @click="edit(scope.row.componentId)">编辑</el-button>
+                <template slot-scope="scope" >
+                    <el-button size="mini" @click="edit(scope.row.componentId)" v-show="scope.row.componentId!=10002">编辑</el-button>
                     <el-button size="mini" @click="editConfig(scope.row.componentId)">编辑配置</el-button>
-                    <el-button size="mini" type="danger" @click="del(scope.row.componentId)">删除</el-button>
+                    <el-button size="mini" @click="editFunction(scope.row.componentId)">功能管理</el-button>
+
+                    <el-button size="mini" type="danger" @click="del(scope.row.componentId)" v-show="scope.row.componentId!=10002">删除</el-button>
                 </template>
             </el-table-column>
         </el-table>
@@ -88,6 +90,10 @@
             editConfig(id) {
                 this.$router.push("/home/componentconfiglist/" + id);
             },
+            editFunction(id) {
+                this.$router.push("/home/appcomponentlist/" + id);
+            },
+
             del(id) {
                 var that = this;
                 httphelper.authedpostform(urls.componentDeleteUrl, {"id": id},

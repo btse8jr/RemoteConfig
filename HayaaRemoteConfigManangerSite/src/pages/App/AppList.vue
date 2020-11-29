@@ -35,6 +35,7 @@
             <el-table-column label="操作">
                 <template slot-scope="scope">
                     <el-button size="mini" @click="edit(scope.row.appId)">编辑</el-button>
+                    <el-button size="mini" @click="editConfig(scope.row.appId)">配置管理</el-button>
                     <el-button size="mini" type="danger" @click="del(scope.row.appId)">删除</el-button>
                 </template>
             </el-table-column>
@@ -83,6 +84,9 @@
             },
             edit(id) {
                 this.$router.push("/home/appedit/" + id);
+            },
+            editConfig(id) {
+                this.$router.push("/home/appconfiglist/" + id);
             },
             del(id) {
                 var that = this;

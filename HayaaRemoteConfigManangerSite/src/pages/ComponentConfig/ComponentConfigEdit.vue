@@ -1,11 +1,17 @@
 <template>
-    <div style="width: 400px;margin-left: 15%">
+    <div style="width: 750px;margin-left: 15%">
         <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">
-            <el-form-item label="名称" prop="Name">
-                <el-input v-model="ruleForm.name"></el-input>
+            <el-form-item label="名称" prop="componentConfigTitle">
+                <el-input v-model="ruleForm.componentConfigTitle" style="width: 300px"></el-input>
             </el-form-item>
-            <el-form-item label="可见名称" prop="Title">
-                <el-input v-model="ruleForm.title"></el-input>
+            <el-form-item label="配置内容" prop="content">
+                <el-input type="textarea" :rows="8" v-model="ruleForm.content"></el-input>
+            </el-form-item>
+            <!--<el-form-item label="配置版本" prop="version">-->
+                <!--<el-input v-model="ruleForm.version" style="width: 100px"></el-input>-->
+            <!--</el-form-item>-->
+            <el-form-item label="默认配置">
+                <el-switch v-model="ruleForm.IsDefault" active-color="#13ce66" inactive-color="#ff4949"></el-switch>
             </el-form-item>
             <el-form-item>
                 <el-button type="primary" @click="submitForm('ruleForm')">提交</el-button>
@@ -26,9 +32,9 @@
             return {
                 ruleForm: {
                     componentConfigId: 0,
-                    ComponentId:0,
+                    componentId:0,
                     content:"",
-                    version:0,
+                    version:1,
                     componentConfigTitle: '',
                     IsDefault: false
                 },
@@ -46,6 +52,7 @@
         },
         created: function () {
             this.ruleForm.componentId = this.$route.params.cid;
+            if(this.$route.params.id)
             this.ruleForm.componentConfigId = this.$route.params.id;
             if (this.ruleForm.componentConfigId>0) {
                 this.get(this.this.ruleForm.componentConfigId);
