@@ -19,11 +19,13 @@ namespace Hayaa.RemoteConfig.Service
             return r;
         }
         public FunctionOpenResult<bool> UpdateByID(ComponentConfig info) { var r = new FunctionOpenResult<bool>(); r.Data = ComponentConfigDal.Update(info) > 0; return r; }
-        public FunctionOpenResult<bool> DeleteByID(List<int> idList) { var r = new FunctionOpenResult<bool>(); r.Data = ComponentConfigDal.Delete(idList); return r; }
+        public FunctionOpenResult<bool> DeleteByID(List<int> idList) {
+            var r = new FunctionOpenResult<bool>(); r.Data = ComponentConfigDal.Delete(idList); return r;
+        }
         public FunctionResult<ComponentConfig> Get(int Id) { var r = new FunctionResult<ComponentConfig>(); r.Data = ComponentConfigDal.Get(Id); return r; }
         public FunctionListResult<ComponentConfig> GetList(ComponentConfigSearchPamater pamater) { var r = new FunctionListResult<ComponentConfig>(); r.Data = ComponentConfigDal.GetList(pamater); return r; }
         public GridPager<ComponentConfig> GetPager(GridPagerPamater<ComponentConfigSearchPamater> searchParam) { var r = ComponentConfigDal.GetGridPager(searchParam); return r; }
 
-       
+
     }
 }

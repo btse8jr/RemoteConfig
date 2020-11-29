@@ -26,7 +26,7 @@ namespace Hayaa.RemoteService
         /// <summary>
         /// 解决方案ID
         /// </summary>	
-        public Guid SolutionID
+        public String SolutionID
         {
             get;
             set;

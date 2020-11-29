@@ -44,7 +44,7 @@ namespace Hayaa.RemoteConfig.Service.Dao
         }
         internal static GridPager<AppConfig> GetGridPager(GridPagerPamater<AppConfigSearchPamater> pamater)
         {
-            string sql = "select SQL_CALC_FOUND_ROWS * from AppConfig " + pamater.SearchPamater.CreateWhereSql() + " limit @Start,*@PageSize;select FOUND_ROWS();";
+            string sql = "select SQL_CALC_FOUND_ROWS * from AppConfig " + pamater.SearchPamater.CreateWhereSql() + " limit @Start,@PageSize;select FOUND_ROWS();";
             pamater.SearchPamater.Start = (pamater.Current - 1) * pamater.PageSize;
             pamater.SearchPamater.PageSize = pamater.PageSize;
             return GetGridPager<AppConfig>(con, sql, pamater.PageSize, pamater.Current, pamater.SearchPamater);

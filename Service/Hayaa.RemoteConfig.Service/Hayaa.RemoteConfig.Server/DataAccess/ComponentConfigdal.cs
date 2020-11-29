@@ -16,12 +16,12 @@ namespace Hayaa.RemoteConfig.Service.Dao
         private static String con = ConfigHelper.Instance.GetConnection(DefineTable.DatabaseName);
         internal static int Add(ComponentConfig info)
         {
-            string sql = "insert into ComponentConfig(ComponentConfig,ComponentId,Content,Version,ComponentConfigTitle,IsDefault) values(@ComponentConfig,@ComponentId,@Content,@Version,@ComponentConfigTitle,@IsDefault)";
-            return Insert<ComponentConfig>(con, sql, info);
+            string sql = "insert into ComponentConfig(ComponentId,Content,Version,ComponentConfigTitle,IsDefault) values(@ComponentId,@Content,@Version,@ComponentConfigTitle,@IsDefault);select @@IDENTITY;";
+            return InsertWithReturnID<ComponentConfig,int>(con, sql, info);
         }
         internal static int Update(ComponentConfig info)
         {
-            string sql = "update ComponentConfig set ComponentConfig=@ComponentConfig,ComponentId=@ComponentId,Content=@Content,Version=@Version,ComponentConfigTitle=@ComponentConfigTitle,IsDefault=@IsDefault where ComponentConfigId=@ComponentConfigId";
+            string sql = "update ComponentConfig set ComponentId=@ComponentId,Content=@Content,Version=@Version,ComponentConfigTitle=@ComponentConfigTitle,IsDefault=@IsDefault where ComponentConfigId=@ComponentConfigId";
             return Update<ComponentConfig>(con, sql, info);
         }
         internal static bool Delete(List<int> IDs)
@@ -41,7 +41,7 @@ namespace Hayaa.RemoteConfig.Service.Dao
         }
         internal static GridPager<ComponentConfig> GetGridPager(GridPagerPamater<ComponentConfigSearchPamater> pamater)
         {
-            string sql = "select SQL_CALC_FOUND_ROWS * from ComponentConfig " + pamater.SearchPamater.CreateWhereSql() + " limit @Start,*@PageSize;select FOUND_ROWS();";
+            string sql = "select SQL_CALC_FOUND_ROWS * from ComponentConfig " + pamater.SearchPamater.CreateWhereSql() + " limit @Start,@PageSize;select FOUND_ROWS();";
             pamater.SearchPamater.Start = (pamater.Current - 1) * pamater.PageSize;
             pamater.SearchPamater.PageSize = pamater.PageSize;
             return GetGridPager<ComponentConfig>(con, sql, pamater.PageSize, pamater.Current, pamater.SearchPamater);

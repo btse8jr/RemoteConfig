@@ -1,4 +1,5 @@
-﻿using Hayaa.BaseModel.Service;
+﻿using Hayaa.BaseModel;
+using Hayaa.BaseModel.Service;
 using Hayaa.RemoteConfig.Service;
 using System;
 
@@ -9,6 +10,6 @@ namespace Hayaa.RemoteService
     /// </summary>
     public interface AppConfigService : IBaseService<AppConfig, AppConfigSearchPamater>
     {
-
+        FunctionOpenResult<bool> Remove10002ComponentConfig(int appConfigId);
     }
 }

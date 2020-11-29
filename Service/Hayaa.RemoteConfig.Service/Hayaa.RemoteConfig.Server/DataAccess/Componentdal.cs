@@ -15,12 +15,12 @@ namespace Hayaa.RemoteConfig.Service.Dao
         private static String con = ConfigHelper.Instance.GetConnection(DefineTable.DatabaseName);
         internal static int Add(Component info)
         {
-            string sql = "insert into Component(ComponentID,Name,Title) values(@ComponentID,@Name,@Title)";
+            string sql = "insert into Component(Name,Title) values(@Name,@Title)";
             return Insert<Component>(con, sql, info);
         }
         internal static int Update(Component info)
         {
-            string sql = "update Component set ComponentID=@ComponentID,Name=@Name,Title=@Title where ComponentId=@ComponentId";
+            string sql = "update Component set Name=@Name,Title=@Title where ComponentId=@ComponentId";
             return Update<Component>(con, sql, info);
         }
         internal static bool Delete(List<int> IDs)

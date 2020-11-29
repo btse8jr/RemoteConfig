@@ -24,6 +24,6 @@ namespace Hayaa.RemoteConfig.Service
         public FunctionListResult<AppConfig> GetList(AppConfigSearchPamater pamater) { var r = new FunctionListResult<AppConfig>(); r.Data = AppConfigDal.GetList(pamater); return r; }
         public GridPager<AppConfig> GetPager(GridPagerPamater<AppConfigSearchPamater> searchParam) { var r = AppConfigDal.GetGridPager(searchParam); return r; }
 
-
+      
     }
 }

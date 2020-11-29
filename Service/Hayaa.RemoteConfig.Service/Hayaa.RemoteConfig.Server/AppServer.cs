@@ -25,8 +25,21 @@ namespace Hayaa.RemoteConfig.Service
         public FunctionOpenResult<bool> AddComponentConfigForApp(int componentConfigId, int appConfigId)
         {
             var r = new FunctionOpenResult<bool>();
+            var data = Rel_AppConfig_ComponentConfigDal.Get(appConfigId, componentConfigId);
+            if (data != null)
+            {
+                r.Data = false;
+                r.ErrorMsg = "此数据已存在";
+                return r;
+            }
             var appConfig = AppConfigDal.Get(appConfigId);
             var componentConfig = ComponentConfigDal.Get(componentConfigId);
+            if (componentConfig == null)
+            {
+                r.Data = false;
+                r.ErrorMsg = "此组件配置不存在";
+                return r;
+            }
             if ((appConfig != null) && (componentConfig != null))
             {
                 r.Data = Rel_AppConfig_ComponentConfigDal.Add(new Rel_AppConfig_ComponentConfig() {

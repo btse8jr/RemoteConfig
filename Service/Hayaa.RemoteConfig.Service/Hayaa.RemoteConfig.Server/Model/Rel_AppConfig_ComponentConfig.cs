@@ -11,7 +11,7 @@ namespace Hayaa.RemoteConfig.Service
         public int? Id { set; get; }
         public int? AppConfigId { set; get; }
         public int? AppConfigVersion { set; get; }
-        public Guid SolutionID { set; get; }
+        public String SolutionID { set; get; }
         public int? ComponentConfigId { set; get; }
         public int? ComponentConfigVersion { set; get; }
        

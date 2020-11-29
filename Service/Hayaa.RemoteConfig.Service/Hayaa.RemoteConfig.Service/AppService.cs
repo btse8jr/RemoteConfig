@@ -25,5 +25,6 @@ namespace Hayaa.RemoteService
         /// <param name="appConfigId">程序配置Id</param>
         /// <returns></returns>
         FunctionOpenResult<bool> RemoveComponentConfigForApp(List<int> componentConfigIds, int appConfigId);
+       
     }
 }

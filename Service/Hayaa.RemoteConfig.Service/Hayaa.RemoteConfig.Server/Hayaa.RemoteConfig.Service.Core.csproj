@@ -7,7 +7,7 @@
 
   <ItemGroup>
     <PackageReference Include="Hayaa.Common" Version="1.0.0.5" />
-    <PackageReference Include="Hayaa.DataAccess" Version="1.0.0.5" />
+    <PackageReference Include="Hayaa.DataAccess" Version="1.0.0.6" />
   </ItemGroup>
 
   <ItemGroup>
@@ -31,6 +31,17 @@
     <Content Update="C:\Users\hsieh\.nuget\packages\hayaa.dataaccess\1.0.0.5\contentFiles\any\netcoreapp2.0\MySqlParameter.xml" Link="doc\MySqlParameter.xml" />
     <Content Update="C:\Users\hsieh\.nuget\packages\hayaa.dataaccess\1.0.0.5\contentFiles\any\netcoreapp2.0\MySqlParameterCollection.xml" Link="doc\MySqlParameterCollection.xml" />
     <Content Update="C:\Users\hsieh\.nuget\packages\hayaa.dataaccess\1.0.0.5\contentFiles\any\netcoreapp2.0\MySqlTransaction.xml" Link="doc\MySqlTransaction.xml" />
+    <Content Update="C:\Users\hsieh\.nuget\packages\hayaa.dataaccess\1.0.0.6\contentFiles\any\netcoreapp2.0\MySqlCommand.xml" Link="doc\MySqlCommand.xml" />
+    <Content Update="C:\Users\hsieh\.nuget\packages\hayaa.dataaccess\1.0.0.6\contentFiles\any\netcoreapp2.0\MySqlCommandBuilder.xml" Link="doc\MySqlCommandBuilder.xml" />
+    <Content Update="C:\Users\hsieh\.nuget\packages\hayaa.dataaccess\1.0.0.6\contentFiles\any\netcoreapp2.0\MySqlConnection.xml" Link="doc\MySqlConnection.xml" />
+    <Content Update="C:\Users\hsieh\.nuget\packages\hayaa.dataaccess\1.0.0.6\contentFiles\any\netcoreapp2.0\MySqlConnectionStringBuilder.xml" Link="doc\MySqlConnectionStringBuilder.xml" />
+    <Content Update="C:\Users\hsieh\.nuget\packages\hayaa.dataaccess\1.0.0.6\contentFiles\any\netcoreapp2.0\MySqlDataAdapter.xml" Link="doc\MySqlDataAdapter.xml" />
+    <Content Update="C:\Users\hsieh\.nuget\packages\hayaa.dataaccess\1.0.0.6\contentFiles\any\netcoreapp2.0\MySqlDataReader.xml" Link="doc\MySqlDataReader.xml" />
+    <Content Update="C:\Users\hsieh\.nuget\packages\hayaa.dataaccess\1.0.0.6\contentFiles\any\netcoreapp2.0\MySqlException.xml" Link="doc\MySqlException.xml" />
+    <Content Update="C:\Users\hsieh\.nuget\packages\hayaa.dataaccess\1.0.0.6\contentFiles\any\netcoreapp2.0\MySqlHelper.xml" Link="doc\MySqlHelper.xml" />
+    <Content Update="C:\Users\hsieh\.nuget\packages\hayaa.dataaccess\1.0.0.6\contentFiles\any\netcoreapp2.0\MySqlParameter.xml" Link="doc\MySqlParameter.xml" />
+    <Content Update="C:\Users\hsieh\.nuget\packages\hayaa.dataaccess\1.0.0.6\contentFiles\any\netcoreapp2.0\MySqlParameterCollection.xml" Link="doc\MySqlParameterCollection.xml" />
+    <Content Update="C:\Users\hsieh\.nuget\packages\hayaa.dataaccess\1.0.0.6\contentFiles\any\netcoreapp2.0\MySqlTransaction.xml" Link="doc\MySqlTransaction.xml" />
   </ItemGroup>
 
 </Project>
