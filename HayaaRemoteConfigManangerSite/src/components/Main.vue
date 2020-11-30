@@ -15,8 +15,8 @@
 </template>
 
 <script>
-    import LeftMenu from './LeftMenu'
-    import NaviMenu from './NaviMenu'
+    import LeftMenu from './LeftMenu.vue'
+    import NaviMenu from './NaviMenu.vue'
     export default {
         name: "Main",
         created:function(){

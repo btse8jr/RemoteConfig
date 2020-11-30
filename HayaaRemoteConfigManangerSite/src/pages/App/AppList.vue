@@ -68,7 +68,7 @@
             }
         },
         methods: {
-            getPager(page) {
+            getPager: function(page) {
                 var that = this;
                 httphelper.authedpostform(urls.appPagerUrl, {"page": page, "size": 10},
                     function (data) {
@@ -79,16 +79,16 @@
                         }
                     })
             },
-            add() {
+            add: function() {
                 this.$router.push("/home/appedit");
             },
-            edit(id) {
+            edit: function(id) {
                 this.$router.push("/home/appedit/" + id);
             },
-            editConfig(id) {
+            editConfig: function(id) {
                 this.$router.push("/home/appconfiglist/" + id);
             },
-            del(id) {
+            del: function(id) {
                 var that = this;
                 httphelper.authedpostform(urls.appDeleteUrl, {"appId": id},
                     function (data) {

@@ -31,13 +31,13 @@
             this.getMessageTotal();
         },
         methods: {
-            getCurrentUser(){
+            getCurrentUser:function(){
 
             },
-            getMessageTotal(){
+            getMessageTotal:function(){
 
             },
-            quit() {
+            quit:function() {
             }
         }
     }

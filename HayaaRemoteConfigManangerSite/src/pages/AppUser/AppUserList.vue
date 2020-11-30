@@ -67,7 +67,7 @@
             }
         },
         methods: {
-            getPager(page) {
+            getPager: function(page) {
                 var that = this;
                 httphelper.authedpostform(urls.appUserPagerUrl, {"page": page, "size": 10},
                     function (data) {
@@ -78,13 +78,13 @@
                         }
                     })
             },
-            add() {
+            add: function() {
                 this.$router.push("/home/appuseredit");
             },
-            edit(id) {
+            edit: function(id) {
                 this.$router.push("/home/appuseredit/" + id);
             },
-            del(id) {
+            del: function(id) {
                 var that = this;
                 httphelper.authedpostform(urls.appUserDeleteUrl, {"id": id},
                     function (data) {

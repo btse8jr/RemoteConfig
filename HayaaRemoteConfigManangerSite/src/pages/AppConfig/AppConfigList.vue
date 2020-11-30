@@ -77,7 +77,7 @@
             }
         },
         methods: {
-            getPager(page) {
+            getPager: function(page) {
                 var that = this;
                 httphelper.authedpostform(urls.appConfigPagerUrl, {"page": page, "size": 10,"appId":that.appId},
                     function (data) {
@@ -88,22 +88,19 @@
                         }
                     })
             },
-            back(){
+            back: function(){
 
             },
-            add() {
+            add: function() {
                 this.$router.push("/home/appconfigedit/"+this.appId);
             },
-            edit(id) {
+            edit: function(id) {
                 this.$router.push("/home/appconfigedit/" +this.appId+"/"+ id);
             },
-            editConfig(id){
+            editConfig: function(id){
                 this.$router.push("/home/appcomponentconfiglist/" +this.appId+"/"+ id);
             },
-            CreateFactoryConfig(){
-
-            },
-            del(id) {
+            del: function(id) {
                 var that = this;
                 httphelper.authedpostform(urls.appConfigDeleteUrl, {"id": id},
                     function (data) {

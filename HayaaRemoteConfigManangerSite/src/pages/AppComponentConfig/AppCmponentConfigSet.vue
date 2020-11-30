@@ -51,12 +51,10 @@
 
         },
         methods: {
-            back() {
+            back: function() {
                 this.$router.push("/home/appcomponentconfiglist/" + this.ruleForm.appId + "/" + this.appConfigId);
             },
-
-
-            submitForm(formName) {
+            submitForm: function (formName) {
                 var that = this;
                 this.$refs[formName].validate((valid) => {
                     if (valid) {
@@ -69,7 +67,7 @@
                     }
                 });
             },
-            resetForm(formName) {
+            resetForm: function(formName) {
                 this.$refs[formName].resetFields();
             }
         }

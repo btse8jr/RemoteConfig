@@ -59,17 +59,17 @@
             }
         },
         methods: {
-            back() {
+            back: function() {
                 this.$router.push("/home/componentconfiglist/"+this.ruleForm.componentId);
             },
-            get(id) {
+            get: function(id) {
                 var that = this;
                 httphelper.authedpostform(urls.componentConfigGetUrl, {"id": id},
                     function (data) {
                         that.ruleForm = data;
                     });
             },
-            submitForm(formName) {
+            submitForm: function(formName) {
                 var that = this;
                 this.$refs[formName].validate((valid) => {
                     if (valid) {
@@ -91,7 +91,7 @@
                     }
                 });
             },
-            resetForm(formName) {
+            resetForm: function(formName) {
                 this.$refs[formName].resetFields();
             }
         }

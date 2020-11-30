@@ -83,7 +83,7 @@
             }
         },
         methods: {
-            getPager() {
+            getPager: function() {
                 var that = this;
                 httphelper.authedpostform(urls.componentConfigGetListUrl, {
                         "version": 1,
@@ -94,7 +94,7 @@
                         that.loadAppComponentData();
                     })
             },
-            loadAppComponentData() {
+            loadAppComponentData: function() {
                 var that = this;
                 that.appComponentData = [];
                 for (var c in that.tableData) {
@@ -110,7 +110,7 @@
                         });
                 }
             },
-            createFactoryConfig() {
+            createFactoryConfig: function() {
                 var that = this;
                 if (that.componentConfigId_10002 > 0) {
                     that.Remove10002Config(function () {
@@ -119,7 +119,7 @@
                 } else
                     that.create10002Config(that.appComponentData);
             },
-            create10002Config(info) {
+            create10002Config: function(info) {
                 var that = this;
                 httphelper.authedpostform(urls.componentConfigAddUrl, {
                         "ComponentConfigTitle": "10002-程序" + that.appId + "的功能服务工厂配置",
@@ -132,7 +132,7 @@
                         that.addComponentConfig(data.componentConfigId);
                     });
             },
-            addComponentConfig(componentConfigId) {
+            addComponentConfig: function(componentConfigId) {
                 var that = this;
                 httphelper.authedpostform(urls.appConfigAddComponentConfigUrl, {
                         "appConfigId": that.appConfigId,
@@ -144,13 +144,13 @@
                         }
                     });
             },
-            setFactoryConfig(componentId) {
+            setFactoryConfig: function(componentId) {
                 this.$router.push("/home/appcomponentconfigset/" + this.appId + "/" + componentId + "/" + this.appConfigId);
             },
-            back() {
+            back: function() {
                 this.$router.push("/home/appconfiglist/" + this.appId);
             },
-            add() {
+            add: function() {
                 var that = this;
                 httphelper.authedpostform(urls.appConfigAddComponentConfigUrl, {
                         "appConfigId": that.appConfigId,
@@ -164,7 +164,7 @@
                         }
                     });
             },
-            del(id) {
+            del: function(id) {
                 var that = this;
                 httphelper.authedpostform(urls.appConfigDeleteComponentConfigUrl, {
                         "appConfigId": that.appConfigId,
@@ -177,7 +177,7 @@
                         }
                     });
             },
-            Remove10002Config(call) {
+            Remove10002Config: function(call) {
                 var that = this;
                 httphelper.authedpostform(urls.componentConfigDeleteUrl, {
                         "id": that.componentConfigId_10002

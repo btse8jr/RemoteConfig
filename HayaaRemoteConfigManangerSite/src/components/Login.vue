@@ -39,7 +39,7 @@
             }
         },
         methods: {
-            login() {
+            login: function() {
                 var that = this;
                 httphelper.post(urls.loginUrl, {"loginkey": that.info.loginkey, "pwd": that.info.pwd},
                     function (islogin) {

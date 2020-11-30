@@ -77,7 +77,7 @@
             }
         },
         methods: {
-            getPager(page) {
+            getPager: function(page) {
                 var that = this;
                 httphelper.authedpostform(urls.componentConfigPagerUrl, {"page": page, "size": 10,"componentId":that.componentId},
                     function (data) {
@@ -88,13 +88,13 @@
                         }
                     })
             },
-            add() {
+            add: function() {
                 this.$router.push("/home/componentconfigedit/"+this.componentId);
             },
-            edit(id) {
+            edit: function(id) {
                 this.$router.push("/home/componentconfigedit/"+this.componentId+"/" + id);
             },
-            del(id) {
+            del: function(id) {
                 var that = this;
                 httphelper.authedpostform(urls.componentConfigDeleteUrl, {"id": id},
                     function (data) {

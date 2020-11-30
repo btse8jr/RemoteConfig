@@ -5,18 +5,19 @@
 </template>
 
 <script>
-    import httphelper from './util/httphelper'
+     import httphelper from './util/httphelper'
     import urls from './urlstatic'
+
     export default {
         name: "AppFrame",
         data: function () {
             return {}
         },
         created: function () {
-            this.auth()
+           // this.auth()
         },
         methods: {
-            auth() {
+            auth: function() {
                 var that = this;
                 httphelper.post(urls.authUrl, {}, function (islogin) {
                     if (islogin) {

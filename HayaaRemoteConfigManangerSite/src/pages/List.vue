@@ -96,13 +96,13 @@
             }
         },
         methods: {
-            handleAdd(){
+            handleAdd: function(){
                 this.$router.push("/home/edit");
             },
-            handleEdit(index, row) {
+            handleEdit: function(index, row) {
                 console.log(index, row);
             },
-            handleDelete(index, row) {
+            handleDelete: function(index, row) {
                 console.log(index, row);
             }
         }

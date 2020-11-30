@@ -93,7 +93,7 @@
             };
         },
         methods: {
-            submitForm(formName) {
+            submitForm: function(formName) {
                 this.$refs[formName].validate((valid) => {
                     if (valid) {
                         alert('submit!');
@@ -103,7 +103,7 @@
                     }
                 });
             },
-            resetForm(formName) {
+            resetForm: function(formName) {
                 this.$refs[formName].resetFields();
             }
         }

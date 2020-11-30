@@ -1,9 +1,10 @@
 {
-  "name": "element-starter",
-  "description": "A Vue.js project",
-  "author": "yi.shyang@ele.me",
+  "name": "hayaa.mui",
+  "description": "HayaaAI ManagerUI",
+  "author": "dev@hayaa-ai.com",
   "private": true,
   "scripts": {
+    "webpack":"webpack",
     "dev": "webpack-dev-server --inline --hot --env.dev",
     "build": "rimraf dist && webpack -p --progress --hide-modules"
   },
@@ -11,10 +12,8 @@
     "axios": "^0.18.0",
     "element-ui": "^2.3.4",
     "qs": "^6.5.1",
-    "querystring": "^0.2.0",
     "vue": "^2.5.16",
-    "vue-router": "^3.0.1",
-    "yarn": "^1.6.0"
+    "vue-router": "^3.0.1"
   },
   "engines": {
     "node": ">=6"
@@ -33,7 +32,7 @@
     "url-loader": "^0.5.8",
     "vue-loader": "^13.3.0",
     "vue-template-compiler": "^2.5.16",
-    "webpack": "^2.4.1",
+    "webpack": "^2.7.0",
     "webpack-dev-server": "^2.4.2"
   }
 }

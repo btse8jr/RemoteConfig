@@ -70,7 +70,7 @@
             }
         },
         methods: {
-            getPager(page) {
+            getPager: function(page) {
                 var that = this;
                 httphelper.authedpostform(urls.componentPagerUrl, {"page": page, "size": 10},
                     function (data) {
@@ -81,20 +81,20 @@
                         }
                     })
             },
-            add() {
+            add: function() {
                 this.$router.push("/home/componentedit");
             },
-            edit(id) {
+            edit: function(id) {
                 this.$router.push("/home/componentedit/" + id);
             },
-            editConfig(id) {
+            editConfig: function(id) {
                 this.$router.push("/home/componentconfiglist/" + id);
             },
-            editFunction(id) {
+            editFunction: function(id) {
                 this.$router.push("/home/appcomponentlist/" + id);
             },
 
-            del(id) {
+            del: function(id) {
                 var that = this;
                 httphelper.authedpostform(urls.componentDeleteUrl, {"id": id},
                     function (data) {
