@@ -1,7 +1,8 @@
+const evn="test";
 const  baseUrl={
-    security:"http://dev.security.xieqj.net/",
-    remoteconfig:"http://dev.remoteconfig.xieqj.net:10080/",
-    serviceframe:"http://dev.serviceframe.xieqj.net:10081/"
+    security:"http://"+evn+".security.xieqj.net/",
+    remoteconfig:"http://"+evn+".remoteconfig.xieqj.net/",
+    serviceframe:"http://"+evn+".serviceframe.xieqj.net/"
 }
 const urls={
     authUrl:baseUrl.security+"api/login/IsLogin",
