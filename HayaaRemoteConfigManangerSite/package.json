@@ -4,7 +4,6 @@
   "author": "dev@hayaa-ai.com",
   "private": true,
   "scripts": {
-    "webpack":"webpack",
     "dev": "webpack-dev-server --inline --hot --env.dev",
     "build": "rimraf dist && webpack -p --progress --hide-modules"
   },

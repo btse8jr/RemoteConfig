@@ -13,7 +13,5 @@ Vue.use(ElementUI)
 new Vue({
     el: '#app',
     router,
-    render: function (createElement) {
-        return createElement(AppFrame);
-    }
+    render: h => h(AppFrame)
 })

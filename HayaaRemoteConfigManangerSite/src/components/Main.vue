@@ -1,17 +1,14 @@
 <template>
-
+    <el-container>
+        <el-header><navimenu></navimenu></el-header>
         <el-container>
-            <el-header><navimenu></navimenu></el-header>
+            <el-aside width="200px"><leftment></leftment></el-aside>
             <el-container>
-                <el-aside width="200px"><leftment></leftment></el-aside>
-                <el-container>
-                    <el-main><router-view></router-view></el-main>
-                    <el-footer>Footer</el-footer>
-                </el-container>
+                <el-main><router-view></router-view></el-main>
+                <el-footer>Footer</el-footer>
             </el-container>
         </el-container>
-
-
+    </el-container>
 </template>
 
 <script>
@@ -20,7 +17,7 @@
     export default {
         name: "Main",
         created:function(){
-            this.$router.push("/home/index");
+            //this.$router.push("/home/index");
         },
         components:{
             "navimenu":NaviMenu,

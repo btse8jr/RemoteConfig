@@ -5,7 +5,7 @@
 </template>
 
 <script>
-     import httphelper from './util/httphelper'
+    import httphelper from './util/httphelper'
     import urls from './urlstatic'
 
     export default {
@@ -14,18 +14,19 @@
             return {}
         },
         created: function () {
-           // this.auth()
+            this.auth()
         },
         methods: {
             auth: function() {
                 var that = this;
-                httphelper.post(urls.authUrl, {}, function (islogin) {
-                    if (islogin) {
-                        that.$router.push("/home");
-                    } else {
-                        that.$router.push("/login");
-                    }
-                })
+                that.$router.push("/home");
+                // httphelper.post(urls.authUrl, {}, function (islogin) {
+                //     if (islogin) {
+                //         that.$router.push("/home");
+                //     } else {
+                //         that.$router.push("/login");
+                //     }
+                // })
             }
         }
     }

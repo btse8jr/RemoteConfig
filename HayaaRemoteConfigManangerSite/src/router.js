@@ -3,8 +3,6 @@ import Login from './components/Login.vue'
 import Main from './components/Main.vue'
 import Index from './pages/Index.vue'
 import Message from './pages/Message.vue'
-import List from './pages/List.vue'
-import Edit from './pages/Edit.vue'
 import AppList from './pages/App/AppList.vue'
 import AppEdit from './pages/App/AppEdit.vue'
 import ComponentList from './pages/Component/ComponentList.vue'
@@ -29,11 +27,9 @@ const router = new VueRouter({
             children: [
                 {path: "index", component: Index},
                 {path: "message", component: Message},
-                {path: "edit", component: Edit},
-                {path: "list", component: List},
                 {path: "applist", component: AppList},
                 {path: "appedit/:id?", component: AppEdit},
-                {path: "componentlist", component: ComponentList,children:[]},
+                {path: "componentlist", component: ComponentList},
                 {path: "componentedit/:id?", component: ComponentEdit},
                 {path: "appcomponentlist/:id", component: AppComponentList},
                 {path: "appcomponentedit/:cid/:id?", component: AppComponentEdit},
@@ -44,7 +40,7 @@ const router = new VueRouter({
                 {path: "appconfiglist/:id", component: AppConfigList},
                 {path: "appconfigedit/:aid/:id?", component: AppConfigEdit},
                 {path: "appcomponentconfiglist/:aid/:id", component: AppComponentConfigList},
-                {path: "appcomponentconfigset/:aid/:cid/:afid", component: AppCmponentConfigSet},
+                {path: "appcomponentconfigset/:aid/:cid/:afid", component: AppCmponentConfigSet}
             ]
         }
     ]
