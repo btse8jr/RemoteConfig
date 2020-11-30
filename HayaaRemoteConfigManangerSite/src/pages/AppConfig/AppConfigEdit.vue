@@ -31,7 +31,7 @@
 
     export default {
         name: "AppConfigEdit",
-        data() {
+        data: function() {
             return {
                 ruleForm: {
                     appConfigId: 0,
@@ -80,7 +80,7 @@
             },
             submitForm: function(formName) {
                 var that = this;
-                this.$refs[formName].validate((valid) => {
+                this.$refs[formName].validate(function(valid) {
                     if (valid) {
                         if (that.ruleForm.appConfigId == 0) {
                             httphelper.authedpostform(urls.appConfigAddUrl, that.ruleForm,

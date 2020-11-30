@@ -54,7 +54,7 @@
 <script>
     export default {
         name: "Edit",
-        data() {
+        data: function() {
             return {
                 ruleForm: {
                     name: '',
@@ -94,7 +94,7 @@
         },
         methods: {
             submitForm: function(formName) {
-                this.$refs[formName].validate((valid) => {
+                this.$refs[formName].validate(function(valid) {
                     if (valid) {
                         alert('submit!');
                     } else {

@@ -22,7 +22,7 @@
 
     export default {
         name: "AppUserEdit",
-        data() {
+        data: function() {
             return {
                 ruleForm: {
                     appUserId: 0,
@@ -61,7 +61,7 @@
             },
             submitForm: function(formName) {
                 var that = this;
-                this.$refs[formName].validate((valid) => {
+                this.$refs[formName].validate(function(valid) {
                     if (valid) {
                         if (that.ruleForm.appUserId == 0) {
                             httphelper.authedpostform(urls.appUserAddUrl, that.ruleForm,

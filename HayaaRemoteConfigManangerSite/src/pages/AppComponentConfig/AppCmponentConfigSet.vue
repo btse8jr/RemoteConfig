@@ -25,7 +25,7 @@
 
     export default {
         name: "AppCmponentConfigSet",
-        data() {
+        data: function() {
             return {
                 appConfigId: 0,
                 ruleForm: {
@@ -56,7 +56,7 @@
             },
             submitForm: function (formName) {
                 var that = this;
-                this.$refs[formName].validate((valid) => {
+                this.$refs[formName].validate(function(valid) {
                     if (valid) {
                         httphelper.authedpostform(urls.appComponentFactoryCreateUrl, that.ruleForm,
                             function (data) {

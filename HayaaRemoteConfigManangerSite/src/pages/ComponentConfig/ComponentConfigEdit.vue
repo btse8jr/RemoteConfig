@@ -28,7 +28,7 @@
 
     export default {
         name: "ComponentConfigEdit",
-        data() {
+        data: function() {
             return {
                 ruleForm: {
                     componentConfigId: 0,
@@ -71,7 +71,7 @@
             },
             submitForm: function(formName) {
                 var that = this;
-                this.$refs[formName].validate((valid) => {
+                this.$refs[formName].validate(function(valid){
                     if (valid) {
                         if (that.ruleForm.componentConfigId == 0) {
                             httphelper.authedpostform(urls.componentConfigAddUrl, that.ruleForm,

@@ -25,7 +25,7 @@
 <script>
     export default {
         name: "Message",
-        data() {
+        data: function() {
             return {
                 tableData: [{
                     date: '2016-05-02',

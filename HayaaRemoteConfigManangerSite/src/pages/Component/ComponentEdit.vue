@@ -22,7 +22,7 @@
 
     export default {
         name: "ComponentEdit",
-        data() {
+        data: function() {
             return {
                 ruleForm: {
                     appId: 0,
@@ -61,7 +61,7 @@
             },
             submitForm: function(formName) {
                 var that = this;
-                this.$refs[formName].validate((valid) => {
+                this.$refs[formName].validate(function(valid){
                     if (valid) {
                         if (that.ruleForm.AppId == 0) {
                             httphelper.authedpostform(urls.componentAddUrl, that.ruleForm,
