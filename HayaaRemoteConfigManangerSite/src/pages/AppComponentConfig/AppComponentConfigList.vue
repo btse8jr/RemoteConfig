@@ -2,7 +2,7 @@
     <div style="margin-left: 25px">
         <div style="float: left;width: 600px;">
             <el-input v-model="componentConfigId" style="width: 80px" size="mini"></el-input>
-            <el-button type="primary" @click="add" size="mini">添加</el-button>
+            <el-button type="primary" @click="add" size="mini">添加组件配置</el-button>
 
         </div>
         <el-table :data="tableData">
@@ -104,6 +104,7 @@
                             "componentId": that.tableData[c].componentId
                         },
                         function (data) {
+
                             for (var i in data) {
                                 that.appComponentData.push(data[i])
                             }
@@ -121,11 +122,20 @@
             },
             create10002Config: function(info) {
                 var that = this;
+                var serviceFrameConfig={
+                    components:info,
+                    appAuthServiceUrl:"",
+                    heartServiceUrl:"",
+                    heartTimespan:0,
+                    defaultAppUserId:0,
+                    appSettings:null,
+                    connectionStrings:null
+                };
                 httphelper.authedpostform(urls.componentConfigAddUrl, {
                         "ComponentConfigTitle": "10002-程序" + that.appId + "的功能服务工厂配置",
                         "ComponentId": 10002,
                         "Version": 1,
-                        "Content": JSON.stringify(info),
+                        "Content": JSON.stringify(serviceFrameConfig),
                         "IsDefault": false
                     },
                     function (data) {

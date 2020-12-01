@@ -11,7 +11,7 @@
                 <!--<el-input v-model="ruleForm.version" style="width: 100px"></el-input>-->
             <!--</el-form-item>-->
             <el-form-item label="默认配置">
-                <el-switch v-model="ruleForm.IsDefault" active-color="#13ce66" inactive-color="#ff4949"></el-switch>
+                <el-switch v-model="ruleForm.isDefault" active-color="#13ce66" inactive-color="#ff4949"></el-switch>
             </el-form-item>
             <el-form-item>
                 <el-button type="primary" @click="submitForm('ruleForm')">提交</el-button>
@@ -36,7 +36,7 @@
                     content:"",
                     version:1,
                     componentConfigTitle: '',
-                    IsDefault: false
+                    isDefault: false
                 },
                 rules: {
                     content: [
@@ -55,7 +55,7 @@
             if(this.$route.params.id)
             this.ruleForm.componentConfigId = this.$route.params.id;
             if (this.ruleForm.componentConfigId>0) {
-                this.get(this.this.ruleForm.componentConfigId);
+                this.get(this.ruleForm.componentConfigId);
             }
         },
         methods: {
@@ -76,7 +76,6 @@
                         if (that.ruleForm.componentConfigId == 0) {
                             httphelper.authedpostform(urls.componentConfigAddUrl, that.ruleForm,
                                 function (data) {
-                                    that.ruleForm = data;
                                     that.back();
                                 });
                         } else {

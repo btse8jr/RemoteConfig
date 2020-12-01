@@ -4,7 +4,7 @@ import Vue from 'vue'
 import {Notification} from 'element-ui';
 
 const httphelper = {
-    get:function(url, paramater, call, errcall) {
+    get:function(url, paramater, call, errcall,isnotify) {
         axios.get(url, paramater)
             .then(function (rep) {
                 if (call) {
@@ -16,11 +16,13 @@ const httphelper = {
                             if (rep.data.code == 403) {
                                 Vue.$router.push("/login")
                             } else {
+                                if(isnotify)
                                 Notification.warning(rep.data.message)
                             }
                         }
                     }
                 } else {
+                    if(isnotify)
                     Notification.success("操作成功")
                 }
 
@@ -29,11 +31,11 @@ const httphelper = {
                 Notification.error("网络异常")
             });
     },
-    authedget:function(url, paramater, call, errcall) {
+    authedget:function(url, paramater, call, errcall,isnotify) {
         paramater.token = "token";
-        return this.get(url, paramater, call, errcall);
+        return this.get(url, paramater, call, errcall,isnotify);
     },
-    post:function(url, paramater, call, errcall) {
+    post:function(url, paramater, call, errcall,isnotify) {
         axios.post(url, paramater,{withCredentials:true})
             .then(function (rep) {
                 if (call) {
@@ -45,11 +47,13 @@ const httphelper = {
                             if (rep.data.code == 403) {
                                 Vue.$router.push("/login")
                             } else {
+                                if(isnotify)
                                 Notification.warning(rep.data.message)
                             }
                         }
                     }
                 } else {
+                    if(isnotify)
                     Notification.success("操作成功")
                 }
             })
@@ -57,17 +61,17 @@ const httphelper = {
                 Notification.error("网络异常")
             });
     },
-    authedpost:function(url, paramater, call, errcall) {
+    authedpost:function(url, paramater, call, errcall,isnotify) {
         paramater.token = "token";
-        return this.post(url, paramater, call, errcall);
+        return this.post(url, paramater, call, errcall,isnotify);
     },
-    postform:function(url, data, call, errcall) {
+    postform:function(url, data, call, errcall,isnotify) {
         data = qs.stringify(data);
-        return this.post(url, data, call, errcall);
+        return this.post(url, data, call, errcall,isnotify);
     },
-    authedpostform:function(url, data, call, errcall) {
+    authedpostform:function(url, data, call, errcall,isnotify) {
         data.token = "token";
-        return this.postform(url, data, call, errcall);
+        return this.postform(url, data, call, errcall,isnotify);
     }
 }
 export default httphelper

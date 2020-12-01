@@ -63,11 +63,10 @@
                 var that = this;
                 this.$refs[formName].validate(function(valid) {
                     if (valid) {
-                        if (that.ruleForm.AppId == 0) {
+                        if (that.ruleForm.appId == 0) {
                             httphelper.authedpostform(urls.appAddUrl, that.ruleForm,
                                 function (data) {
-                                    that.ruleForm = data;
-                                    that.$notify.success("操作成功");
+                                    that.back();
                                 });
                         } else {
                             httphelper.authedpostform(urls.appEditUrl, that.ruleForm,

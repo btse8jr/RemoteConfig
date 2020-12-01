@@ -111,9 +111,7 @@
                         if (that.ruleForm.appComponentId == 0) {
                             httphelper.authedpostform(urls.appComponentAddUrl, that.ruleForm,
                                 function (data) {
-                                    that.ruleForm = data;
-                                    that.$notify.success("操作成功");
-                                    that.$router.push("/home/appcomponentlist/"+that.componentId);
+                                    that.back();
                                 });
                         } else {
                             httphelper.authedpostform(urls.appComponentEditUrl, that.ruleForm,

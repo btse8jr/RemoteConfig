@@ -55,7 +55,7 @@ module.exports = (options = {}) => ({
     extensions: ['.js', '.vue', '.json', '.css']
   },
   devServer: {
-    host: 'test.mui.xieqj.net',
+    host: 'dev.mui.xieqj.net',
     port: 80,
     proxy: {
       '/api/': {
