@@ -16,13 +16,13 @@ namespace Hayaa.RemoteService
         /// <param name="solutionID">方案ID</param>
         /// <param name="version">方案版本</param>
         /// <returns>包括组件配置列表的app配置方案数据实体</returns>
-        FunctionResult<AppConfig> SendConfig(Guid solutionID, int version);
+        FunctionResult<AppConfig> SendConfig(String solutionID, int version);
         /// <summary>
         /// 发送js程序的配置内容
         /// </summary>
         /// <param name="solutionID">方案ID</param>
         /// <param name="version">方案版本</param>
         /// <returns></returns>
-        FunctionResult<AppConfig> SendJsAppConfig(Guid solutionID, int version);
+        FunctionResult<AppConfig> SendJsAppConfig(String solutionID, int version);
     }
 }

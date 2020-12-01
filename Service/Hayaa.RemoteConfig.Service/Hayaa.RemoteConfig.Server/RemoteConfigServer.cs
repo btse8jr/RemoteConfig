@@ -8,7 +8,7 @@ namespace Hayaa.RemoteConfig.Service
 {
     public class RemoteConfigServer : RemoteConfigService
     {
-        public FunctionResult<AppConfig> SendConfig(Guid solutionID, int version)
+        public FunctionResult<AppConfig> SendConfig(String solutionID, int version)
         {
             var r = new FunctionResult<AppConfig>();
             var appConfig = AppConfigDal.Get(solutionID, version);
@@ -26,7 +26,7 @@ namespace Hayaa.RemoteConfig.Service
             return r;
         }
 
-        public FunctionResult<AppConfig> SendJsAppConfig(Guid solutionID, int version)
+        public FunctionResult<AppConfig> SendJsAppConfig(String solutionID, int version)
         {
             var r = new FunctionResult<AppConfig>();
             var appConfig = AppConfigDal.Get(solutionID, version);
