@@ -14,10 +14,10 @@ namespace Hayaa.RemoteConfigController
         private RemoteConfigService service = new RemoteConfigServer();// PlatformServiceFactory.Instance.CreateService<RemoteConfigService>(AppRoot.GetDefaultAppUser());
         [HttpPost]
         //[AppInstanceBaseAuthorityFilter]
-        public TransactionResult<AppConfig> SendConfig(String sid, int v1)
+        public TransactionResult<AppConfig> SendConfig(String sid, int v)
         {
             TransactionResult<AppConfig> result = new TransactionResult<AppConfig>();
-            var serviceResult = service.SendConfig(sid, v1);
+            var serviceResult = service.SendConfig(sid, v);
             if (serviceResult.ActionResult & serviceResult.HavingData)
             {
                 result.Data = serviceResult.Data;
