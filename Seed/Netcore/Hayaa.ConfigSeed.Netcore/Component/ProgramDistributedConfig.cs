@@ -167,6 +167,7 @@ namespace Hayaa.ConfigSeed.Standard.Component
             AppConfig result = null;
 
             str = _httpRequestHelper.Transaction(url, dic);
+            throw new Exception("配置:" + str);
             //str = HttpUtility.UrlDecode(str);
             //str = str;//解密TODO，等待安全算法实现后替换
             var response = Newtonsoft.Json.JsonConvert.DeserializeObject<TransactionResult<AppConfig>>(str);
@@ -178,7 +179,7 @@ namespace Hayaa.ConfigSeed.Standard.Component
             {
                 throw new Exception("获取远程配置服务发生错误:" + response.Message);
             }
-            Console.WriteLine(str);
+          
 
             return result;
         }
