@@ -40,7 +40,7 @@ namespace Hayaa.ConfigSeed.Standard.Component
             }
             catch (Exception ex)
             {
-                throw new Exception("无法读取App的Seed配置:"+ex.Message);//错误配置下扔出               
+                throw new Exception("无法读取App的Seed配置:" + ex.Message);//错误配置下扔出               
             }
         }
 
@@ -66,9 +66,7 @@ namespace Hayaa.ConfigSeed.Standard.Component
             }
             catch (Exception ex)//预期异常：格式错误，错误内容
             {
-                result.Result = false;
-                result.Message = ex.Message;
-                return;
+                throw new Exception("ReadLocal反序列化异常:" + ex.Message);
             }
 
         }
@@ -90,9 +88,9 @@ namespace Hayaa.ConfigSeed.Standard.Component
             }
             catch (Exception ex)//预期异常：格式错误，错误内容
             {
-                throw new Exception("ReadLocal反序列化异常:"+ex.Message);
+                throw new Exception("ReadLocal反序列化异常:" + ex.Message);
             }
-           
+
         }
         /// <summary>
         /// 远程获取程序配置
@@ -113,7 +111,7 @@ namespace Hayaa.ConfigSeed.Standard.Component
             var remoteConfig = GetRemote(seedConfig.SeedServerUrl, seedConfig.AppConfigSolutionID, seedConfig.SecurityToken, seedConfig.Version.HasValue ? seedConfig.Version.Value : 0, seedConfig.AppInstanceID);
             //判断配置文件的新鲜程度
             if (remoteConfig != null)//无法获取远程配置时不更新本地
-            { 
+            {
                 if (seedConfig.Version == 0)//永远最新
                 {
                     File.Delete(seedConfig.LocalConfigDirectoryPath + "/" + seedConfig.AppConfigFileName);
@@ -131,10 +129,10 @@ namespace Hayaa.ConfigSeed.Standard.Component
         {
 
 
-            AppConfig localconfig = null;           
+            AppConfig localconfig = null;
 
             //远程拉取配置文件
-            var remoteConfig = GetRemote(seedConfig.SeedServerUrl, seedConfig.AppConfigSolutionID, seedConfig.SecurityToken, seedConfig.Version.HasValue? seedConfig.Version.Value:0, seedConfig.AppInstanceID);
+            var remoteConfig = GetRemote(seedConfig.SeedServerUrl, seedConfig.AppConfigSolutionID, seedConfig.SecurityToken, seedConfig.Version.HasValue ? seedConfig.Version.Value : 0, seedConfig.AppInstanceID);
             //判断配置文件的新鲜程度
             if (remoteConfig != null)//无法获取远程配置时不更新本地
             {
@@ -158,30 +156,30 @@ namespace Hayaa.ConfigSeed.Standard.Component
         /// <param name="solutionID">app配置方案ID</param>
         /// <param name="token">app的安全令牌</param>
         /// <returns></returns>
-        private AppConfig GetRemote(string url, Guid solutionID,string token,int version,int appIntanceId)
+        private AppConfig GetRemote(string url, Guid solutionID, string token, int version, int appIntanceId)
         {
-            var dic = new Dictionary<string, string>();           
+            var dic = new Dictionary<string, string>();
             dic.Add("sid", solutionID.ToString());
             dic.Add("v", version.ToString());
             dic.Add("apt", token);
             dic.Add("aid", appIntanceId.ToString());
             string str = "";
             AppConfig result = null;
-            try
-            {               
-                str = _httpRequestHelper.Transaction(url, dic);
-                //str = HttpUtility.UrlDecode(str);
-                //str = str;//解密TODO，等待安全算法实现后替换
-              var response = Newtonsoft.Json.JsonConvert.DeserializeObject<TransactionResult<AppConfig>>(str);
-                if (response.Code == 0)
-                {
-                    result = response.Data;
-                }
-            }
-            catch (Exception ex)
+
+            str = _httpRequestHelper.Transaction(url, dic);
+            //str = HttpUtility.UrlDecode(str);
+            //str = str;//解密TODO，等待安全算法实现后替换
+            var response = Newtonsoft.Json.JsonConvert.DeserializeObject<TransactionResult<AppConfig>>(str);
+            if (response.Code == 0)
             {
-                result = null;               
+                result = response.Data;
             }
+            else
+            {
+                throw new Exception("获取远程配置服务发生错误:" + response.Message);
+            }
+
+
             return result;
         }
         /// <summary>
@@ -192,14 +190,14 @@ namespace Hayaa.ConfigSeed.Standard.Component
         {
             AppLocalConfig r = new AppLocalConfig()
             {
-                IsRemote = true,               
+                IsRemote = true,
                 LocalConfigDirectoryPath = "~/Config",
                 Version = 0
             };
             try
             {
                 string baseDirectory = AppDomain.CurrentDomain.BaseDirectory;//获取根目录路径
-                r = Newtonsoft.Json.JsonConvert.DeserializeObject<AppLocalConfig>(File.ReadAllText(baseDirectory + "/appconfig.json",Encoding.UTF8));//读取根目录下的配置文件
+                r = Newtonsoft.Json.JsonConvert.DeserializeObject<AppLocalConfig>(File.ReadAllText(baseDirectory + "/appconfig.json", Encoding.UTF8));//读取根目录下的配置文件
                 if (r.IsVirtualPath)//web系统相对部署根目录获取绝对路径
                 {
                     r.LocalConfigDirectoryPath = baseDirectory + r.LocalConfigDirectoryPath.Replace("~/", "");
@@ -207,9 +205,9 @@ namespace Hayaa.ConfigSeed.Standard.Component
             }
             catch (Exception ex)
             {
-                r = new AppLocalConfig() {  };
+                throw new Exception("无法读取根目录配置:"+ex.Message);
             }
-           
+
             return r;
         }
         public void SetAppInstanceId(int appInstanceId)
@@ -218,12 +216,12 @@ namespace Hayaa.ConfigSeed.Standard.Component
             {
                 _seedConfig.AppInstanceID = appInstanceId;
                 string baseDirectory = AppDomain.CurrentDomain.BaseDirectory;//获取根目录路径
-              String strConfig=  Newtonsoft.Json.JsonConvert.SerializeObject(_seedConfig);
+                String strConfig = Newtonsoft.Json.JsonConvert.SerializeObject(_seedConfig);
                 File.WriteAllText((baseDirectory + "/appconfig.json"), strConfig, Encoding.UTF8);
             }
             catch (Exception ex)
             {
-               
+
             }
         }
         public AppConfig GetAppConfig()
@@ -238,7 +236,7 @@ namespace Hayaa.ConfigSeed.Standard.Component
             }
             return false;
         }
-     
+
         /// <summary>
         /// 在程序第一次运行时运行此方法获取配置
         /// </summary>
@@ -267,12 +265,12 @@ namespace Hayaa.ConfigSeed.Standard.Component
         {
             //构造函数完成无null初始化设置
             return _appConfig.Components.Find(c => c.ComponentID == componetID);
-        }      
+        }
         public AppLocalConfig GetSeedConfig()
         {
             return _seedConfig;
         }
-       
+
     }
     internal class InitResult
     {
