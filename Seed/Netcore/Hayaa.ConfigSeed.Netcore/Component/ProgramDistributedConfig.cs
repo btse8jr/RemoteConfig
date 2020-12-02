@@ -167,7 +167,6 @@ namespace Hayaa.ConfigSeed.Standard.Component
             AppConfig result = null;
 
             str = _httpRequestHelper.Transaction(url, dic);
-            throw new Exception("配置:" + str);
             //str = HttpUtility.UrlDecode(str);
             //str = str;//解密TODO，等待安全算法实现后替换
             var response = Newtonsoft.Json.JsonConvert.DeserializeObject<TransactionResult<AppConfig>>(str);
@@ -247,8 +246,10 @@ namespace Hayaa.ConfigSeed.Standard.Component
             var r = new InitResult() { Result = true };
             if (_seedConfig.IsRemote)//判断是否读取远程配置模式
             {
+                Console.WriteLine("获取远程");
                 ReadRemote(_seedConfig);//读取远程配置
             }
+            Console.WriteLine("读取本地");
             ReadLocal(_seedConfig, r);//读取本地配置 
             return r;
         }
