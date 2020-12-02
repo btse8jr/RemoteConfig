@@ -11,7 +11,7 @@
     <repositories>
         <repository>
             <id>hayaa-group</id>
-            <url>http://nexus.xieqj.net:10001/repository/hayaa-group/</url>
+            <url>http://nexus.xieqj.net/repository/hayaa-group/</url>
         </repository>
     </repositories>
     <dependencies>
@@ -43,11 +43,11 @@
     <distributionManagement>
         <repository>
             <id>hayaa-releases</id>
-            <url>http://nexus.xieqj.net:10001/repository/hayaa-release</url>
+            <url>http://nexus.xieqj.net/repository/hayaa-release</url>
         </repository>
         <snapshotRepository>
             <id>hayaa-snapshots</id>
-            <url>http://nexus.xieqj.net:10001/repository/hayaa-snapshot</url>
+            <url>http://nexus.xieqj.net/repository/hayaa-snapshot</url>
         </snapshotRepository>
     </distributionManagement>
 </project>
