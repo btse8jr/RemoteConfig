@@ -92,6 +92,7 @@ namespace Hayaa.ConfigSeed.Standard.Util
                 }
             }catch(Exception ex)
             {
+                Console.WriteLine(ex.Message);
                 responseData = null;
             }
             return responseData;

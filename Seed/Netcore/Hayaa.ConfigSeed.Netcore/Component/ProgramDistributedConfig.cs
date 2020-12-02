@@ -108,6 +108,7 @@ namespace Hayaa.ConfigSeed.Standard.Component
             }
 
             //远程拉取配置文件
+            Console.WriteLine("远程拉取配置文件:" + seedConfig.SeedServerUrl);
             var remoteConfig = GetRemote(seedConfig.SeedServerUrl, seedConfig.AppConfigSolutionID, seedConfig.SecurityToken, seedConfig.Version.HasValue ? seedConfig.Version.Value : 0, seedConfig.AppInstanceID);
             //判断配置文件的新鲜程度
             if (remoteConfig != null)//无法获取远程配置时不更新本地
@@ -118,8 +119,10 @@ namespace Hayaa.ConfigSeed.Standard.Component
                     //固化指定目录下制定的文件
                     File.AppendAllText(seedConfig.LocalConfigDirectoryPath + "/" + seedConfig.AppConfigFileName, Newtonsoft.Json.JsonConvert.SerializeObject(remoteConfig));
                 }
+                Console.WriteLine("准备写入");
                 if ((seedConfig.Version > 0) && (localconfig == null))//本地没有配置文件并且不是永远更新
                 {
+                    Console.WriteLine("写入：" + seedConfig.LocalConfigDirectoryPath);
                     File.AppendAllText(seedConfig.LocalConfigDirectoryPath + "/" + seedConfig.AppConfigFileName, Newtonsoft.Json.JsonConvert.SerializeObject(remoteConfig));
                 }
             }
@@ -168,7 +171,7 @@ namespace Hayaa.ConfigSeed.Standard.Component
             dic.Add("aid", appIntanceId.ToString());
             string str = "";
             AppConfig result = null;
-
+            Console.WriteLine("请求地址:" + url+";sid:"+ solutionID.ToString());
             str = _httpRequestHelper.Transaction(url, dic);
             //str = HttpUtility.UrlDecode(str);
             //str = str;//解密TODO，等待安全算法实现后替换
