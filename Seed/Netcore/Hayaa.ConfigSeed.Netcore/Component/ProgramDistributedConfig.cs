@@ -178,7 +178,7 @@ namespace Hayaa.ConfigSeed.Standard.Component
             {
                 throw new Exception("获取远程配置服务发生错误:" + response.Message);
             }
-
+            Console.WriteLine(str);
 
             return result;
         }
