@@ -5,7 +5,7 @@ package Hayaa.ConfigSeed;
 public class AppLocalConfig {
     private String SeedServerUrl;
     private String LocalConfigDirectoryPath;
-    private Boolean IsVirtualPath;
+    private Boolean VirtualPath;
     private String AppConfigSentinelUrl;
     private String SecurityToken;
     private Integer AppID;
@@ -13,7 +13,24 @@ public class AppLocalConfig {
     private String AppConfigSolutionID;
     private Boolean RemoteConfigRoot;
     private Integer Version;
-    private Boolean IsRemote;
+
+    public Boolean getVirtualPath() {
+        return VirtualPath;
+    }
+
+    public void setVirtualPath(Boolean virtualPath) {
+        VirtualPath = virtualPath;
+    }
+
+    public Boolean getRemote() {
+        return Remote;
+    }
+
+    public void setRemote(Boolean remote) {
+        Remote = remote;
+    }
+
+    private Boolean Remote;
     private String AppConfigFileName;
 
     public Integer getAppInstanceID() {
@@ -56,14 +73,6 @@ public class AppLocalConfig {
         LocalConfigDirectoryPath = localConfigDirectoryPath;
     }
 
-    public Boolean getVirtualPath() {
-        return IsVirtualPath;
-    }
-
-    public void setVirtualPath(Boolean virtualPath) {
-        IsVirtualPath = virtualPath;
-    }
-
     public String getAppConfigSentinelUrl() {
         return AppConfigSentinelUrl;
     }
@@ -97,13 +106,7 @@ public class AppLocalConfig {
         Version = version;
     }
 
-    public Boolean getRemote() {
-        return IsRemote;
-    }
 
-    public void setRemote(Boolean remote) {
-        IsRemote = remote;
-    }
 
     public String getAppConfigFileName() {
         return AppConfigFileName;

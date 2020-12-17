@@ -1,5 +1,7 @@
 package Hayaa.ConfigSeed;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.TypeReference;
 import hayaa.basemodel.model.TransactionResult;
 import hayaa.common.*;
 
@@ -122,7 +124,8 @@ class ProgramDistributedConfig {
         // str = HttpUtility.UrlDecode(str);
         //str = str;//解密TODO，等待安全算法实现后替换
         result = JsonHelper.DeserializeObject(str, AppConfig.class);
-        TransactionResult<AppConfig> response = JsonHelper.DeserializeObject(str, TransactionResult.class);
+
+        TransactionResult<AppConfig> response = (TransactionResult<AppConfig>)JSON.parseObject(str,new TypeReference<TransactionResult<AppConfig>>(){});
         if (response.getCode() == 0) {
             result = response.getData();
         } else {
@@ -138,17 +141,18 @@ class ProgramDistributedConfig {
     private AppLocalConfig ReadSeedConfig() {
         AppLocalConfig r = new AppLocalConfig();
         Properties props = System.getProperties();
+        String baseDirectory =null;
         try {
-
-            String baseDirectory = props.getProperty("java.class.path");
-            r = JsonHelper.DeserializeObject(FileHelper.ReadAllText(baseDirectory + "/seed.config"), AppLocalConfig.class);
+             baseDirectory = props.getProperty("user.dir");
+            String jsonStr=FileHelper.ReadAllText(baseDirectory + "/appconfig.json");
+            r = JsonHelper.DeserializeObject(jsonStr, AppLocalConfig.class);
         } catch (Exception ex) {
             r = new AppLocalConfig();
             r.setVirtualPath(false);
         }
-        if (r.getVirtualPath()) {
-            r.setLocalConfigDirectoryPath(props.getProperty("java.class.path") + r.getLocalConfigDirectoryPath());
-        }
+//        if (r.getVirtualPath()) {
+            r.setLocalConfigDirectoryPath(baseDirectory +"\\"+ r.getLocalConfigDirectoryPath());
+//        }
         return r;
     }
 
@@ -226,7 +230,7 @@ class ProgramDistributedConfig {
         try
         {
             _seedConfig.setAppInstanceID(appInstanceId);
-            String baseDirectory = props.getProperty("java.class.path");//获取根目录路径
+            String baseDirectory = props.getProperty("user.dir");//获取根目录路径
             String strConfig =JsonHelper.SerializeObject(_seedConfig);
             FileHelper.AppendAllText((baseDirectory + "/appconfig.json"), strConfig);
         }
