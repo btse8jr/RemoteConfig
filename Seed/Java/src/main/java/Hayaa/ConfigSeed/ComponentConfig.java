@@ -1,16 +1,10 @@
 package Hayaa.ConfigSeed;
 
-class ComponentConfig {
+public class ComponentConfig {
     private Integer ID;
-
     private Integer ComponentConfigID;
-
     private Integer ComponentID;
-
-
     private String Content;
-
-
     private Integer Version;
     private String ComponentConfigTitle;
 

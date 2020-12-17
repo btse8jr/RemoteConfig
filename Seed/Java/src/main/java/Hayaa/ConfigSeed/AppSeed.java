@@ -1,5 +1,8 @@
 package Hayaa.ConfigSeed;
 
+import hayaa.basemodel.model.BaseData;
+import hayaa.basemodel.model.FunctionOpenResult;
+import hayaa.basemodel.model.FunctionResult;
 import hayaa.common.JsonHelper;
 import hayaa.common.StringUtil;
 
@@ -18,11 +21,11 @@ public class AppSeed {
     /// 初始化，并获取配置
     /// </summary>
     /// <returns></returns>
-    public String InitProgram() {
+    public String InitConfig() {
         String result = "";
         try {
             //支持分布式配置系统则获取配置
-            ProgramDistributedConfig.Instance().RunInAppStartInit();
+            ProgramDistributedConfig.Instance().initAppStartInit();
             AppLocalConfig seedConfig = ProgramDistributedConfig.Instance().GetSeedConfig();
 
         } catch (Exception ex) {
@@ -31,17 +34,55 @@ public class AppSeed {
         return result;
     }
 
-    /// <summary>
-    /// 按照组件ID获取组件配置内容
-    /// </summary>
-    /// <typeparam name="T"></typeparam>
-    /// <param name="componentID"></param>
-    /// <returns></returns>
-    public static String GetConfig(int componentID) {
+    public String Resetonfig() {
+        String result = "";
+        try {
+            //支持分布式配置系统则获取配置
+            ProgramDistributedConfig.Instance().ReAppConfig();
+            AppLocalConfig seedConfig = ProgramDistributedConfig.Instance().GetSeedConfig();
 
-        ComponentConfig r = ProgramDistributedConfig.Instance().GetComponentConfig(componentID);
-        if (r != null) return r.getContent();
-        return null;
+        } catch (Exception ex) {
+            return ex.getMessage();
+        }
+        return result;
+    }
 
+    public static void SetAppInstanceId(int appInstanceId) {
+        ProgramDistributedConfig.Instance().SetAppInstanceId(appInstanceId);
+    }
+
+    public static FunctionOpenResult<AppLocalConfig> GetAppLocalConfig() {
+        FunctionOpenResult<AppLocalConfig> r = new FunctionOpenResult<>();
+        AppLocalConfig config = ProgramDistributedConfig.Instance().GetSeedConfig();
+        if (config != null) {
+            r.setData(config);
+        }
+        return r;
+    }
+    public static <T> FunctionOpenResult<T> GetConfig(int componentID, Class<T> valueType)
+    {
+        FunctionOpenResult<T> r = new FunctionOpenResult<T>();
+        ComponentConfig config = ProgramDistributedConfig.Instance().GetComponentConfig(componentID);
+        if (config != null)
+        {
+            if (!StringUtil.IsNullOrEmpty(config.getContent()))
+            {
+                r.setData(JsonHelper.DeserializeObject(config.getContent(),valueType));
+            }
+        }
+        return r;
+    }
+    public static <T> FunctionOpenResult<T> GetAppRootConfig(Class<T> valueType)
+    {
+        FunctionOpenResult<T> r = new FunctionOpenResult<>();
+        AppConfig config = ProgramDistributedConfig.Instance().getAppConfig();
+        if (config != null)
+        {
+            if (!StringUtil.IsNullOrEmpty(config.getConfigContent()))
+            {
+                r.setData(JsonHelper.DeserializeObject(config.getConfigContent(),valueType));
+            }
+        }
+        return r;
     }
 }

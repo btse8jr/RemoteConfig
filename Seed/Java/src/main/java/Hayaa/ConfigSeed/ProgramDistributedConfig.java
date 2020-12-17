@@ -1,5 +1,6 @@
 package Hayaa.ConfigSeed;
 
+import hayaa.basemodel.model.TransactionResult;
 import hayaa.common.*;
 
 import java.util.*;
@@ -31,7 +32,7 @@ class ProgramDistributedConfig {
     /// 本地配置模式下只有一个方案序列化文件
     /// </summary>
     /// <param name="seedConfig"></param>
-    private void ReadLocal(AppLocalConfig seedConfig, InitResult result) {
+    private void ReadLocal(AppLocalConfig seedConfig, InitResult result) throws Exception {
         if (StringUtil.IsNullOrEmpty(seedConfig.getLocalConfigDirectoryPath()))//如果没有默认路径不读取
         {
             result.setResult(false);
@@ -47,9 +48,7 @@ class ProgramDistributedConfig {
             }
         } catch (Exception ex)//预期异常：格式错误，错误内容
         {
-            result.setResult(false);
-            result.setMessage(ex.getMessage());
-            return;
+            throw new Exception("ReadLocal反序列化异常:" + ex.getMessage());
         }
 
     }
@@ -75,9 +74,7 @@ class ProgramDistributedConfig {
     /// 远程获取程序配置
     /// </summary>
     /// <param name="seedConfig"></param>
-    private void ReadRemote(AppLocalConfig seedConfig) {
-
-
+    private void ReadRemote(AppLocalConfig seedConfig) throws Exception {
         AppConfig localconfig = null;
         //判断配置文件是否已经存在
         if (FileHelper.Exists(seedConfig.getLocalConfigDirectoryPath() + "/app.json")) {
@@ -85,7 +82,8 @@ class ProgramDistributedConfig {
         }
 
         //远程拉取配置文件
-        AppConfig remoteConfig = GetRemote(seedConfig.getSeedServerUrl(), seedConfig.getAppConfigID(), seedConfig.getSecurityToken());
+        AppConfig remoteConfig = GetRemote(seedConfig.getSeedServerUrl(), seedConfig.getAppConfigSolutionID(),
+                seedConfig.getSecurityToken(), seedConfig.getVersion(), seedConfig.getAppInstanceID());
         //判断配置文件的新鲜程度
         if (remoteConfig != null)//无法获取远程配置时不更新本地
         {
@@ -112,22 +110,23 @@ class ProgramDistributedConfig {
     /// <param name="solutionID">app配置方案ID</param>
     /// <param name="token">app的安全令牌</param>
     /// <returns></returns>
-    private AppConfig GetRemote(String url, UUID solutionID, String token) {
-        String key = DateTimeHelper.getTimeToken();
+    private AppConfig GetRemote(String url, String solutionID, String token, Integer version, Integer appIntanceId) throws Exception {
         Map<String, String> dic = new HashMap<String, String>();
-        dic.put("key", key);
-        dic.put("sid", solutionID.toString());
-        dic.put("t", token);
-        String str = "";
+        dic.put("sid", solutionID);
+        dic.put("v", version.toString());
+        dic.put("apt", token);
+        dic.put("aid", appIntanceId.toString());
+        String str = null;
         AppConfig result = null;
-        try {
-            str = HttpHelper.Transaction(url, dic,"post");
-            // str = HttpUtility.UrlDecode(str);
-            //str = str;//解密TODO，等待安全算法实现后替换
-            result = JsonHelper.DeserializeObject(str, AppConfig.class);
-        } catch (Exception ex) {
-            result = null;
-            return result;
+        str = HttpHelper.Transaction(url, dic, "post");
+        // str = HttpUtility.UrlDecode(str);
+        //str = str;//解密TODO，等待安全算法实现后替换
+        result = JsonHelper.DeserializeObject(str, AppConfig.class);
+        TransactionResult<AppConfig> response = JsonHelper.DeserializeObject(str, TransactionResult.class);
+        if (response.getCode() == 0) {
+            result = response.getData();
+        } else {
+            throw new Exception("获取远程配置服务发生错误:" + response.getMessage());
         }
         return result;
     }
@@ -162,7 +161,7 @@ class ProgramDistributedConfig {
     /// 在程序第一次运行时运行此方法获取配置
     /// </summary>
     /// <returns></returns>
-    public InitResult RunInAppStartInit() {
+    public InitResult initAppStartInit() throws Exception {
         InitResult r = new InitResult();
         r.setResult(true);
         if (_seedConfig.getRemote())//判断是否读取远程配置模式
@@ -188,4 +187,56 @@ class ProgramDistributedConfig {
         return _seedConfig;
     }
 
+    public InitResult ReAppConfig() throws Exception {
+        InitResult r = new InitResult();
+        r.setResult(true);
+        if (_seedConfig.getRemote())//判断是否读取远程配置模式
+        {
+            ReReadRemote(_seedConfig);//读取远程配置
+        }
+        ReadLocal(_seedConfig, r);//读取本地配置
+        return r;
+    }
+
+    private void ReReadRemote(AppLocalConfig seedConfig) throws Exception {
+        AppConfig localconfig = null;
+        //远程拉取配置文件
+        AppConfig remoteConfig = GetRemote(seedConfig.getSeedServerUrl(), seedConfig.getAppConfigSolutionID(), seedConfig.getSecurityToken(),
+                seedConfig.getVersion(), seedConfig.getAppInstanceID());
+        //判断配置文件的新鲜程度
+        if (remoteConfig != null)//无法获取远程配置时不更新本地
+        {
+            if (seedConfig.getVersion() == 0)//永远最新
+            {
+                FileHelper.Delete(seedConfig.getLocalConfigDirectoryPath() + "/" + seedConfig.getAppConfigFileName());
+                //固化指定目录下制定的文件
+                FileHelper.AppendAllText(seedConfig.getLocalConfigDirectoryPath() + "/" + seedConfig.getAppConfigFileName(),
+                        JsonHelper.SerializeObject(remoteConfig));
+            }
+            if ((seedConfig.getVersion() > 0) && (localconfig == null))//本地没有配置文件并且不是永远更新
+            {
+                FileHelper.AppendAllText(seedConfig.getLocalConfigDirectoryPath() + "/" + seedConfig.getAppConfigFileName(),
+                        JsonHelper.SerializeObject(remoteConfig));
+            }
+        }
+    }
+
+    public void SetAppInstanceId(int appInstanceId) {
+        Properties props = System.getProperties();
+        try
+        {
+            _seedConfig.setAppInstanceID(appInstanceId);
+            String baseDirectory = props.getProperty("java.class.path");//获取根目录路径
+            String strConfig =JsonHelper.SerializeObject(_seedConfig);
+            FileHelper.AppendAllText((baseDirectory + "/appconfig.json"), strConfig);
+        }
+        catch (Exception ex)
+        {
+
+        }
+    }
+
+    public AppConfig getAppConfig() {
+        return ReadLocal(_seedConfig);
+    }
 }

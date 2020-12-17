@@ -1,18 +1,45 @@
 package Hayaa.ConfigSeed;
 
-import java.util.UUID;
 
-class AppLocalConfig {
+
+public class AppLocalConfig {
     private String SeedServerUrl;
-    private  String LocalConfigDirectoryPath;
+    private String LocalConfigDirectoryPath;
     private Boolean IsVirtualPath;
     private String AppConfigSentinelUrl;
     private String SecurityToken;
     private Integer AppID;
-    private UUID AppConfigID;
+    private Integer AppInstanceID;
+    private String AppConfigSolutionID;
+    private Boolean RemoteConfigRoot;
     private Integer Version;
-    private  Boolean IsRemote;
+    private Boolean IsRemote;
     private String AppConfigFileName;
+
+    public Integer getAppInstanceID() {
+        return AppInstanceID;
+    }
+
+    public void setAppInstanceID(Integer appInstanceID) {
+        AppInstanceID = appInstanceID;
+    }
+
+    public String getAppConfigSolutionID() {
+        return AppConfigSolutionID;
+    }
+
+    public void setAppConfigSolutionID(String appConfigSolutionID) {
+        AppConfigSolutionID = appConfigSolutionID;
+    }
+
+    public Boolean getRemoteConfigRoot() {
+        return RemoteConfigRoot;
+    }
+
+    public void setRemoteConfigRoot(Boolean remoteConfigRoot) {
+        RemoteConfigRoot = remoteConfigRoot;
+    }
+
     public String getSeedServerUrl() {
         return SeedServerUrl;
     }
@@ -61,13 +88,6 @@ class AppLocalConfig {
         AppID = appID;
     }
 
-    public UUID getAppConfigID() {
-        return AppConfigID;
-    }
-
-    public void setAppConfigID(UUID appConfigID) {
-        AppConfigID = appConfigID;
-    }
 
     public Integer getVersion() {
         return Version;

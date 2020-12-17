@@ -6,7 +6,7 @@ import java.util.UUID;
 class AppConfig {
     private Integer ID;
 
-    private UUID SolutionID;
+    private String SolutionID;
 
     private String SolutionName;
 
@@ -22,11 +22,11 @@ class AppConfig {
         this.ID = ID;
     }
 
-    public UUID getSolutionID() {
+    public String getSolutionID() {
         return SolutionID;
     }
 
-    public void setSolutionID(UUID solutionID) {
+    public void setSolutionID(String solutionID) {
         SolutionID = solutionID;
     }
 
