@@ -2,7 +2,7 @@
     <el-container>
         <el-header><navimenu></navimenu></el-header>
         <el-container>
-            <el-aside width="200px"><leftment></leftment></el-aside>
+            <el-aside width="240px" height="600px"><leftment></leftment></el-aside>
             <el-container>
                 <el-main><router-view></router-view></el-main>
                 <el-footer>Footer</el-footer>

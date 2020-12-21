@@ -3,7 +3,7 @@ const  baseUrl={
     remoteconfig:"http://"+evn+".remoteconfig.xieqj.net:10080/",
     serviceframe:"http://"+evn+".serviceframe.xieqj.net:10081/",
     security:"http://"+evn+".security.xieqj.net/",
-    autocode:"http://"+evn+".autocode.xieqj.net:9901/"
+    autocode:"http://"+evn+".code.xieqj.net:9901/"
 }
 const urls={
     authUrl:baseUrl.security+"api/login/IsLogin",
