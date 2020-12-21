@@ -20,14 +20,14 @@
             </el-table-column>
             <el-table-column
                     label="创建时间"
-                    width="160">
+                    width="180">
                 <template slot-scope="scope">
                     <span>{{ scope.row.createTime }}</span>
                 </template>
             </el-table-column>
             <el-table-column
                     label="更新时间"
-                    width="160">
+                    width="180">
                 <template slot-scope="scope">
                     <span>{{ scope.row.updateTime }}</span>
                 </template>
@@ -53,6 +53,7 @@
 <script>
     import httphelper from '../../util/httphelper'
     import urls from '../../urlstatic'
+
     export default {
         name: "CodeSolutionList",
         created: function () {
@@ -67,7 +68,7 @@
             }
         },
         methods: {
-            getPager: function(page) {
+            getPager: function (page) {
                 var that = this;
                 httphelper.authedpostform(urls.codeSolutionGetListUrl, {"page": page, "size": 10},
                     function (data) {
@@ -78,21 +79,22 @@
                         }
                     })
             },
-            add: function() {
+            add: function () {
                 this.$router.push("/home/codesolutionedit");
             },
-            edit: function(id) {
+            edit: function (id) {
                 this.$router.push("/home/codesolutionedit/" + id);
             },
-            editTemplate: function(id) {
+            editTemplate: function (id) {
                 this.$router.push("/home/codetemplatelist/" + id);
             },
-            del: function(id) {
+            del: function (id) {
                 var that = this;
                 httphelper.authedpostform(urls.codeSolutionDeleteUrl, {"id": id},
                     function (data) {
-                        if(data)
+                        if (data)
                             that.$notify.success("操作成功");
+                        that.getPager(1);
                     });
             }
         }

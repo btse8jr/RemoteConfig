@@ -46,9 +46,9 @@ const router = new VueRouter({
                 {path: "appcomponentconfiglist/:aid/:id", component: AppComponentConfigList},
                 {path: "appcomponentconfigset/:aid/:cid/:afid", component: AppComponentConfigSet},
                 {path: "codesolutionlist", component: CodeSolutionList},
-                {path: "codesolutionedit/:id", component: CodeSolutionEdit},
+                {path: "codesolutionedit/:id?", component: CodeSolutionEdit},
                 {path: "codetemplatelist/:id", component: CodeTemplateList},
-                {path: "codetemplateedit/:sid/:id", component: CodeTemplateEdit}
+                {path: "codetemplateedit/:sid/:id?", component: CodeTemplateEdit}
             ]
         }
     ]

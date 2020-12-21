@@ -16,16 +16,13 @@
             </el-form-item>
             <el-form-item label="代码类型">
                 <el-select v-model="ruleForm.genCodeType" placeholder="请选择代码类型">
-                    <el-option label="DataAccessModel" value="1"></el-option>
-                    <el-option label="Dao" value="2"></el-option>
-                    <el-option label="Service" value="4"></el-option>
-                    <el-option label="ViewService" value="8"></el-option>
-                    <el-option label="ClientService" value="16"></el-option>
-                    <el-option label="ClientView" value="32"></el-option>
+                    <el-option v-for="item in codeData" :key="item.title"
+                               :label="item.title"
+                               :value="item.value"></el-option>
                 </el-select>
             </el-form-item>
             <el-form-item label="模板" prop="content">
-                <el-input type="textarea" :rows="8" v-model="ruleForm.content"></el-input>
+                <el-input type="textarea" :rows="12" v-model="ruleForm.content"></el-input>
             </el-form-item>
             <el-form-item>
                 <el-button type="primary" @click="submitForm('ruleForm')">提交</el-button>
@@ -53,6 +50,14 @@
                     genCodeType:1,
                     language:1
                 },
+                codeData:[
+                    {title:"DataAccessModel",value:1},
+                    {title:"Dao",value:2},
+                    {title:"Service",value:4},
+                    {title:"ViewService",value:8},
+                    {title:"ClientService",value:16},
+                    {title:"ClientView",value:32}
+                ],
                 languageData:[
                     {title:"CSharp",value:1},
                     {title:"Java",value:2},
@@ -99,12 +104,12 @@
                 this.$refs[formName].validate(function(valid) {
                     if (valid) {
                         if (that.ruleForm.codeTemplateId == 0) {
-                            httphelper.authedpostform(urls.codeTemplateAddUrl, that.ruleForm,
+                            httphelper.authedpostform(urls.codeTemplateAddUrl,{"info":that.ruleForm,"solutionTemplateId":that.solutionTemplateId},
                                 function (data) {
                                     that.back();
                                 });
                         } else {
-                            httphelper.authedpostform(urls.codeTemplateEditUrl, that.ruleForm,
+                            httphelper.authedpostform(urls.codeTemplateEditUrl, {"info":that.ruleForm,"solutionTemplateId":that.solutionTemplateId},
                                 function (data) {
                                     if (data)
                                         that.$notify.success("操作成功");

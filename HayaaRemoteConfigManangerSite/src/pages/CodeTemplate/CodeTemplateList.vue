@@ -8,45 +8,56 @@
                     label="ID"
                     width="80">
                 <template slot-scope="scope">
-                    <span>{{ scope.row.appId }}</span>
+                    <span>{{ scope.row.codeTemplateId }}</span>
                 </template>
             </el-table-column>
             <el-table-column
                     label="名称"
                     width="120">
                 <template slot-scope="scope">
-                    <span>{{ scope.row.title }}</span>
+                    <el-popover trigger="hover" placement="top">
+                        <div style="width: 300px;overflow: auto">配置: {{ scope.row.content }}</div>
+                       <div slot="reference" class="name-wrapper">
+                            <el-tag size="medium">{{ scope.row.name }}</el-tag>
+                        </div>
+                    </el-popover>
+                </template>
+            </el-table-column>
+            <el-table-column
+                    label="代码类型"
+                    width="160">
+                <template slot-scope="scope">
+                    <span>{{ scope.row.genCodeType }}</span>
+                </template>
+            </el-table-column>
+            <el-table-column
+                    label="语言类型"
+                    width="120">
+                <template slot-scope="scope">
+                    <span>{{ scope.row.language }}</span>
                 </template>
             </el-table-column>
             <el-table-column
                     label="创建时间"
-                    width="160">
+                    width="180">
                 <template slot-scope="scope">
                     <span>{{ scope.row.createTime }}</span>
                 </template>
             </el-table-column>
             <el-table-column
                     label="更新时间"
-                    width="160">
+                    width="180">
                 <template slot-scope="scope">
                     <span>{{ scope.row.updateTime }}</span>
                 </template>
             </el-table-column>
             <el-table-column label="操作">
                 <template slot-scope="scope">
-                    <el-button size="mini" @click="edit(scope.row.appId)">编辑</el-button>
-                    <el-button size="mini" @click="editConfig(scope.row.appId)">配置管理</el-button>
-                    <el-button size="mini" type="danger" @click="del(scope.row.appId)">删除</el-button>
+                    <el-button size="mini" @click="edit(scope.row.codeTemplateId)">编辑</el-button>
+                   <el-button size="mini" type="danger" @click="del(scope.row.codeTemplateId)">删除</el-button>
                 </template>
             </el-table-column>
         </el-table>
-        <div style="float: right" v-show="pagerData.totalPage>0">
-            <el-pagination
-                    @current-change="getPager"
-                    layout="prev, pager, next"
-                    :total="pagerData.totalPage">
-            </el-pagination>
-        </div>
     </div>
 </template>
 
@@ -65,20 +76,32 @@
                 pagerData: {
                     totalPage: 1
                 },
-                tableData: []
+                tableData: [],
+                codeData:{1:"DataAccessModel",2:"Dao",4:"Service",8:"ViewService",16:"ClientService",32:"ClientView"},
+                languageData:{1:"CSharp",2:"Java",4:"FSharp",8:"Go",16:"Python",128:"Html",256:"Javascript"}
             }
         },
         methods: {
+            getCodeType:function(val){
+                return this.codeData[val];
+            },
+            getLanguage:function(val){
+                return this.languageData[val];
+            },
             getPager: function(page) {
                 var that = this;
                 httphelper.authedpostform(urls.codeTemplateGetListUrl, {"solutionTemplateId": that.solutionTemplateId},
                     function (data) {
-                        that.tableData = data.data;
+                    for(var i=0;i<data.length;i++){
+                        data[i].genCodeType=that.getCodeType(data[i].genCodeType);
+                        data[i].language=that.getLanguage(data[i].language);
+                    }
+                        that.tableData = data;
                     })
             },
             add: function() {
                 var that = this;
-                this.$router.push("/home/codetemplateedit"+that.solutionTemplateId);
+                this.$router.push("/home/codetemplateedit/"+that.solutionTemplateId);
             },
             edit: function(id) {
                 var that = this;
