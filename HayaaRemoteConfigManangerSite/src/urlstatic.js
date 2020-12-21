@@ -1,8 +1,9 @@
-const evn="test";
+const evn="dev";
 const  baseUrl={
+    remoteconfig:"http://"+evn+".remoteconfig.xieqj.net:10080/",
+    serviceframe:"http://"+evn+".serviceframe.xieqj.net:10081/",
     security:"http://"+evn+".security.xieqj.net/",
-    remoteconfig:"http://"+evn+".remoteconfig.xieqj.net/",
-    serviceframe:"http://dev.serviceframe.xieqj.net:10081/"
+    autocode:"http://"+evn+".autocode.xieqj.net:9901/"
 }
 const urls={
     authUrl:baseUrl.security+"api/login/IsLogin",
@@ -43,5 +44,16 @@ const urls={
     appComponentAddUrl:baseUrl.serviceframe+"api/appcomponent/AddAppComponent",
     appComponentEditUrl:baseUrl.serviceframe+"api/appcomponent/EditAppComponent",
     appComponentDeleteUrl:baseUrl.serviceframe+"api/appcomponent/DeleteAppComponent",
+    codeSolutionGetUrl:baseUrl.autocode+"api/solutiontemplate/Get",
+    codeSolutionGetListUrl:baseUrl.autocode+"api/solutiontemplate/GetPager",
+    codeSolutionAddUrl:baseUrl.autocode+"api/solutiontemplate/Add",
+    codeSolutionEditUrl:baseUrl.autocode+"api/solutiontemplate/Edit",
+    codeSolutionDeleteUrl:baseUrl.autocode+"api/solutiontemplate/Delete",
+    codeTemplateGetUrl:baseUrl.autocode+"api/solutiontemplate/GetCodeTemplate",
+    codeTemplateGetListUrl:baseUrl.autocode+"api/solutiontemplate/GetCodeTemplateList",
+    codeGetFileUrl:baseUrl.autocode,
+    codeTemplateAddUrl:baseUrl.autocode+"api/solutiontemplate/AddCodeTemplate",
+    codeTemplateEditUrl:baseUrl.autocode+"api/solutiontemplate/EditCodeTemplate",
+    codeTemplateDeleteUrl:baseUrl.autocode+"api/solutiontemplate/DeleteCodeTemplate"
 }
 export default urls
