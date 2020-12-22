@@ -1,6 +1,8 @@
 package Hayaa.ConfigSeed;
 
-public class ComponentConfig {
+import hayaa.basemodel.model.BaseData;
+
+public class ComponentConfig extends BaseData {
     private Integer ID;
     private Integer ComponentConfigID;
     private Integer ComponentID;

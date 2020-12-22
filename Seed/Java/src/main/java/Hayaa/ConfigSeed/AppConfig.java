@@ -1,9 +1,12 @@
 package Hayaa.ConfigSeed;
 
+import hayaa.basemodel.model.BaseData;
+
+import java.io.Serializable;
 import java.util.List;
 import java.util.UUID;
 
-class AppConfig {
+class AppConfig extends BaseData implements Serializable {
     private Integer ID;
 
     private String SolutionID;

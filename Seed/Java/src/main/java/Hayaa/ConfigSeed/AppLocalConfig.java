@@ -1,8 +1,9 @@
 package Hayaa.ConfigSeed;
 
 
+import java.io.Serializable;
 
-public class AppLocalConfig {
+public class AppLocalConfig implements Serializable {
     private String SeedServerUrl;
     private String LocalConfigDirectoryPath;
     private Boolean VirtualPath;
