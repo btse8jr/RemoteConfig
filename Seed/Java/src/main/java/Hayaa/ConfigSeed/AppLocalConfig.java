@@ -4,118 +4,117 @@ package Hayaa.ConfigSeed;
 import java.io.Serializable;
 
 public class AppLocalConfig implements Serializable {
-    private String SeedServerUrl;
-    private String LocalConfigDirectoryPath;
-    private Boolean VirtualPath;
-    private String AppConfigSentinelUrl;
-    private String SecurityToken;
-    private Integer AppID;
-    private Integer AppInstanceID;
-    private String AppConfigSolutionID;
-    private Boolean RemoteConfigRoot;
-    private Integer Version;
-
-    public Boolean getVirtualPath() {
-        return VirtualPath;
-    }
-
-    public void setVirtualPath(Boolean virtualPath) {
-        VirtualPath = virtualPath;
-    }
-
-    public Boolean getRemote() {
-        return Remote;
-    }
-
-    public void setRemote(Boolean remote) {
-        Remote = remote;
-    }
-
-    private Boolean Remote;
-    private String AppConfigFileName;
-
-    public Integer getAppInstanceID() {
-        return AppInstanceID;
-    }
-
-    public void setAppInstanceID(Integer appInstanceID) {
-        AppInstanceID = appInstanceID;
-    }
-
-    public String getAppConfigSolutionID() {
-        return AppConfigSolutionID;
-    }
-
-    public void setAppConfigSolutionID(String appConfigSolutionID) {
-        AppConfigSolutionID = appConfigSolutionID;
-    }
-
-    public Boolean getRemoteConfigRoot() {
-        return RemoteConfigRoot;
-    }
-
-    public void setRemoteConfigRoot(Boolean remoteConfigRoot) {
-        RemoteConfigRoot = remoteConfigRoot;
-    }
+    private String seedServerUrl;
+    private String localConfigDirectoryPath;
+    private Boolean virtualPath;
+    private String appConfigSentinelUrl;
+    private String securityToken;
+    private Integer appID;
+    private Integer appInstanceID;
+    private String appConfigSolutionID;
+    private Boolean remoteConfigRoot;
+    private Integer version;
+    private Boolean remote;
+    private String appConfigFileName;
 
     public String getSeedServerUrl() {
-        return SeedServerUrl;
+        return seedServerUrl;
     }
 
     public void setSeedServerUrl(String seedServerUrl) {
-        SeedServerUrl = seedServerUrl;
+        this.seedServerUrl = seedServerUrl;
     }
 
     public String getLocalConfigDirectoryPath() {
-        return LocalConfigDirectoryPath;
+        return localConfigDirectoryPath;
     }
 
     public void setLocalConfigDirectoryPath(String localConfigDirectoryPath) {
-        LocalConfigDirectoryPath = localConfigDirectoryPath;
+        this.localConfigDirectoryPath = localConfigDirectoryPath;
+    }
+
+    public Boolean getVirtualPath() {
+        return virtualPath;
+    }
+
+    public void setVirtualPath(Boolean virtualPath) {
+        this.virtualPath = virtualPath;
     }
 
     public String getAppConfigSentinelUrl() {
-        return AppConfigSentinelUrl;
+        return appConfigSentinelUrl;
     }
 
     public void setAppConfigSentinelUrl(String appConfigSentinelUrl) {
-        AppConfigSentinelUrl = appConfigSentinelUrl;
+        this.appConfigSentinelUrl = appConfigSentinelUrl;
     }
 
     public String getSecurityToken() {
-        return SecurityToken;
+        return securityToken;
     }
 
-    public void setSecurityToken(String transfersSecurityKey) {
-        SecurityToken = transfersSecurityKey;
+    public void setSecurityToken(String securityToken) {
+        this.securityToken = securityToken;
     }
 
     public Integer getAppID() {
-        return AppID;
+        return appID;
     }
 
     public void setAppID(Integer appID) {
-        AppID = appID;
+        this.appID = appID;
     }
 
+    public Integer getAppInstanceID() {
+        return appInstanceID;
+    }
+
+    public void setAppInstanceID(Integer appInstanceID) {
+        this.appInstanceID = appInstanceID;
+    }
+
+    public String getAppConfigSolutionID() {
+        return appConfigSolutionID;
+    }
+
+    public void setAppConfigSolutionID(String appConfigSolutionID) {
+        this.appConfigSolutionID = appConfigSolutionID;
+    }
+
+    public Boolean getRemoteConfigRoot() {
+        return remoteConfigRoot;
+    }
+
+    public void setRemoteConfigRoot(Boolean remoteConfigRoot) {
+        this.remoteConfigRoot = remoteConfigRoot;
+    }
 
     public Integer getVersion() {
-        return Version;
+        return version;
     }
 
     public void setVersion(Integer version) {
-        Version = version;
+        this.version = version;
     }
 
+    public Boolean getRemote() {
+        return remote;
+    }
 
+    public void setRemote(Boolean remote) {
+        this.remote = remote;
+    }
 
     public String getAppConfigFileName() {
-        return AppConfigFileName;
+        return appConfigFileName;
     }
 
     public void setAppConfigFileName(String appConfigFileName) {
-        AppConfigFileName = appConfigFileName;
+        this.appConfigFileName = appConfigFileName;
     }
+
+
+
 
 
 }

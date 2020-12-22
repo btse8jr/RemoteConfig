@@ -5,7 +5,8 @@ import org.junit.Test;
 
 public class ConfigSeedTest {
     @Test
-    public void getConfig(){
+    public void getConfig()
+    {
         AppSeed.Instance().InitConfig();
     }
 }

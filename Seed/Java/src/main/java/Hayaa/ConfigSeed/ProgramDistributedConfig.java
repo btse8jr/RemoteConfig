@@ -1,7 +1,8 @@
 package Hayaa.ConfigSeed;
 
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.TypeReference;
+
+
+import com.fasterxml.jackson.core.type.TypeReference;
 import hayaa.basemodel.model.TransactionResult;
 import hayaa.common.*;
 
@@ -123,9 +124,8 @@ class ProgramDistributedConfig {
         str = HttpHelper.Transaction(url, dic, "post");
         // str = HttpUtility.UrlDecode(str);
         //str = str;//解密TODO，等待安全算法实现后替换
-        result = JsonHelper.DeserializeObject(str, AppConfig.class);
-
-        TransactionResult<AppConfig> response = (TransactionResult<AppConfig>)JSON.parseObject(str,new TypeReference<TransactionResult<AppConfig>>(){});
+        TransactionResult<AppConfig> response =JsonHelper.DeserializeComplexObject(str,new TypeReference<TransactionResult<AppConfig>>() {
+        });
         if (response.getCode() == 0) {
             result = response.getData();
         } else {
@@ -180,7 +180,7 @@ class ProgramDistributedConfig {
         AtomicReference<ComponentConfig> r = null;
         //构造函数完成无null初始化设置
         _appConfig.getComponents().forEach(c -> {
-            if (c.getComponentConfigID() == componetID) {
+            if (c.getComponentConfigId() == componetID) {
                 r.set(c);
             }
         });

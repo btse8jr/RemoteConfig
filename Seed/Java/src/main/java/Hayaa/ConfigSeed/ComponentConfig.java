@@ -3,60 +3,59 @@ package Hayaa.ConfigSeed;
 import hayaa.basemodel.model.BaseData;
 
 public class ComponentConfig extends BaseData {
-    private Integer ID;
-    private Integer ComponentConfigID;
-    private Integer ComponentID;
-    private String Content;
-    private Integer Version;
-    private String ComponentConfigTitle;
+    private Integer componentConfigId;
+    private Integer componentId;
+    private String content;
+    private Integer version;
+    private String componentConfigTitle;
+    public Boolean isDefault;
 
-    public Integer getID() {
-        return ID;
+
+
+    public Integer getComponentConfigId() {
+        return componentConfigId;
     }
 
-    public void setID(int ID) {
-        this.ID = ID;
+    public void setComponentConfigId(Integer componentConfigId) {
+        this.componentConfigId = componentConfigId;
     }
 
-    public Integer getComponentConfigID() {
-        return ComponentConfigID;
+    public Integer getComponentId() {
+        return componentId;
     }
 
-    public void setComponentConfigID(Integer componentConfigID) {
-        ComponentConfigID = componentConfigID;
+    public void setComponentId(Integer componentId) {
+        this.componentId = componentId;
     }
 
-    public Integer getComponentID() {
-        return ComponentID;
-    }
 
-    public void setComponentID(Integer componentID) {
-        ComponentID = componentID;
-    }
+
 
     public String getContent() {
-        return Content;
+        return content;
     }
 
     public void setContent(String content) {
-        Content = content;
+        this.content = content;
     }
 
-    public int getVersion() {
-        return Version;
+    public Integer getVersion() {
+        return version;
     }
 
-    public void setVersion(int version) {
-        Version = version;
+    public void setVersion(Integer version) {
+        this.version = version;
     }
 
     public String getComponentConfigTitle() {
-        return ComponentConfigTitle;
+        return componentConfigTitle;
     }
 
     public void setComponentConfigTitle(String componentConfigTitle) {
-        ComponentConfigTitle = componentConfigTitle;
+        this.componentConfigTitle = componentConfigTitle;
     }
+
+
 
 
 }
