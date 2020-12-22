@@ -94,12 +94,12 @@ class ProgramDistributedConfig {
                 FileHelper.Delete(seedConfig.getLocalConfigDirectoryPath() + "/" + seedConfig.getAppConfigFileName());
                 //固化指定目录下制定的文件
                 FileHelper.AppendAllText(seedConfig.getLocalConfigDirectoryPath() + "/" + seedConfig.getAppConfigFileName(),
-                        JsonHelper.SerializeObject(remoteConfig));
+                        JacksonJsonHelper.SerializeObject(remoteConfig));
             }
             if ((seedConfig.getVersion() > 0) && (localconfig == null))//本地没有配置文件并且不是永远更新
             {
                 FileHelper.AppendAllText(seedConfig.getLocalConfigDirectoryPath() + "/" + seedConfig.getAppConfigFileName(),
-                        JsonHelper.SerializeObject(remoteConfig));
+                        JacksonJsonHelper.SerializeObject(remoteConfig));
             }
         }
 
