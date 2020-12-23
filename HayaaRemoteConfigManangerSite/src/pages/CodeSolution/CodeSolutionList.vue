@@ -36,6 +36,7 @@
                 <template slot-scope="scope">
                     <el-button size="mini" @click="edit(scope.row.solutionTemplateId)">编辑</el-button>
                     <el-button size="mini" @click="editTemplate(scope.row.solutionTemplateId)">编辑模板</el-button>
+                    <el-button size="mini" @click="gencode(scope.row.solutionTemplateId)">生成代码</el-button>
                     <el-button size="mini" type="danger" @click="del(scope.row.solutionTemplateId)">删除</el-button>
                 </template>
             </el-table-column>
@@ -84,6 +85,10 @@
             },
             edit: function (id) {
                 this.$router.push("/home/codesolutionedit/" + id);
+            },
+            gencode: function(id) {
+                var that = this;
+                this.$router.push("/home/gencode/"+id);
             },
             editTemplate: function (id) {
                 this.$router.push("/home/codetemplatelist/" + id);

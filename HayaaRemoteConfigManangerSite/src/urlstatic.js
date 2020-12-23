@@ -1,9 +1,9 @@
 const evn="dev";
 const  baseUrl={
-    remoteconfig:"http://"+evn+".remoteconfig.xieqj.net:10080/",
-    serviceframe:"http://"+evn+".serviceframe.xieqj.net:10081/",
+    remoteconfig:"http://"+evn+".remoteconfig.xieqj.net/",
+    serviceframe:"http://"+evn+".serviceframe.xieqj.net/",
     security:"http://"+evn+".security.xieqj.net/",
-    autocode:"http://"+evn+".code.xieqj.net:9901/"
+    autocode:"http://"+evn+".code.xieqj.net/"
 }
 const urls={
     authUrl:baseUrl.security+"api/login/IsLogin",
@@ -49,9 +49,10 @@ const urls={
     codeSolutionAddUrl:baseUrl.autocode+"api/solutiontemplate/Add",
     codeSolutionEditUrl:baseUrl.autocode+"api/solutiontemplate/Edit",
     codeSolutionDeleteUrl:baseUrl.autocode+"api/solutiontemplate/Delete",
+    codeGenUrl:baseUrl.autocode+"api/solutiontemplate/GenCode",
+    codeGetFileUrl:baseUrl.autocode,
     codeTemplateGetUrl:baseUrl.autocode+"api/solutiontemplate/GetCodeTemplate",
     codeTemplateGetListUrl:baseUrl.autocode+"api/solutiontemplate/GetCodeTemplateList",
-    codeGetFileUrl:baseUrl.autocode,
     codeTemplateAddUrl:baseUrl.autocode+"api/solutiontemplate/AddCodeTemplate",
     codeTemplateEditUrl:baseUrl.autocode+"api/solutiontemplate/EditCodeTemplate",
     codeTemplateDeleteUrl:baseUrl.autocode+"api/solutiontemplate/DeleteCodeTemplate"

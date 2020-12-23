@@ -1,11 +1,11 @@
 <template>
-    <div style="width: 400px;margin-left: 15%">
-        <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">
+    <div style="width: 600px;margin-left: 15%">
+        <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="120px" class="demo-ruleForm">
             <el-form-item label="名称" prop="name">
-                <el-input v-model="ruleForm.name"></el-input>
+                <el-input v-model="ruleForm.name" style="width: 200px;"></el-input>
             </el-form-item>
-            <el-form-item label="可见名称" prop="title">
-                <el-input v-model="ruleForm.spaceName"></el-input>
+            <el-form-item label="空间or包名称" prop="spaceName">
+                <el-input v-model="ruleForm.spaceName" ></el-input>
             </el-form-item>
             <el-form-item label="语言类型">
                 <el-select v-model="ruleForm.language" placeholder="请选择语言类型">
@@ -44,7 +44,6 @@
                 solutionTemplateId:0,
                 ruleForm: {
                     codeTemplateId: 0,
-                    title: '',
                     name: '',
                     spaceName:"",
                     genCodeType:1,
@@ -72,9 +71,9 @@
                         {required: true, message: '请输入名称', trigger: 'blur'},
                         {min: 1, max: 50, message: '长度在 1 到 50 个字符', trigger: 'blur'}
                     ],
-                    title: [
-                        {required: false, message: '请输入可见名称', trigger: 'blur'},
-                        {min: 1, max: 50, message: '长度在 1 到 50 个字符', trigger: 'blur'}
+                    spaceName: [
+                        {required: true, message: '请输入空间或者包名称', trigger: 'blur'},
+                        {min: 1, max: 50, message: '长度在 1 到 300 个字符', trigger: 'blur'}
                     ]
 
                 }

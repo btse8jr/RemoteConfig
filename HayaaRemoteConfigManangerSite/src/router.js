@@ -18,6 +18,7 @@ import ComponentConfigEdit from './pages/ComponentConfig/ComponentConfigEdit.vue
 import AppComponentConfigList from './pages/AppComponentConfig/AppComponentConfigList.vue'
 import AppComponentConfigSet from './pages/AppComponentConfig/AppComponentConfigSet.vue'
 import CodeSolutionList from './pages/CodeSolution/CodeSolutionList.vue'
+import GenCode from './pages/CodeSolution/GenCode.vue'
 import CodeSolutionEdit from './pages/CodeSolution/CodeSolutionEdit.vue'
 import CodeTemplateList from './pages/CodeTemplate/CodeTemplateList.vue'
 import CodeTemplateEdit from './pages/CodeTemplate/CodeTemplateEdit.vue'
@@ -47,6 +48,7 @@ const router = new VueRouter({
                 {path: "appcomponentconfigset/:aid/:cid/:afid", component: AppComponentConfigSet},
                 {path: "codesolutionlist", component: CodeSolutionList},
                 {path: "codesolutionedit/:id?", component: CodeSolutionEdit},
+                {path: "gencode/:id?", component: GenCode},
                 {path: "codetemplatelist/:id", component: CodeTemplateList},
                 {path: "codetemplateedit/:sid/:id?", component: CodeTemplateEdit}
             ]
