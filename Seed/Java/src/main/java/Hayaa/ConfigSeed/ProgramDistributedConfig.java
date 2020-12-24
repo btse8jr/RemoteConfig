@@ -183,7 +183,7 @@ class ProgramDistributedConfig {
         AtomicReference<ComponentConfig> r = null;
         //构造函数完成无null初始化设置
         _appConfig.getComponents().forEach(c -> {
-            if (c.getComponentConfigId() == componetID) {
+            if (c.getComponentId() == componetID) {
                 r.set(c);
             }
         });
