@@ -97,6 +97,7 @@ class ProgramDistributedConfig {
                 FileHelper.AppendAllText(seedConfig.getLocalConfigDirectoryPath() + "/" + seedConfig.getAppConfigFileName(),
                         JsonHelper.SerializeObject(remoteConfig));
             }
+            System.out.println("更新本地配置");
             if ((seedConfig.getVersion() > 0) && (localconfig == null))//本地没有配置文件并且不是永远更新
             {
                 FileHelper.AppendAllText(seedConfig.getLocalConfigDirectoryPath() + "/" + seedConfig.getAppConfigFileName(),
@@ -122,6 +123,7 @@ class ProgramDistributedConfig {
         String str = null;
         AppConfig result = null;
         str = HttpHelper.Transaction(url, dic, "post");
+        System.out.println("获取配置："+str);
         // str = HttpUtility.UrlDecode(str);
         //str = str;//解密TODO，等待安全算法实现后替换
         TransactionResult<AppConfig> response =JsonHelper.DeserializeComplexObject(str,new TypeReference<TransactionResult<AppConfig>>() {
@@ -170,6 +172,7 @@ class ProgramDistributedConfig {
         r.setResult(true);
         if (_seedConfig.getRemote())//判断是否读取远程配置模式
         {
+            System.out.println("读取远程配置");
             ReadRemote(_seedConfig);//读取远程配置
         }
         ReadLocal(_seedConfig, r);//读取本地配置

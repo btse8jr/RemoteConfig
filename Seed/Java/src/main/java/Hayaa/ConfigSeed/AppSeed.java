@@ -25,6 +25,7 @@ public class AppSeed {
         String result = "";
         try {
             //支持分布式配置系统则获取配置
+            System.out.println("读取设置");
             ProgramDistributedConfig.Instance().initAppStartInit();
             AppLocalConfig seedConfig = ProgramDistributedConfig.Instance().GetSeedConfig();
 
