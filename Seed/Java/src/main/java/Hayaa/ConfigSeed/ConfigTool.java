@@ -2,6 +2,8 @@ package Hayaa.ConfigSeed;
 
 import hayaa.basemodel.model.*;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Optional;
 
 public class ConfigTool<T extends ConfigContent, APPROOT> {
@@ -34,16 +36,16 @@ public class ConfigTool<T extends ConfigContent, APPROOT> {
         return con.get();
     }
 
-    public String GetConnection(String name) {
-        return GetCon(name);
-    }
-
-    private String GetCon(String name) {
-        ConfigContent baseConfig = (ConfigContent) g_config;
-        Optional<ConnectionStrings.ConnectionInfo> con = baseConfig.getConnectionStrings().Settings.stream()
-                .filter(c -> c.getName().equals(name)).findFirst();
-        return con.get().getConnection();
-    }
+//    public String GetConnection(String name) {
+//        return GetCon(name);
+//    }
+//
+//    private String GetCon(String name) {
+//        ConfigContent baseConfig = (ConfigContent) g_config;
+//        Optional<ConnectionStrings.ConnectionInfo> con = baseConfig.getConnectionStrings().Settings.stream()
+//                .filter(c -> c.getName().equals(name)).findFirst();
+//        return con.get().getConnection();
+//    }
 
     public String GetAppsetting(String key, String defaultVal) {
         return GetAppset(key, defaultVal);
@@ -55,5 +57,14 @@ public class ConfigTool<T extends ConfigContent, APPROOT> {
                 .filter(c -> c.getKey().equals(key)).findFirst();
         if (con != null) return con.get().getValue();
         return defaultVal;
+    }
+    public Map<String,Object> getDataConfig(String name){
+        Map<String,Object> map=new HashMap<>();
+        MariadbConfig config=this.getDBConfig(name);
+        map.put("spring.datasource.driverClassName",config.getDriverClass());
+        map.put("spring.datasource.url",config.getUrl());
+        map.put("spring.datasource.username",config.getDbUserName());
+        map.put("spring.datasource.password",config.getDbUserPwd());
+        return map;
     }
 }
