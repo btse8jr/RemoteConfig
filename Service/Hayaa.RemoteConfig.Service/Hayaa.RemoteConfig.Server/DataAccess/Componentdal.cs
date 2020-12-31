@@ -15,7 +15,7 @@ namespace Hayaa.RemoteConfig.Service.Dao
         private static String con = ConfigHelper.Instance.GetConnection(DefineTable.DatabaseName);
         internal static int Add(Component info)
         {
-            string sql = "insert into Component(Name,Title) values(@Name,@Title)";
+            string sql = "insert into Component(ComponentId,Name,Title) values(@ComponentId,@Name,@Title)";
             return Insert<Component>(con, sql, info);
         }
         internal static int Update(Component info)
