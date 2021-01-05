@@ -1,8 +1,7 @@
 ﻿using Hayaa.BaseModel.Model;
+using Hayaa.ConfigSecurity.Client;
 using Hayaa.RemoteConfig.Service;
 using Hayaa.RemoteService;
-using Hayaa.Security.Client;
-using Hayaa.ServicePlatform.Client;
 using Microsoft.AspNetCore.Mvc;
 using System;
 
@@ -13,7 +12,7 @@ namespace Hayaa.RemoteConfigController
     {
         private RemoteConfigService service = new RemoteConfigServer();// PlatformServiceFactory.Instance.CreateService<RemoteConfigService>(AppRoot.GetDefaultAppUser());
         [HttpPost]
-        //[AppInstanceBaseAuthorityFilter]
+        [ConfigAuthorityFilter]
         public TransactionResult<AppConfig> SendConfig(String sid, int v)
         {
             TransactionResult<AppConfig> result = new TransactionResult<AppConfig>();

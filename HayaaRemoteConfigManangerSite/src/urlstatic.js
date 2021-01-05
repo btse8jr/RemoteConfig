@@ -1,4 +1,4 @@
-const evn="dev";
+const evn="test";
 const  baseUrl={
     remoteconfig:"http://"+evn+".remoteconfig.xieqj.net/",
     serviceframe:"http://"+evn+".serviceframe.xieqj.net/",

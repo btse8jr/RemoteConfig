@@ -262,3 +262,5 @@ __pycache__/
 /XUnitTestProject
 /Hayaa.RemoteConfigSite/config/app.json
 /HayaaRemoteConfigManangerSite/package-lock.json
+/Seed/Java/target
+/Seed/Java/config/app.json
