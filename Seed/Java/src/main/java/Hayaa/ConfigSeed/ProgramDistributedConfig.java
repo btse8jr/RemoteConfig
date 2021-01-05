@@ -5,6 +5,7 @@ package Hayaa.ConfigSeed;
 import com.fasterxml.jackson.core.type.TypeReference;
 import hayaa.basemodel.model.TransactionResult;
 import hayaa.common.*;
+import hayaa.sessionencryption.SessionEncryption;
 
 import java.util.*;
 import java.util.concurrent.atomic.AtomicReference;
@@ -86,7 +87,7 @@ class ProgramDistributedConfig {
 
         //远程拉取配置文件
         AppConfig remoteConfig = GetRemote(seedConfig.getSeedServerUrl(), seedConfig.getAppConfigSolutionID(),
-                seedConfig.getSecurityToken(), seedConfig.getVersion(), seedConfig.getAppInstanceID());
+                seedConfig.getSecurityToken(), seedConfig.getVersion(), seedConfig.getAppID());
         //判断配置文件的新鲜程度
         if (remoteConfig != null)//无法获取远程配置时不更新本地
         {
@@ -114,12 +115,13 @@ class ProgramDistributedConfig {
     /// <param name="solutionID">app配置方案ID</param>
     /// <param name="token">app的安全令牌</param>
     /// <returns></returns>
-    private AppConfig GetRemote(String url, String solutionID, String token, Integer version, Integer appIntanceId) throws Exception {
+    private AppConfig GetRemote(String url, String solutionID, String token, Integer version, Integer appId) throws Exception {
+        SessionEncryption se=new SessionEncryption();
         Map<String, String> dic = new HashMap<String, String>();
         dic.put("sid", solutionID);
         dic.put("v", version.toString());
-        dic.put("apt", token);
-        dic.put("aid", appIntanceId.toString());
+        dic.put("apt",se.encrypt(token));
+        dic.put("appid", appId.toString());
         String str = null;
         AppConfig result = null;
         str = HttpHelper.Transaction(url, dic, "post");
@@ -209,7 +211,7 @@ class ProgramDistributedConfig {
         AppConfig localconfig = null;
         //远程拉取配置文件
         AppConfig remoteConfig = GetRemote(seedConfig.getSeedServerUrl(), seedConfig.getAppConfigSolutionID(), seedConfig.getSecurityToken(),
-                seedConfig.getVersion(), seedConfig.getAppInstanceID());
+                seedConfig.getVersion(), seedConfig.getAppID());
         //判断配置文件的新鲜程度
         if (remoteConfig != null)//无法获取远程配置时不更新本地
         {
