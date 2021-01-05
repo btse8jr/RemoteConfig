@@ -1,6 +1,7 @@
 ﻿using Hayaa.BaseModel.Model;
 using Hayaa.ConfigSeed.Standard.Model;
 using Hayaa.ConfigSeed.Standard.Util;
+using Hayaa.Netcore.SessionEncryption;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -99,7 +100,7 @@ namespace Hayaa.ConfigSeed.Standard.Component
         private void ReadRemote(AppLocalConfig seedConfig)
         {
 
-
+            
             AppConfig localconfig = null;
             //判断配置文件是否已经存在
             if (File.Exists(seedConfig.LocalConfigDirectoryPath + "/app.json"))
@@ -109,7 +110,7 @@ namespace Hayaa.ConfigSeed.Standard.Component
 
             //远程拉取配置文件
             Console.WriteLine("远程拉取配置文件:" + seedConfig.SeedServerUrl);
-            var remoteConfig = GetRemote(seedConfig.SeedServerUrl, seedConfig.AppConfigSolutionID, seedConfig.SecurityToken, seedConfig.Version.HasValue ? seedConfig.Version.Value : 0, seedConfig.AppInstanceID);
+            var remoteConfig = GetRemote(seedConfig.SeedServerUrl, seedConfig.AppConfigSolutionID, seedConfig.SecurityToken, seedConfig.Version.HasValue ? seedConfig.Version.Value : 0, seedConfig.AppID);
             //判断配置文件的新鲜程度
             if (remoteConfig != null)//无法获取远程配置时不更新本地
             {
@@ -136,7 +137,7 @@ namespace Hayaa.ConfigSeed.Standard.Component
 
             //远程拉取配置文件
             Console.WriteLine("远程拉取配置文件:"+ seedConfig.SeedServerUrl);
-            var remoteConfig = GetRemote(seedConfig.SeedServerUrl, seedConfig.AppConfigSolutionID, seedConfig.SecurityToken, seedConfig.Version.HasValue ? seedConfig.Version.Value : 0, seedConfig.AppInstanceID);
+            var remoteConfig = GetRemote(seedConfig.SeedServerUrl, seedConfig.AppConfigSolutionID, seedConfig.SecurityToken, seedConfig.Version.HasValue ? seedConfig.Version.Value : 0, seedConfig.AppID);
             //判断配置文件的新鲜程度
             if (remoteConfig != null)//无法获取远程配置时不更新本地
             {
@@ -162,13 +163,14 @@ namespace Hayaa.ConfigSeed.Standard.Component
         /// <param name="solutionID">app配置方案ID</param>
         /// <param name="token">app的安全令牌</param>
         /// <returns></returns>
-        private AppConfig GetRemote(string url, Guid solutionID, string token, int version, int appIntanceId)
+        private AppConfig GetRemote(string url, Guid solutionID, string token, int version, int appId)
         {
+            SessionEncryption se = new SessionEncryption();
             var dic = new Dictionary<string, string>();
             dic.Add("sid", solutionID.ToString());
             dic.Add("v", version.ToString());
-            dic.Add("apt", token);
-            dic.Add("aid", appIntanceId.ToString());
+            dic.Add("apt", se.Encrypt(token));
+            dic.Add("appid", appId.ToString());
             string str = "";
             AppConfig result = null;
             Console.WriteLine("请求地址:" + url+";sid:"+ solutionID.ToString());
@@ -176,16 +178,22 @@ namespace Hayaa.ConfigSeed.Standard.Component
             //str = HttpUtility.UrlDecode(str);
             //str = str;//解密TODO，等待安全算法实现后替换
             Console.WriteLine("发送配置内容:"+str);
-            var response = Newtonsoft.Json.JsonConvert.DeserializeObject<TransactionResult<AppConfig>>(str);
-            if (response.Code == 0)
+            try
             {
-                result = response.Data;
+                var response = Newtonsoft.Json.JsonConvert.DeserializeObject<TransactionResult<AppConfig>>(str);
+                if (response.Code == 0)
+                {
+                    result = response.Data;
+                }                
             }
-            else
+            catch(Exception ex)
             {
-                throw new Exception("获取远程配置服务发生错误:" + response.Message);
+                throw new Exception("远程结果:"+ str +"--异常:"+ ex.Message);
             }
-          
+            if (result == null)
+            {
+                throw new Exception("获取远程配置错误,远程结果:" + str);
+            }
 
             return result;
         }
