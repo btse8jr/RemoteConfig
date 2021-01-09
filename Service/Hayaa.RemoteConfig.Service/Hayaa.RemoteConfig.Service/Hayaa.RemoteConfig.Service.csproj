@@ -16,7 +16,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Hayaa.BaseModel" Version="1.0.0.15" />
+    <PackageReference Include="Hayaa.BaseModel" Version="1.0.0.16" />
   </ItemGroup>
 
 </Project>
