@@ -2,7 +2,6 @@ package Hayaa.ConfigSeed;
 
 
 import com.fasterxml.jackson.core.type.TypeReference;
-import com.google.gson.reflect.TypeToken;
 import hayaa.basemodel.model.TransactionResult;
 import hayaa.common.*;
 import hayaa.sessionencryption.SessionEncryption;
@@ -50,7 +49,7 @@ class ProgramDistributedConfig {
             return;//构造函数里默认数值
         }
         try {
-            AppConfig temp = JsonHelper.gsonDeserialize(FileHelper.ReadAllText(seedConfig.getLocalConfigDirectoryPath() + "/"
+            AppConfig temp = JsonHelper.DeserializeObject(FileHelper.ReadAllText(seedConfig.getLocalConfigDirectoryPath() + "/"
                     + seedConfig.getAppConfigFileName()), AppConfig.class);
             //使用构造函数里的数值，避免多位置同效代码赋值
             if (temp != null)
@@ -72,7 +71,7 @@ class ProgramDistributedConfig {
             return null;
         }
         try {
-            AppConfig temp = JsonHelper.gsonDeserialize(FileHelper.ReadAllText(seedConfig.getLocalConfigDirectoryPath() + "/"
+            AppConfig temp = JsonHelper.DeserializeObject(FileHelper.ReadAllText(seedConfig.getLocalConfigDirectoryPath() + "/"
                     + seedConfig.getAppConfigFileName()), AppConfig.class);
             return temp;
         } catch (Exception ex) {
@@ -139,8 +138,8 @@ class ProgramDistributedConfig {
         AppConfig result = null;
         str = HttpHelper.Transaction(url, dic, "post");
         System.out.println("获取配置：" + str);
-        Type type = new TypeToken<TransactionResult<AppConfig>>() {}.getType();
-        TransactionResult<AppConfig> response = JsonHelper.gsonDeserializeComplex(str, type);
+        TransactionResult<AppConfig> response =
+                JsonHelper.DeserializeComplexObject(str,new TypeReference<TransactionResult<AppConfig>>() {});
         if (response.getCode() == 0) {
             result = response.getData();
         } else {

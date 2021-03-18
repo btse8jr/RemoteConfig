@@ -68,7 +68,7 @@ public class AppSeed {
         {
             if (!StringUtil.IsNullOrEmpty(config.getContent()))
             {
-                r.setData(JsonHelper.DeserializeObject(config.getContent(),valueType));
+                r.setData(JsonHelper.gsonDeserialize(config.getContent(),valueType));
             }
         }
         return r;
