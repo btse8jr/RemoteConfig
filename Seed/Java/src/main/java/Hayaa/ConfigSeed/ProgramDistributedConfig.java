@@ -136,6 +136,7 @@ class ProgramDistributedConfig {
         dic.put("appid", appId.toString());
         String str = null;
         AppConfig result = null;
+        //由于netcore的mvc框架的json化输出为小写开头，所以通过web接口方式输出的json数据，java和C#兼容
         str = HttpHelper.Transaction(url, dic, "post");
         System.out.println("获取配置：" + str);
         TransactionResult<AppConfig> response =
