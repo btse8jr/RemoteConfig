@@ -9,6 +9,6 @@ namespace Hayaa.RemoteConfig.Server.Config
         /// <summary>
         /// RemoteServer组件的ID
         /// </summary>
-        public readonly static int RemoteServiceComponetID = 10013;
+        public readonly static int ComponetID = 10012;
     }
 }

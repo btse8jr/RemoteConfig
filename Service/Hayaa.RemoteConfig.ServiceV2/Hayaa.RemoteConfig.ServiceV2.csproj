@@ -13,7 +13,7 @@
     <Description>远程配置服务接口</Description>
     <Copyright>©2018 HayaaAI</Copyright>
     <PackageLicenseUrl>http://l.xieqj.net/license/hayaaai.txt</PackageLicenseUrl>
-    <PackageIconUrl>http://r.xieqj.net/r/ico/hayaaia.ico</PackageIconUrl>
+    <PackageIconUrl>http://r.xieqj.net/r/ico/hayaaai.ico</PackageIconUrl>
     <PackageTags>RemoteConfig</PackageTags>
   </PropertyGroup>
 
