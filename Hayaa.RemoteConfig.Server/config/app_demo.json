@@ -7,6 +7,18 @@
   "version": 1,
   "components": [
     {
+      "ComponentConfigId": 1,
+      "ComponentID": 10001,
+      "Content": "{\"appSettings\":null,\"connectionStrings\":{\"settings\":[{\"name\":\"RemoteConfig\",\"connection\":\"Data Source=xxx;Initial Catalog=RemoteConfig;Persist Security Info=True;User ID=xx;password=xxxx\"}]}}",
+      "Version": 1,
+      "ComponentConfigTitle": "配置组件",
+      "IsDefault": true,
+      "Code": 0,
+      "Message": null,
+      "CreateTime": "0001-01-01T00:00:00Z",
+      "UpdateTime": "0001-01-01T00:00:00Z"
+    },
+    {
       "componentConfigId": 1,
       "componentId": 10013,
       "content": "{\"appSettings\": null,\"connectionStrings\": null,\"serviceConfig\": {\"sessionTimeout\": 0,\"cpuCore\": 0,\"serviceRegUrl\": null,\"servicePubliceUrl\": null,\"keepUrl\": null,\"providerConfiguation\": {\"name\": \"defaultService\",\"group\": \"defaultGroup\",\"port\": 10001,\"messageSize\": 1048576,\"packages\": null,\"assemblyNames\": \"Hayaa.RemoteConfig.ServiceV2.dll,Hayaa.RemoteConfig.Service.Core.dll\"},\"consumerConfiguation\": null}}",
