@@ -1,8 +1,6 @@
 ﻿using Hayaa.BaseModel;
 using Hayaa.BaseModel.Model;
 using Hayaa.RemoteConfig.Service;
-using Hayaa.RemoteService;
-using Hayaa.WorkerSecurity.Client;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -12,11 +10,10 @@ using System.Text;
 namespace Hayaa.RemoteConfigController
 {
     [Route("api/[controller]/[action]")]
-    [UserAuthorityFilter]
+    //[UserAuthorityFilter]
     public class AppConfigController: Controller
     {
-        private AppConfigService AppConfigService = new AppConfigServer(); //PlatformServiceFactory.Instance.CreateService<AppConfigService>(AppRoot.GetDefaultAppUser());
-        private AppService appService = new AppServer(); //PlatformServiceFactory.Instance.CreateService<AppService>(AppRoot.GetDefaultAppUser());
+        private AppConfigService AppConfigService = new AppConfigServer();
         [HttpPost]
         [EnableCors("any")]
         [Desc("GetPager", "获取AppConfig分页列表", "根据appId获取AppConfig分页列表")]
@@ -120,7 +117,7 @@ namespace Hayaa.RemoteConfigController
         public TransactionResult<Boolean> AddComponentConfig(int appConfigId, int componentConfigId)
         {
             TransactionResult<Boolean> result = new TransactionResult<Boolean>();
-            var serviceResult = appService.AddComponentConfigForApp(componentConfigId, appConfigId);
+            var serviceResult = AppConfigService.AddComponentConfigForApp(componentConfigId, appConfigId);
             if (serviceResult.ActionResult&&serviceResult.Data)
             {
                 result.Data = serviceResult.Data;
@@ -138,7 +135,7 @@ namespace Hayaa.RemoteConfigController
         public TransactionResult<Boolean> RemoveComponentConfig(int appConfigId, int componentConfigId)
         {
             TransactionResult<Boolean> result = new TransactionResult<Boolean>();
-            var serviceResult = appService.RemoveComponentConfigForApp(new List<int>() { componentConfigId }, appConfigId);
+            var serviceResult = AppConfigService.RemoveComponentConfigForApp(new List<int>() { componentConfigId }, appConfigId);
             if (serviceResult.ActionResult && serviceResult.Data)
             {
                 result.Data = serviceResult.Data;

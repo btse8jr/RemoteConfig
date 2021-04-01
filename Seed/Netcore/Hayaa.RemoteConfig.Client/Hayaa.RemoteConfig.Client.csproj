@@ -1,0 +1,28 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <Authors>HayaaAI</Authors>
+    <Product>HayaaAI</Product>
+    <Company>Hayaa</Company>
+    <Description>远程配置客户端</Description>
+    <Copyright>©2018 HayaaAI</Copyright>
+    <PackageLicenseUrl>http://l.xieqj.net/license/hayaaai.txt</PackageLicenseUrl>
+    <PackageIconUrl>http://r.xieqj.net/r/ico/hayaaai.ico</PackageIconUrl>
+    <PackageTags>RemoteConfig</PackageTags>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Hayaa.BaseModel" Version="1.0.0.16" />
+    <PackageReference Include="Hayaa.Common" Version="1.0.0.8" />
+    <PackageReference Include="Hayaa.Netcore.SessionEncryption" Version="1.0.0" />
+    <PackageReference Include="Hayaa.RPC.Client" Version="1.0.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Service\Hayaa.RemoteConfig.ServiceV2\Hayaa.RemoteConfig.ServiceV2.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -3,13 +3,13 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Hayaa.RemoteService
+namespace Hayaa.RemoteConfig.Service
 {
     /// <summary>
     /// 宿主程序配置方案
     /// </summary>
     [Serializable]
-    public class AppConfig:BaseData
+    public class AppConfig : BaseData
     {
         /// <summary>
         /// 配置数据ID
@@ -18,7 +18,7 @@ namespace Hayaa.RemoteService
         {
             get;
             set;
-        }                 
+        }
         /// <summary>
         /// AppId
         /// </summary>

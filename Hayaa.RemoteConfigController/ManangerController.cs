@@ -3,6 +3,7 @@ using Hayaa.BaseModel.Model;
 using Hayaa.RemoteConfig.Service;
 using Hayaa.RemoteService;
 using Hayaa.ServicePlatform.Client;
+using Hayaa.WorkerSecurity.Client;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -12,6 +13,7 @@ using System.Text;
 namespace Hayaa.RemoteConfigController
 {
     [Route("api/[controller]/[action]")]
+    [UserAuthorityFilter]
     public partial  class ManangerController: Controller
     {
         private AppService appService = new AppServer(); //PlatformServiceFactory.Instance.CreateService<AppService>(AppRoot.GetDefaultAppUser());

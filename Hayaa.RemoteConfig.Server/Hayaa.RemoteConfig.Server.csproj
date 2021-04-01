@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Hayaa.RPC.Server" Version="1.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Service\Hayaa.RemoteConfig.Service.Core\Hayaa.RemoteConfig.Service.Core.csproj" />
+    <ProjectReference Include="..\Service\Hayaa.RemoteConfig.ServiceV2\Hayaa.RemoteConfig.ServiceV2.csproj" />
+  </ItemGroup>
+
+</Project>

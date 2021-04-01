@@ -1,8 +1,6 @@
 ﻿using Hayaa.BaseModel;
 using Hayaa.BaseModel.Model;
 using Hayaa.RemoteConfig.Service;
-using Hayaa.RemoteService;
-using Hayaa.WorkerSecurity.Client;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -12,7 +10,6 @@ using System.Text;
 namespace Hayaa.RemoteConfigController
 {
     [Route("api/[controller]/[action]")]
-    [UserAuthorityFilter]
     public class ComponentConfigController : Controller
     {
         private ComponentConfigService ComponentConfigService = new ComponentConfigServer(); //PlatformServiceFactory.Instance.CreateService<ComponentConfigService>(AppRoot.GetDefaultAppUser());
