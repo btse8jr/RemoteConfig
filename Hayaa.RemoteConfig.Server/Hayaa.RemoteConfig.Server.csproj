@@ -7,17 +7,12 @@
 
   <ItemGroup>
     <None Remove="appconfig.json" />
-    <None Remove="config\app_demo.json" />
   </ItemGroup>
 
   <ItemGroup>
     <Content Include="appconfig.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </Content>
-    <Content Include="config\app_demo.json">
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
 
