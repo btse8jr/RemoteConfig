@@ -22,7 +22,7 @@ namespace Hayaa.ConfigSeed.Standard.Model
         /// 存储路径是否相对路径目录
         /// 需要以~作为开始符
         /// </summary>
-        public bool IsVirtualPath { set; get; }
+        public bool VirtualPath { set; get; }
 
         /// <summary>
         /// 安全令牌
@@ -58,7 +58,7 @@ namespace Hayaa.ConfigSeed.Standard.Model
         /// <summary>
         /// 配置模式是否远程化
         /// </summary>
-        public bool IsRemote
+        public bool Remote
         {
             get;
             set;
@@ -74,7 +74,11 @@ namespace Hayaa.ConfigSeed.Standard.Model
         /// <summary>
         /// 远程配置服务无法进行App认证和实例获取需要设置为true，其他服务设置为false
         /// </summary>
-        public Boolean IsRemoteConfigRoot { set; get; }
+        public Boolean RemoteConfigRoot { set; get; }
+        /// <summary>
+        /// 1表示webapi，2表示rpc
+        /// </summary>
+        public int RemoteType { set; get; }
         /// <summary>
         /// 远程配置的RPC服务配置
         /// </summary>

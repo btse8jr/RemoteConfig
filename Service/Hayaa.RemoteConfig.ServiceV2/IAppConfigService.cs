@@ -9,7 +9,7 @@ namespace Hayaa.RemoteConfig.Service
     /// <summary>
     /// App(宿主程序)配置服务
     /// </summary>
-    public interface AppConfigService : IBaseService<AppConfig, AppConfigSearchPamater>
+    public interface IAppConfigService : IBaseService<AppConfig, AppConfigSearchPamater>
     {
         /// <summary>
         /// 程序添加组件配置

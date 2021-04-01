@@ -11,7 +11,7 @@ using Hayaa.RemoteConfig.Service.Config;
 /// </summary>
 namespace Hayaa.RemoteConfig.Service
 {
-    public partial class AppConfigServer : AppConfigService
+    public partial class AppConfigServer : IAppConfigService
     {
         public FunctionResult<AppConfig> Create(AppConfig info)
         {

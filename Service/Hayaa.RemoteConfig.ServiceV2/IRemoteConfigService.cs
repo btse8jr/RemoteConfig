@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Hayaa.RemoteConfig.Service
 {
-   public interface RemoteConfigService
+   public interface IRemoteConfigService
     {
         /// <summary>
         /// 发送制定的App(宿主程序)配置方案内容

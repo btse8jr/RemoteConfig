@@ -13,7 +13,7 @@ namespace Hayaa.RemoteConfigController
     //[UserAuthorityFilter]
     public class AppConfigController: Controller
     {
-        private AppConfigService AppConfigService = new AppConfigServer();
+        private IAppConfigService AppConfigService = new AppConfigServer();
         [HttpPost]
         [EnableCors("any")]
         [Desc("GetPager", "获取AppConfig分页列表", "根据appId获取AppConfig分页列表")]

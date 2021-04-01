@@ -11,7 +11,7 @@ using Hayaa.RemoteConfig.Service.Config;
 /// </summary>
 namespace Hayaa.RemoteConfig.Service
 {
-    public partial class ComponentConfigServer : ComponentConfigService
+    public partial class ComponentConfigServer : IComponentConfigService
     {
         public FunctionResult<ComponentConfig> Create(ComponentConfig info)
         {

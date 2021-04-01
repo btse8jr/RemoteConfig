@@ -12,7 +12,7 @@ namespace Hayaa.RemoteConfigController
     [Route("api/[controller]/[action]")]
     public class ComponentConfigController : Controller
     {
-        private ComponentConfigService ComponentConfigService = new ComponentConfigServer(); //PlatformServiceFactory.Instance.CreateService<ComponentConfigService>(AppRoot.GetDefaultAppUser());
+        private IComponentConfigService ComponentConfigService = new ComponentConfigServer();
         [HttpPost]
         [EnableCors("any")]
         [Desc("GetPager", "获取ComponentConfig分页列表", "根据componentId获取ComponentConfig分页列表")]

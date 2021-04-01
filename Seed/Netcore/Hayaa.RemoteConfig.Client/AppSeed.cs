@@ -33,8 +33,11 @@ namespace Hayaa.RemoteConfig.Client
             try
             {
                 var seedConfig = ProgramDistributedConfig.Instance.GetSeedConfig();
-                RpcClient rpcClient = new RpcClient();
-                rpcClient.Run(seedConfig.RpcRemoteServiceConfig);
+                if (seedConfig.Remote)
+                {
+                    RpcClient rpcClient = new RpcClient();
+                    rpcClient.Run(seedConfig.RpcRemoteServiceConfig);
+                }
                 //支持分布式配置系统则获取配置
                 ProgramDistributedConfig.Instance.InitAppConfig();              
 

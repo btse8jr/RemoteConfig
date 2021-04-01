@@ -233,7 +233,7 @@ namespace Hayaa.ConfigSeed.Standard.Component
             SessionEncryption se = new SessionEncryption();          
             AppConfig result = null;
             Console.WriteLine("请求地址:" + url + ";sid:" + solutionID.ToString());
-            RemoteConfigService remoteConfigService =RpcServiceFactory.CreateService<RemoteConfigService>(typeof(RemoteConfigService).FullName);           
+            IRemoteConfigService remoteConfigService =RpcServiceFactory.CreateService<IRemoteConfigService>(typeof(IRemoteConfigService).FullName);           
             try
             {
                 var response = remoteConfigService.SendConfig(solutionID.ToString(), version);
@@ -265,7 +265,7 @@ namespace Hayaa.ConfigSeed.Standard.Component
         {
             AppLocalConfig r = new AppLocalConfig()
             {
-                IsRemote = true,
+                Remote = true,
                 LocalConfigDirectoryPath = "~/Config",
                 Version = 0
             };
@@ -273,7 +273,7 @@ namespace Hayaa.ConfigSeed.Standard.Component
             {
                 string baseDirectory = AppDomain.CurrentDomain.BaseDirectory;//获取根目录路径
                 r = JsonHelper.Deserialize<AppLocalConfig>(File.ReadAllText(baseDirectory + "/appconfig.json", Encoding.UTF8));//读取根目录下的配置文件
-                if (r.IsVirtualPath)//web系统相对部署根目录获取绝对路径
+                if (r.VirtualPath)//web系统相对部署根目录获取绝对路径
                 {
                     r.LocalConfigDirectoryPath = baseDirectory + r.LocalConfigDirectoryPath.Replace("~/", "");
                 }
@@ -319,10 +319,13 @@ namespace Hayaa.ConfigSeed.Standard.Component
         public InitResult InitAppConfig()
         {
             var r = new InitResult() { Result = true };
-            if (_seedConfig.IsRemote)//判断是否读取远程配置模式
+            if (_seedConfig.Remote)//判断是否读取远程配置模式
             {
                 Console.WriteLine("获取远程");
-                ReadRemote(_seedConfig);//读取远程配置
+                if (_seedConfig.RemoteType == 1)
+                    ReadRemote(_seedConfig);//读取远程配置
+                else
+                    ReadRpcRemote(_seedConfig);
             }
             Console.WriteLine("读取本地");
             ReadLocal(_seedConfig, r);//读取本地配置 
@@ -331,7 +334,7 @@ namespace Hayaa.ConfigSeed.Standard.Component
         public InitResult ReAppConfig()
         {
             var r = new InitResult() { Result = true };
-            if (_seedConfig.IsRemote)//判断是否读取远程配置模式
+            if (_seedConfig.Remote)//判断是否读取远程配置模式
             {
                 ReReadRemote(_seedConfig);//读取远程配置
             }

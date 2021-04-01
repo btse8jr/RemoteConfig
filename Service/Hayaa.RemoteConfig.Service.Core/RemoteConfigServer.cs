@@ -6,7 +6,7 @@ using Hayaa.RemoteConfig.Service.Dao;
 
 namespace Hayaa.RemoteConfig.Service
 {
-    public class RemoteConfigServer : RemoteConfigService
+    public class RemoteConfigServer : IRemoteConfigService
     {
         public FunctionResult<AppConfig> SendConfig(String solutionID, int version)
         {
