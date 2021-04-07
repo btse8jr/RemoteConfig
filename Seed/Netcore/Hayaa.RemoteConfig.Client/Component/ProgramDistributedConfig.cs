@@ -233,10 +233,11 @@ namespace Hayaa.ConfigSeed.Standard.Component
             SessionEncryption se = new SessionEncryption();          
             AppConfig result = null;
             Console.WriteLine("请求地址:" + url + ";sid:" + solutionID.ToString());
-            IRemoteConfigService remoteConfigService =RpcServiceFactory.CreateService<IRemoteConfigService>(typeof(IRemoteConfigService).FullName);           
+            IRemoteConfigService remoteConfigService =RpcServiceFactory.CreateService<IRemoteConfigService>(typeof(IRemoteConfigService).FullName); 
             try
             {
-                var response = remoteConfigService.SendConfig(solutionID.ToString(), version);
+                String guid = solutionID.ToString();
+                var response = remoteConfigService.SendConfig(guid, version);
                 if (response.ActionResult&&response.HavingData)
                 {
                     result = response.Data;

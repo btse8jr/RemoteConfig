@@ -29,15 +29,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hayaa.RemoteConfig.Server",
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Controller", "Controller", "{6F292DD2-0EEC-4256-97CF-3612C8F24576}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hayaa.RemoteConfig.Controller", "Hayaa.RemoteConfig.Controller\Hayaa.RemoteConfig.Controller.csproj", "{7CEA5FE2-A742-4C1D-9D8B-7C0A47ECC97C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hayaa.RemoteConfig.Controller", "Hayaa.RemoteConfig.Controller\Hayaa.RemoteConfig.Controller.csproj", "{7CEA5FE2-A742-4C1D-9D8B-7C0A47ECC97C}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Sites", "Sites", "{FC91EEB3-DFCE-410A-8E2D-275946DC490F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hayaa.RemoteConfig.Site", "Hayaa.RemoteConfig.Site\Hayaa.RemoteConfig.Site.csproj", "{8F82B040-8843-4B14-B5C9-76F5F79F27D1}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hayaa.RemoteConfig.ClientTest", "Hayaa.RemoteConfig.ClientTest\Hayaa.RemoteConfig.ClientTest.csproj", "{B69515C1-3F4A-4E60-871C-11351155EAC1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hayaa.RemoteConfig.Site", "Hayaa.RemoteConfig.Site\Hayaa.RemoteConfig.Site.csproj", "{8F82B040-8843-4B14-B5C9-76F5F79F27D1}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UISites", "UISites", "{38F16DD8-4E46-4B9A-BD3B-C0735F650939}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "XUnitTestProject", "XUnitTestProject\XUnitTestProject.csproj", "{64A62BDD-6977-4A9B-B884-A6C39C770212}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -69,10 +69,10 @@ Global
 		{8F82B040-8843-4B14-B5C9-76F5F79F27D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8F82B040-8843-4B14-B5C9-76F5F79F27D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8F82B040-8843-4B14-B5C9-76F5F79F27D1}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B69515C1-3F4A-4E60-871C-11351155EAC1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B69515C1-3F4A-4E60-871C-11351155EAC1}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B69515C1-3F4A-4E60-871C-11351155EAC1}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B69515C1-3F4A-4E60-871C-11351155EAC1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{64A62BDD-6977-4A9B-B884-A6C39C770212}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{64A62BDD-6977-4A9B-B884-A6C39C770212}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{64A62BDD-6977-4A9B-B884-A6C39C770212}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{64A62BDD-6977-4A9B-B884-A6C39C770212}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -89,8 +89,8 @@ Global
 		{7CEA5FE2-A742-4C1D-9D8B-7C0A47ECC97C} = {6F292DD2-0EEC-4256-97CF-3612C8F24576}
 		{FC91EEB3-DFCE-410A-8E2D-275946DC490F} = {97305819-FE6E-487F-A7EB-2DB63D30A1C7}
 		{8F82B040-8843-4B14-B5C9-76F5F79F27D1} = {FC91EEB3-DFCE-410A-8E2D-275946DC490F}
-		{B69515C1-3F4A-4E60-871C-11351155EAC1} = {433C8931-E668-42EF-AF25-C06AF79CEA06}
 		{38F16DD8-4E46-4B9A-BD3B-C0735F650939} = {97305819-FE6E-487F-A7EB-2DB63D30A1C7}
+		{64A62BDD-6977-4A9B-B884-A6C39C770212} = {433C8931-E668-42EF-AF25-C06AF79CEA06}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {14C67632-5281-4624-ADDF-51E4CF210E1A}
