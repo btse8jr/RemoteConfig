@@ -32,6 +32,7 @@ namespace Hayaa.RemoteConfig.Client
             string result = "";
             try
             {
+                Console.WriteLine("配置初始化--开始");
                 var seedConfig = ProgramDistributedConfig.Instance.GetSeedConfig();
                 if (seedConfig.Remote)
                 {
@@ -39,8 +40,8 @@ namespace Hayaa.RemoteConfig.Client
                     rpcClient.Run(seedConfig.RpcRemoteServiceConfig);
                 }
                 //支持分布式配置系统则获取配置
-                ProgramDistributedConfig.Instance.InitAppConfig();              
-
+                ProgramDistributedConfig.Instance.InitAppConfig();
+                Console.WriteLine("配置初始化--结束");
             }
             catch (Exception ex)
             {

@@ -7,12 +7,12 @@
   "version": 1,
   "components": [
     {
-      "ComponentConfigId": 1,
-      "ComponentID": 10011,
-      "Content": "{\"appSettings\":null,\"connectionStrings\":{\"settings\":[{\"name\":\"RemoteConfig\",\"connection\":\"Data Source=192.168.31.252;Initial Catalog=RemoteConfig;Persist Security Info=True;User ID=configdbu;password=configDBuserpd18?1\"}]}}",
-      "Version": 1,
-      "ComponentConfigTitle": "配置组件",
-      "IsDefault": true,
+      "componentConfigId": 1,
+      "componentId": 10011,
+      "content": "{\"appSettings\":null,\"connectionStrings\":{\"settings\":[{\"name\":\"RemoteConfig\",\"connection\":\"Data Source=192.168.31.252;Initial Catalog=RemoteConfig;Persist Security Info=True;User ID=configdbu;password=configDBuserpd18?1\"}]}}",
+      "version": 1,
+      "componentConfigTitle": "配置组件",
+      "isDefault": true,
       "Code": 0,
       "Message": null,
       "CreateTime": "0001-01-01T00:00:00Z",

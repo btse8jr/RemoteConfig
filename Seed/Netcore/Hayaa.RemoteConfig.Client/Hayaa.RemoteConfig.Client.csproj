@@ -12,6 +12,7 @@
     <PackageLicenseUrl>http://l.xieqj.net/license/hayaaai.txt</PackageLicenseUrl>
     <PackageIconUrl>http://r.xieqj.net/r/ico/hayaaai.ico</PackageIconUrl>
     <PackageTags>RemoteConfig</PackageTags>
+    <Version>1.0.0.1</Version>
   </PropertyGroup>
 
   <ItemGroup>

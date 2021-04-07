@@ -25,4 +25,10 @@
     <ProjectReference Include="..\Service\Hayaa.RemoteConfig.ServiceV2\Hayaa.RemoteConfig.ServiceV2.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="config\app.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>

@@ -16,11 +16,9 @@ namespace Hayaa.RemoteConfig.Service.Dao
         private static String con = ConfigHelper.Instance.GetConnection(DefineTable.DatabaseName);
         internal static int Add(AppConfig info)
         {
-            string sql = "insert into AppConfig(AppId,SolutionID,SolutionName,ConfigContent,Version) values(@AppId,@SolutionID,@SolutionName,@ConfigContent,@Version)";
-            return Insert<AppConfig>(con, sql, info);
+            string sql = "insert into AppConfig(AppId,SolutionID,SolutionName,ConfigContent,Version) values(@AppId,@SolutionID,@SolutionName,@ConfigContent,@Version);select @@IDENTITY;";
+            return InsertWithReturnID<AppConfig, int>(con, sql, info);
         }
-
-       
 
         internal static int Update(AppConfig info)
         {

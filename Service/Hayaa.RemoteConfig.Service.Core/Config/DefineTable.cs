@@ -9,7 +9,7 @@ namespace Hayaa.RemoteConfig.Service.Config
         /// <summary>
         /// RemoteServic组件的ID
         /// </summary>
-        public readonly static int RemoteServiceComponetID = 10001;
+        public readonly static int RemoteServiceComponetID = 10011;
         public readonly static String DatabaseName = "RemoteConfig";
     }
 }

@@ -11,26 +11,5 @@
   "RemoteType": 2,
   "appConfigFileName": "app.json",
   "remoteConfigRoot": true,
-  "rpcRemoteServiceConfig": {
-    "sessionTimeout": 3000,
-    "cpuCore": 1,
-    "serviceRegUrl": "regurl",
-    "servicePubliceUrl": "puburl",
-    "keepUrl": "keepurl",
-    "providerConfiguation": null,
-    "consumerConfiguation": {
-      "name": "default",
-      "services": [
-        {
-          "name": "default",
-          "group": "default",
-          "interfaceName": "Hayaa.RemoteConfig.Service.IRemoteConfigService",
-          "assemblyName": "Hayaa.RemoteConfig.ServiceV2.dll",
-          "serverHost": "127.0.0.1",
-          "serverPort": 10001
-        }
-      ],
-      "messageSize": 1048576
-    }
-  }
+  "rpcRemoteServiceConfig": null
 }
