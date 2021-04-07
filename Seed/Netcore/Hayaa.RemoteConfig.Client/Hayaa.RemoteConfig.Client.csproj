@@ -12,14 +12,14 @@
     <PackageLicenseUrl>http://l.xieqj.net/license/hayaaai.txt</PackageLicenseUrl>
     <PackageIconUrl>http://r.xieqj.net/r/ico/hayaaai.ico</PackageIconUrl>
     <PackageTags>RemoteConfig</PackageTags>
-    <Version>1.0.0.4</Version>
+    <Version>1.0.0.5</Version>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Hayaa.BaseModel" Version="1.0.0.16" />
     <PackageReference Include="Hayaa.Common" Version="1.0.0.10" />
     <PackageReference Include="Hayaa.Netcore.SessionEncryption" Version="1.0.0" />
-    <PackageReference Include="Hayaa.RPC.Client" Version="1.0.0.5" />
+    <PackageReference Include="Hayaa.RPC.Client" Version="1.0.0.6" />
   </ItemGroup>
 
   <ItemGroup>
